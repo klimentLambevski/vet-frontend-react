@@ -1,12 +1,6 @@
-import {Router, Route, hashHistory} from "react-router";
-import Login from './components/auth/login';
+import { Router, hashHistory } from "react-router";
+import routes from './routes';
 
-export default React.createClass({
-  render() {
-    return (
-      <Router history={hashHistory}>
-        <Route path="/" component={Login}/>
-      </Router>
-    )
-  }
-});
+export default (
+  <Router history={hashHistory} routes={routes}/>
+);

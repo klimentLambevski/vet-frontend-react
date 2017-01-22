@@ -7,5 +7,5 @@ window.React = require('react');
 // require('semantic-ui-css/semantic.js');
 //
 
-require('./app/app');
+require('./app/index');
 
