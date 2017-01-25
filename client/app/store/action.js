@@ -1,3 +1,3 @@
 export function createActionMap(actions, prefix) {
-  _.mapValues(actions, (value, key) => (prefix ? prefix + '/' : '') + key)
+  return _.mapValues(actions, (value, key) => (prefix ? prefix + '/' : '') + key)
 }

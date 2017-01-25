@@ -6,7 +6,8 @@ import storeInit from './store/store';
 import routes from './routes';
 import { isAuthenticated } from './store/auth/auth.actions';
 
-const store = storeInit();
+let store = storeInit();
+window.store = store;
 const history = syncHistoryWithStore(hashHistory, store);
 
 //TODO remove this

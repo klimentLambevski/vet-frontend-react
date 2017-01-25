@@ -1,7 +1,6 @@
 import {actions} from "./auth.actions";
 
 const authReducer = (state = {}, action) => {
-
   switch (action.type) {
     case actions.AUTH_SUCCESS:
       console.log('store:', state, action);
