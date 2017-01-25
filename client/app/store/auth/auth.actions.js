@@ -1,12 +1,18 @@
-import { push } from 'react-router-redux';
-import * as types from './auth.types';
-import { signIn, checkAuthenticated, logout } from '../api/auth.api';
-import LocalStorageService from '../services/local.storage.service';
+import {push} from "react-router-redux";
+import {signIn, checkAuthenticated, logout} from "../../services/api/auth.api";
+import LocalStorageService from "../../services/storage/local.storage.service";
+import {createActionMap} from "../action";
+
+export const actions = createActionMap({
+  AUTH_SUCCESS: '',
+  NOT_AUTHENTICATED: '',
+  LOGOUT_SUCCESS: '',
+}, 'auth');
 
 //action creators
 const authSuccess = (loggedInUser) => {
   return {
-    type: types.AUTH_SUCCESS,
+    type: actions.AUTH_SUCCESS,
     loggedInUser
   };
 };
@@ -17,13 +23,13 @@ const authError = () => {
 
 const notAuthenticated = () => {
   return {
-    type: types.NOT_AUTHENTICATED
+    type: actions.NOT_AUTHENTICATED
   };
 };
 
 const logoutSuccess = () => {
   return {
-    type: types.LOGOUT_SUCCESS
+    type: actions.LOGOUT_SUCCESS
   };
 };
 

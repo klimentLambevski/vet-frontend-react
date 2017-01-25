@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { authenticateUser } from '../../actions/auth.thunks';
+import { authenticateUser } from '../../store/auth/auth.actions';
 import LoginForm from './login.form';
 
 const PropTypes = React.PropTypes;

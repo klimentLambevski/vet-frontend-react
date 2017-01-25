@@ -2,15 +2,15 @@ import ReactDOM from "react-dom";
 import { Provider } from 'react-redux';
 import { Router, hashHistory } from "react-router";
 import { syncHistoryWithStore } from 'react-router-redux'
-import configureStore from './store/configureStore';
+import storeInit from './store/store';
 import routes from './routes';
-import { isAuthenticated } from './actions/auth.thunks';
+import { isAuthenticated } from './store/auth/auth.actions';
 
-const store = configureStore();
+const store = storeInit();
 const history = syncHistoryWithStore(hashHistory, store);
 
 //TODO remove this
-import LocalStorageService from './services/local.storage.service';
+import LocalStorageService from './services/storage/local.storage.service';
 LocalStorageService.removeItem('AUTH_TOKEN');
 
 

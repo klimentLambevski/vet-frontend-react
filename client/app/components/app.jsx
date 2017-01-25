@@ -1,6 +1,6 @@
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { isAuthenticated } from '../actions/auth.thunks';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {isAuthenticated} from '../store/auth/auth.actions';
 import Header from './common/heder';
 
 class App extends React.Component {
@@ -48,7 +48,7 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators({ isAuthenticated }, dispatch)
+    actions: bindActionCreators({isAuthenticated}, dispatch)
   };
 };
 
