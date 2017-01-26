@@ -1,21 +1,20 @@
-import * as types from '../actions/auth.types';
+import {actions} from "./auth.actions";
 
 const authReducer = (state = {}, action) => {
-
   switch (action.type) {
-    case types.AUTH_SUCCESS:
+    case actions.AUTH_SUCCESS:
       console.log('store:', state, action);
       return Object.assign({}, state, {
         isAuthenticated: true,
         user: action.loggedInUser
       });
 
-    case types.NOT_AUTHENTICATED:
+    case actions.NOT_AUTHENTICATED:
       return {
         isAuthenticated: false
       };
 
-    case types.LOGOUT_SUCCESS:
+    case actions.LOGOUT_SUCCESS:
       return {
         isAuthenticated: false
       };

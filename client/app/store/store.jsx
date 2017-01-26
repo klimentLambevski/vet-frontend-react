@@ -1,9 +1,10 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { routerMiddleware } from 'react-router-redux';
-import { hashHistory } from 'react-router';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import rootReducer from '../reducers';
+import thunk from 'redux-thunk';
+import {createStore, applyMiddleware} from 'redux';
+import {routerMiddleware} from 'react-router-redux';
+import {hashHistory} from 'react-router';
+
+import rootReducer from './reducer';
 
 export default (initialState) => {
   return createStore(
