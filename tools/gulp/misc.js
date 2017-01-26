@@ -7,7 +7,7 @@ import es from "event-stream";
 import {paths} from "../config";
 
 export function gulpWatch() {
-  return gulp.watch(paths.scssWatch, ['sass'])
+  return gulp.watch(paths.scssBatch, ['sass'])
 }
 
 export function gulpAssets() {

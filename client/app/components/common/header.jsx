@@ -3,11 +3,17 @@ import {connect} from "react-redux";
 
 const Header = () => {
   return (
-    <nav className="header">
-      <IndexLink to="/" activeClassName="active">Home</IndexLink>
-      <Link to="/dashboard" activeClassName="active">Dashboard</Link>
-      <Link to="/login" activeClassName="active">Login</Link>
-    </nav>
+    <header className="header component">
+      <div className="logo">
+        <img src="./assets/img/logos/syringe.svg"/>
+        <span>vet</span>
+      </div>
+      <nav className="main-navigation">
+        <IndexLink className="--a-reset" to="/" activeClassName="active">Home</IndexLink>
+        <Link className="--a-reset" to="/dashboard" activeClassName="active">Dashboard</Link>
+        <Link className="--a-reset" to="/login" activeClassName="active">Login</Link>
+      </nav>
+    </header>
   );
 };
 

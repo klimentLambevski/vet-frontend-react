@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  background: white;
+  font-weight: 200;
+  box-shadow: 2px 0 1px 0 rgba(145, 145, 145, 0.5);
+
+  .logo {
+    display: inline-block;
+    padding: 10px;
+
+    img {
+      vertical-align: middle;
+      width: 30px;
+      margin-right: 5px;
+    }
+    span {
+      color: $clBrand;
+      font-size: 1.6em;
+      line-height: 1px;
+      vertical-align: middle;
+    }
+  }
+  .main-navigation {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+
+    a {
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+
+      transition: 1s all ease;
+
+      &:hover {
+        background: $clBase;
+        //color: white;
+      }
+    }
+  }
+}

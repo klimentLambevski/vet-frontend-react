@@ -10,6 +10,7 @@ let paths = {
   dist: distPath,
   assets: path.join(rootPath, 'assets/**/*'),
   scssEntry: path.join(clientPath, 'index.scss'),
+  scssBatch: path.join(clientPath, '/**/*.scss'),
   jsEntry: path.join(clientPath, 'index.js'),
   htmlEntry: path.join(clientPath, 'index.html')
 };

@@ -3,7 +3,10 @@ html, body {
 }
 
 body {
-
+  background-color: $clGrayLighter;
+  //font-size: 15px;
+  font-family: "Fira Sans", sans-serif;
+  color: $clBrandDarker;
 }
 
 
