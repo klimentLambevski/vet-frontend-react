@@ -1,9 +1,10 @@
 class HomePage extends React.Component {
   render() {
     return (
-      <div>
-        <h1>Vet</h1>
-        <p>Home page</p>
+      <div className="home page">
+        <div className="sub-header">
+          <h2>Welcome to Vet</h2>
+        </div>
       </div>
     );
   }
