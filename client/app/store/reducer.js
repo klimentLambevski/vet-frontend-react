@@ -1,15 +1,17 @@
-import {combineReducers} from 'redux';
-import {routerReducer} from 'react-router-redux';
+import { combineReducers } from 'redux';
+import { routerReducer as routing } from 'react-router-redux';
+import { reducer as form } from 'redux-form';
 import auth from './auth/auth.reducer';
-import {headerReducer} from '../components/common/header.reducer'
+import { headerReducer as header } from '../components/common/header.reducer'
 
 const rootReducer = combineReducers({
   // todo: find a suitable name for common
   common: combineReducers({
     auth
   }),
-  header: headerReducer,
-  routing: routerReducer
+  header,
+  routing,
+  form
 });
 
 export default rootReducer;

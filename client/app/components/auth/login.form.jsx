@@ -1,32 +1,54 @@
-const PropTypes = React.PropTypes;
+import { Field, reduxForm } from 'redux-form';
+import FlatButton from 'material-ui/FlatButton';
+import { renderTextField } from '../common/inputs/inputs';
 
-const LoginForm = ({ user, onValueChange, onSubmit }) => {
-  return (
-    <form onSubmit={onSubmit}>
-      <input
+//TODO handle validation in one place or use some library for validation
+const validate = (values) => {
+  const errors = {};
+
+  ['email', 'password']
+    .forEach(key => {
+      if (!values[key] || values[key] === '') {
+        errors[key] = 'Required';
+      }
+    });
+
+  return errors;
+};
+
+//TODO form style
+const LoginForm = ({ handleSubmit, pristine, submitting, invalid }) => (
+  <form onSubmit={handleSubmit}>
+    <div>
+      <Field
+        component={renderTextField}
         type="text"
         name="email"
-        value={user.email}
-        onChange={onValueChange}/>
+        label="Email"
+      />
+    </div>
 
-      <input
+    <div>
+      <Field
+        component={renderTextField}
         type="password"
         name="password"
-        value={user.password}
-        onChange={onValueChange}
+        label="Password"
       />
+    </div>
 
-      <input
+    <div>
+      <FlatButton
         type="submit"
-        value="Save"/>
-    </form>
-  );
-};
+        label="Sign In"
+        primary={true}
+        disabled={pristine || submitting || invalid}
+      />
+    </div>
+  </form>
+);
 
-LoginForm.propTypes = {
-  user: PropTypes.object.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onValueChange: PropTypes.func.isRequired
-};
-
-export default LoginForm;
+export default reduxForm({
+  form: 'login',
+  validate
+})(LoginForm);

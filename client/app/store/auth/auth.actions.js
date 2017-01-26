@@ -5,6 +5,7 @@ import {createActionMap} from "../action";
 
 export const actions = createActionMap({
   AUTH_SUCCESS: '',
+  AUTH_ERROR: '',
   NOT_AUTHENTICATED: '',
   LOGOUT_SUCCESS: '',
 }, 'auth');
@@ -17,8 +18,11 @@ const authSuccess = (loggedInUser) => {
   };
 };
 
-const authError = () => {
-  //TODO impl
+const authError = (error) => {
+  return {
+    type: actions.AUTH_ERROR,
+    error: error
+  };
 };
 
 const notAuthenticated = () => {
@@ -43,7 +47,7 @@ export const authenticateUser = (user, redirectUrl) => {
         dispatch(push(redirectUrl));
       })
       .catch(error => {
-        throw error;
+        dispatch(authError(error));
       });
   };
 };

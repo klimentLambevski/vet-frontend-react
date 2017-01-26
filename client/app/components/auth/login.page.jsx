@@ -5,45 +5,37 @@ import LoginForm from './login.form';
 
 const PropTypes = React.PropTypes;
 
+//TODO show notification if there is an error.
+//Should we use higher order component for showing errors caused by api calls?
+
+//TODO create login form container that will contain the login logic. Login page shouldn't know about the login logic.
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
 
-    const redirectRoute = this.props.location.query.next || '/login';
-
+    const redirectRoute = this.props.location.query.next || '/';
     this.state = {
-      user: {
-        email: '',
-        password: ''
-      },
       redirectUrl: redirectRoute
     };
 
-    this.onValueChange = this.onValueChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onValueChange(event) {
-    const field = event.target.name;
-    let user = this.state.user;
-    user[field] = event.target.value;
-    this.setState({ user: user });
-  }
-
-  onSubmit(event) {
-    event.preventDefault();
-    this.props.actions.authenticateUser(this.state.user, this.state.redirectUrl);
+  onSubmit(user) {
+    this.props.actions.authenticateUser(user, this.state.redirectUrl);
   }
 
   render() {
     return (
       <section>
+        <div>
+          {this.props.auth.error && `Error: ${this.props.auth.error.message}`}
+        </div>
+
         <h1>Login</h1>
 
         <LoginForm
-          user={this.state.user}
           onSubmit={this.onSubmit}
-          onValueChange={this.onValueChange}
         />
       </section>
     );
@@ -55,9 +47,9 @@ LoginPage.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    auth: state.auth
+    auth: state.common.auth
   };
 };
 

@@ -33,7 +33,7 @@ export default (ComposedComponent) => {
 
   const mapStateToProps = (state, ownProps) => {
     return {
-      isAuthenticated: state.auth.isAuthenticated,
+      isAuthenticated: state.common.auth.isAuthenticated,
       currentUrl: ownProps.location.pathname
     };
   };

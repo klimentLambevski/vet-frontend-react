@@ -7,6 +7,7 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       isLoading: true
     };
@@ -15,20 +16,16 @@ class App extends React.Component {
   componentDidMount() {
     this.props.actions.isAuthenticated()
       .then(() => {
-        console.log('finished');
         this.setState({isLoading: false})
-      })
-      .catch(() => {
-        console.log('err');
       });
   }
 
+  //TODO add spinner or something...
   render() {
-    console.log(this.state);
     if (this.state.isLoading) {
       return (
         <div>
-          Loading
+          Loading...
         </div>
       );
     }
