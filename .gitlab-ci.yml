@@ -16,20 +16,21 @@ services:
 cache:
   paths:
   - node_modules/
-  - .dist/
 
 stages:
   - build
   - deploy
 
-build:
-  stage: build
-  script:
-    - npm install
-    - npm run build
+#build:
+#  stage: build
+#  script:
+#    - npm install
+#    - npm run build
 
 deploy:
   stage: deploy
   script:
+    - npm install # todo: switch to yarn
     - npm install firebase-tools
+    - npm run build
     - npm run deploy:firebase
