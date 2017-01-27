@@ -5,6 +5,5 @@ node_modules/
 .settings
 *.log
 
-.firebaserc
 .idea/
 .dist/
