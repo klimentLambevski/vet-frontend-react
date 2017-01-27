@@ -24,5 +24,11 @@ stages:
 build:
   stage: build
   script:
-   - npm install
-   - npm run build
+    - npm install
+    - npm run build
+
+deploy:
+  stage: deploy
+  script:
+    - npm install firebase-tools
+    - npm run deploy:firebase
