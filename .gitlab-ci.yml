@@ -25,4 +25,4 @@ build:
   stage: build
   script:
    - npm install
-   - gulp
+   - npm run build
