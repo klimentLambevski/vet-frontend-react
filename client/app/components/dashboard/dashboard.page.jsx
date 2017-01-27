@@ -1,11 +1,11 @@
-import Logout from '../auth/logout';
+import LogoutButton from '../auth/logout.button';
 
 class DashboardPage extends React.Component {
   render() {
     return (
       <section>
         <h1>Dashboard</h1>
-        <Logout/>
+        <LogoutButton/>
       </section>
     );
   }

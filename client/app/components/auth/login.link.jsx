@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-const Login = ({ to, className = '', activeClassName = '', isAuthenticated }) => (
+const LoginLink = ({ to, className = '', activeClassName = '', isAuthenticated }) => (
   !isAuthenticated ?
     <Link
       to={to}
@@ -12,7 +12,7 @@ const Login = ({ to, className = '', activeClassName = '', isAuthenticated }) =>
     null
 );
 
-Login.propTypes = {
+LoginLink.propTypes = {
   to: React.PropTypes.string.isRequired
 };
 
@@ -22,4 +22,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(LoginLink);

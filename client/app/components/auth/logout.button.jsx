@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { logoutUser } from '../../store/auth/auth.actions';
 
-class Logout extends React.Component {
+class LogoutButton extends React.Component {
   constructor(props) {
     super(props);
 
@@ -37,4 +37,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Logout);
+export default connect(mapStateToProps, mapDispatchToProps)(LogoutButton);

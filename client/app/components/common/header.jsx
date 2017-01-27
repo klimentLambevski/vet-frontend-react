@@ -1,6 +1,6 @@
 import {Link, IndexLink} from 'react-router';
 import {connect} from "react-redux";
-import Login from '../auth/login';
+import LoginLink from '../auth/login.link';
 
 const Header = () => {
   return (
@@ -12,7 +12,7 @@ const Header = () => {
       <nav className="main-navigation">
         <IndexLink className="--a-reset" to="/" activeClassName="active">Home</IndexLink>
         <Link className="--a-reset" to="/dashboard" activeClassName="active">Dashboard</Link>
-        <Login className="--a-reset" to="/login" activeClassName="active"/>
+        <LoginLink className="--a-reset" to="/login" activeClassName="active"/>
       </nav>
     </header>
   );
