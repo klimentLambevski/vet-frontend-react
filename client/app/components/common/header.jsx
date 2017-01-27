@@ -7,7 +7,7 @@ const Header = () => {
     <header className="header component">
       <div className="logo">
         <img src="./assets/img/logos/syringe.svg"/>
-        <span>vet</span>
+        <span>Vet</span>
       </div>
       <nav className="main-navigation">
         <IndexLink className="--a-reset" to="/" activeClassName="active">Home</IndexLink>

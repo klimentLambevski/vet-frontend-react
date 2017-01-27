@@ -16,9 +16,9 @@ if (process.env.NODE_ENV !== 'production') {
   middleware.push(...devMiddleware);
 }
 
-const enhancer = composeEnhancers(
-  applyMiddleware(...middleware)
-);
+let enhancer = composeEnhancers ? composeEnhancers(
+    applyMiddleware(...middleware)
+  ) : applyMiddleware(...middleware);
 
 export default (initialState) => {
   return createStore(
