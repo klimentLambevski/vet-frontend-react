@@ -2,8 +2,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 
-//TODO add isLoading bool to the auth store, if its true return false instead of inner component and dont check for auth...
-
 export default (ComposedComponent) => {
   class RequireAuthentication extends React.Component {
 
@@ -28,7 +26,6 @@ export default (ComposedComponent) => {
         <ComposedComponent {...this.props}/>
       );
     }
-
   }
 
   const mapStateToProps = (state, ownProps) => {

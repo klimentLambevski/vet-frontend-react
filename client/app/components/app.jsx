@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {isAuthenticated} from '../store/auth/auth.actions';
 import Header from './common/header';
+import AlertContainer from './common/alert/alert.container';
 
 class App extends React.Component {
 
@@ -32,6 +33,7 @@ class App extends React.Component {
 
     return (
       <section>
+        <AlertContainer/>
         <Header/>
         {this.props.children}
       </section>

@@ -2,6 +2,7 @@ import {push} from "react-router-redux";
 import {signIn, checkAuthenticated, logout} from "../../services/api/auth.api";
 import LocalStorageService from "../../services/storage/local.storage.service";
 import {createActionMap} from "../action";
+import {showAlert} from '../alert/alert.actions';
 
 export const actions = createActionMap({
   AUTH_SUCCESS: '',
@@ -47,7 +48,8 @@ export const authenticateUser = (user, redirectUrl) => {
         dispatch(push(redirectUrl));
       })
       .catch(error => {
-        dispatch(authError(error));
+        // dispatch(authError(error));
+        dispatch(showAlert(error));
       });
   };
 };
