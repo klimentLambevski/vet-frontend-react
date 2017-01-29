@@ -13,7 +13,9 @@
 //@import "../node_modules/angularjs-slider/dist/rzslider.scssEntry";
 
 @import "../node_modules/sass-mq/mq";
-@import "../node_modules/flexboxgrid/dist/flexboxgrid.css";
+@import "../node_modules/flexboxgrid/dist/flexboxgrid";
+@import "../node_modules/semantic-ui-css/components/container";
+@import "../node_modules/semantic-ui-css/components/table";
 
 @import "styles/fonts";
 @import "styles/mixins";

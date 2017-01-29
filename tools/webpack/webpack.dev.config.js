@@ -4,7 +4,7 @@ let wpConfig = require('./webpack.config.js');
 
 import {paths} from '../config';
 
-wpConfig.devtool = 'eval-source-map';
+wpConfig.devtool = 'source-map';
 
 wpConfig.output = {
   filename: '[name].bundle.js',
