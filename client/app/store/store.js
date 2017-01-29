@@ -11,14 +11,14 @@ let middleware = [
 ];
 
 if (process.env.NODE_ENV !== 'production') {
-  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   let devMiddleware = require('./store.dev');
   middleware.push(...devMiddleware);
 }
 
-let enhancer = composeEnhancers ? composeEnhancers(
-    applyMiddleware(...middleware)
-  ) : applyMiddleware(...middleware);
+const enhancer = composeEnhancers(
+  applyMiddleware(...middleware)
+);
 
 export default (initialState) => {
   return createStore(
