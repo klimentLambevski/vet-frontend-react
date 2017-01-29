@@ -16,7 +16,7 @@ const validate = (values) => {
   return errors;
 };
 
-//TODO form style
+//TODO form style -> RaisedButton for Save wrap the form in the paper
 const LoginForm = ({ handleSubmit, pristine, submitting, invalid }) => (
   <form onSubmit={handleSubmit}>
     <div>

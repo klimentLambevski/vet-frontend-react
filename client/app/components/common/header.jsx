@@ -1,6 +1,6 @@
 import {Link, IndexLink} from 'react-router';
 import {connect} from "react-redux";
-import LoginLink from '../auth/login.link';
+import LoginLink from '../auth/login-link';
 
 const Header = () => {
   return (

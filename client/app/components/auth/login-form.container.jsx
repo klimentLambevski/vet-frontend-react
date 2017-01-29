@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { authenticateUser } from '../../store/auth/auth.actions';
-import LoginForm from './login.form';
+import LoginForm from './login-form';
 
 class LoginFormContainer extends React.Component {
   constructor(props) {
@@ -27,16 +27,12 @@ class LoginFormContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    redirectTo: state.routing.locationBeforeTransitions.query.next
-  };
-};
+const mapStateToProps = (state) => ({
+  redirectTo: state.routing.locationBeforeTransitions.query.next
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    actions: bindActionCreators({ authenticateUser }, dispatch)
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({ authenticateUser }, dispatch),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginFormContainer);

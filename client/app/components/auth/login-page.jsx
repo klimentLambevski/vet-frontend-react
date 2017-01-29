@@ -1,4 +1,4 @@
-import LoginFormContainer from './login.form.container';
+import LoginFormContainer from './login-form.container';
 
 class LoginPage extends React.Component {
   constructor(props) {

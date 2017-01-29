@@ -7,7 +7,9 @@ const LoginLink = ({ to, className = '', activeClassName = '', isAuthenticated }
       to={to}
       className={className}
       activeClassName={activeClassName}
-    >Login</Link>
+    >
+      Login
+    </Link>
     :
     null
 );
@@ -16,10 +18,8 @@ LoginLink.propTypes = {
   to: React.PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isAuthenticated: state.common.auth.isAuthenticated
-  };
-};
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.common.auth.isAuthenticated
+});
 
 export default connect(mapStateToProps)(LoginLink);

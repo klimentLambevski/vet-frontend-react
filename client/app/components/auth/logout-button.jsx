@@ -25,16 +25,12 @@ class LogoutButton extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    auth: state.common.auth
-  };
-};
+const mapStateToProps = (state) => ({
+  auth: state.common.auth
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    actions: bindActionCreators({ logoutUser }, dispatch)
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({ logoutUser }, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogoutButton);

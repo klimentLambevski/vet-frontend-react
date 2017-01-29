@@ -1,4 +1,4 @@
-import LogoutButton from '../auth/logout.button';
+import LogoutButton from '../auth/logout-button';
 
 class DashboardPage extends React.Component {
   render() {

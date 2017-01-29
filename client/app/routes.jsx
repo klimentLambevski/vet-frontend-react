@@ -1,9 +1,9 @@
 import {Route, IndexRoute} from "react-router";
 import App from './components/app';
-import LoginPage from './components/auth/login.page';
+import LoginPage from './components/auth/login-page';
 import HomePage from './components/home/home';
 import DashboardPage from './components/dashboard/dashboard.page';
-import RequireAuthentication from './components/auth/require.authentication';
+import RequireAuthentication from './hots/require-authentication';
 import {PatientsContainer} from "./views/patients";
 
 export default (
