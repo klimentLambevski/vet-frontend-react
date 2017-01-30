@@ -3,17 +3,17 @@ export class Grid extends React.Component {
     return (
       <div className="grid component">
         <table className="ui table">
-          {this.renderThead()}
+          {this._renderThead()}
           <tbody>
-          {this.renderTbody()}
+          {this._renderTbody()}
           </tbody>
         </table>
       </div>
     )
   }
 
-  renderThead() {
-    let cols = this.props.columns || [1, 2, 3];
+  _renderThead() {
+    let cols = this.props.columns || _.keys(this.props.rows[0]);
 
     return (
       <thead>
@@ -24,14 +24,8 @@ export class Grid extends React.Component {
     )
   }
 
-  renderTbody() {
-    let rows = this.props.rows || [{
-        name: 'a'
-      }, {
-        name: 'b'
-      }, {
-        name: 'c'
-      }];
+  _renderTbody() {
+    let rows = this.props.rows;
 
     return rows.map((row) => (
       <tr>{
@@ -40,6 +34,9 @@ export class Grid extends React.Component {
         ))
       }</tr>
     ));
+  }
 
+  _renderDetailsRow() {
+    return <td colSpan={this.props.rows}></td>
   }
 }

@@ -1,6 +1,7 @@
 .header {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   background: white;
   font-weight: 200;
   box-shadow: 2px 0 1px 0 rgba(145, 145, 145, 0.5);
@@ -29,7 +30,7 @@
     a {
       display: flex;
       align-items: center;
-      padding: 0 20px;
+      padding: 10px 20px;
 
       transition: 1s all ease;
 
