@@ -19,7 +19,8 @@
     "redux-form": "^6.4.3",
     "redux-thunk": "^2.2.0",
     "sass-mq": "^3.3.2",
-    "semantic-ui-css": "^2.2.4"
+    "semantic-ui-css": "^2.2.4",
+    "whatwg-fetch": "^2.0.2"
   },
   "devDependencies": {
     "babel-core": "^6.7.7",

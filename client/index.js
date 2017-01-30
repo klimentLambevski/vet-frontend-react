@@ -1,6 +1,7 @@
 window._ = require('lodash');
 window.$ = window.jQuery = require('jquery');
 window.React = require('react');
+require('whatwg-fetch');
 
 // require('bootstrap-sass');
 // require('slick-carousel');
@@ -8,4 +9,3 @@ window.React = require('react');
 //
 
 require('./app/boot');
-
