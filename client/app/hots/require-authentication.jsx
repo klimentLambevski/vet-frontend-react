@@ -28,18 +28,14 @@ export default (ComposedComponent) => {
     }
   }
 
-  const mapStateToProps = (state, ownProps) => {
-    return {
-      isAuthenticated: state.common.auth.isAuthenticated,
-      currentUrl: ownProps.location.pathname
-    };
-  };
+  const mapStateToProps = (state, ownProps) => ({
+    isAuthenticated: state.common.auth.isAuthenticated,
+    currentUrl: ownProps.location.pathname
+  });
 
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      actions: bindActionCreators({ push }, dispatch)
-    };
-  };
+  const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators({ push }, dispatch)
+  });
 
   return connect(mapStateToProps, mapDispatchToProps)(RequireAuthentication);
 }

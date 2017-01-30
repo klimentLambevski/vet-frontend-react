@@ -1,5 +1,5 @@
 import { Field, reduxForm } from 'redux-form';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import { renderTextField } from '../common/inputs/inputs';
 
 //TODO handle validation in one place or use some library for validation
@@ -38,7 +38,7 @@ const LoginForm = ({ handleSubmit, pristine, submitting, invalid }) => (
     </div>
 
     <div>
-      <FlatButton
+      <RaisedButton
         type="submit"
         label="Sign In"
         primary={true}
