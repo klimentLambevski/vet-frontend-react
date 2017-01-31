@@ -1,4 +1,9 @@
+import {getPatient} from "../../services/api/patients";
 class HomePage extends React.Component {
+  constructor() {
+    super();
+    getPatient()
+  }
   render() {
     return (
       <div className="home page">

@@ -67,15 +67,15 @@ export function gulpWebpackServe() {
       }),
       webpackHotMiddleware(compiler),
       historyApiFallback(),
-      // proxy('/api/v1', {
-      //   target: 'http://server.darvage.com.mk',
-      //   changeOrigin: false,
-      //   onProxyReq: function (proxyReq, req, res) {
-      //     // add custom header to request
-      //     // proxyReq.setHeader('Host', 'http://localhost:8000');
-      //     // or log the req
-      //   }
-      // })
+      proxy('/test/graphql', {
+        target: 'http://localhost:3000',
+        changeOrigin: false,
+        onProxyReq: function (proxyReq, req, res) {
+          // add custom header to request
+          // proxyReq.setHeader('Host', 'http://localhost:8000');
+          // or log the req
+        }
+      })
     ]
   });
 }

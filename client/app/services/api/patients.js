@@ -1,4 +1,4 @@
-export const savePatientCall = (patient) => {
+import {graphql} from "../gateway/graphql"; export const savePatientCall = (patient) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve(patient), 1000);
   });
@@ -10,12 +10,23 @@ export const fgPatientFields = `
 
 export function getPatient(id) {
 
-  fetch('http://192.168.100.8:3000/test/graphql', {
-    method: 'POST',
-    body: JSON.stringify({
-      query: ''
-    })
-  }).then((res) => {
-    console.log(res);
+  let customers = graphql`{
+      customers(limit: 5) {
+        user {
+          createdAt
+          password
+          email
+          name
+        }
+        patients(limit: 5, offset: 20) {
+          birthDate
+          createdAt
+          id
+        }
+      }
+    }`;
+
+  customers().then(customers => {
+    console.log(customers)
   })
 }
