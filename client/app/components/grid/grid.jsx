@@ -1,42 +1,47 @@
+import {Pagination} from "./pagination";
 export class Grid extends React.Component {
   render() {
     return (
       <div className="grid component">
         <table className="ui table">
-          {this._renderThead()}
-          <tbody>
-          {this._renderTbody()}
-          </tbody>
+          <THead {...this.props}/>
+          <TBody {...this.props}/>
         </table>
+        <Pagination total={this.props.rows.length} _onPageChange={this.pageChanged}/>
       </div>
     )
   }
 
-  _renderThead() {
-    let cols = this.props.columns || _.keys(this.props.rows[0]);
+  pageChanged(page) {
 
-    return (
-      <thead>
-      <tr>{
-        cols.map((col) => <th>{col}</th>)
-      }</tr>
-      </thead>
-    )
   }
+}
 
-  _renderTbody() {
-    let rows = this.props.rows;
+let THead = ({columns, rows}) => {
+  let cols = columns || _.keys(rows[0]);
 
-    return rows.map((row) => (
-      <tr>{
-        _.map(row, (prop) => (
-          <td>{prop}</td>
-        ))
-      }</tr>
-    ));
-  }
+  return (
+    <thead>
+    <tr>{
+      cols.map((col) => <th>{col}</th>)
+    }</tr>
+    <tr>{
+      cols.map((col) => <th className="row-search"><input/></th>)
+    }</tr>
+    </thead>
+  )
+};
 
-  _renderDetailsRow() {
-    return <td colSpan={this.props.rows}></td>
-  }
+let TBody = ({rows}) => {
+  return (
+    <tbody>{
+      rows.map((row) => (
+        <tr>{
+          _.map(row, (prop) => (
+            <td>{prop}</td>
+          ))
+        }</tr>
+      ))
+    }</tbody>
+  );
 }

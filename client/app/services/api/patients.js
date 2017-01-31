@@ -9,7 +9,6 @@ export const fgPatientFields = `
 `;
 
 export function getPatient(id) {
-
   let customers = graphql`{
     customers(limit: 5) {
       user {

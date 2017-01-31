@@ -10,7 +10,7 @@ export function graphql([query]) {
 
     };
     console.log(body);
-    return fetch('/test/graphql',{
+    return fetch('/test/graphql', {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {

@@ -17,6 +17,7 @@
 @import "../node_modules/semantic-ui-css/components/container";
 @import "../node_modules/semantic-ui-css/components/table";
 @import "../node_modules/semantic-ui-css/components/button";
+@import "../node_modules/semantic-ui-css/components/menu";
 
 @import "styles/fonts";
 @import "styles/mixins";
@@ -29,5 +30,7 @@
 @import "app/components/_core/button";
 @import "app/components/_core/sub-header";
 @import "app/components/common/header";
+@import "app/components/grid/grid";
+@import "app/components/grid/pagination";
 
 

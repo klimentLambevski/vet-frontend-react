@@ -34,13 +34,25 @@
 
       transition: 1s all ease;
 
+      &.active,
       &:hover {
         background: $clBase;
         //color: white;
       }
     }
   }
-  .active {
-    background: $clBase;
+
+  @include mq($until: tablet) {
+    display: block;
+    text-align: center;
+
+    .main-navigation {
+      display: block;
+
+      a {
+        display: block;
+      }
+    }
   }
+
 }
