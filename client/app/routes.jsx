@@ -10,10 +10,10 @@ import {PatientsContainer} from "./views/patients";
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage}/>
-    <Route path="/login" component={LoginPage}/>
-    <Route path="/patients" component={PatientsContainer}/>
+    <Route path="login" component={LoginPage}/>
+    <Route path="patients" component={PatientsContainer}/>
     <Route
-      path="/dashboard" component={DashboardPage}
+      path="dashboard" component={DashboardPage}
     >
       <Route path="customers" component={CustomersPage}/>
       <Route path="patients" component={PatientsPage}/>

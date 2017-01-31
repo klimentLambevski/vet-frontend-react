@@ -1,8 +1,9 @@
-import { Field, reduxForm } from 'redux-form';
+import { Field } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
-import { renderTextField } from '../../common/inputs/inputs';
+import RadioButton from 'material-ui/RadioButton';
+import { renderTextField, renderRadioGroup, renderDatePicker } from '../../common/inputs/inputs';
 
-const PatientForm = ({ handleSubmit, pristine, submitting }) => (
+export const PatientForm = ({ handleSubmit, pristine, submitting }) => (
   <form onSubmit={handleSubmit}>
     <div>
       <Field
@@ -15,24 +16,53 @@ const PatientForm = ({ handleSubmit, pristine, submitting }) => (
 
     <div>
       <Field
+        component={renderDatePicker}
+        name="birthDate"
+        hintText="Birth Date"
+      />
+    </div>
+
+    <div>
+      <Field
         component={renderTextField}
         type="text"
-        name="birthDate"
-        label="Birth Date"
+        name="race"
+        label="Race"
+      />
+    </div>
+
+    <div>
+      <Field name="gender" component={renderRadioGroup}>
+        <RadioButton value="male" label="male"/>
+        <RadioButton value="female" label="female"/>
+      </Field>
+    </div>
+
+    <div>
+      <Field
+        component={renderTextField}
+        type="text"
+        name="microchip"
+        label="Microchip"
+      />
+    </div>
+
+    <div>
+      <Field
+        component={renderTextField}
+        type="text"
+        name="mbr"
+        label="MBR"
       />
     </div>
 
     <div>
       <RaisedButton
         type="submit"
-        label="Sign In"
+        label="Save"
         primary={true}
         disabled={pristine || submitting}
       />
     </div>
   </form>
 );
-
-export default reduxForm({
-  form: 'patient'
-})(PatientForm);

@@ -1,5 +1,5 @@
 import { Field, reduxForm } from 'redux-form';
-import RaisedButton from 'material-ui/RadioButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import { renderTextField } from '../../common/inputs/inputs';
 
 const CustomerForm = ({ handleSubmit, pristine, submitting }) => (

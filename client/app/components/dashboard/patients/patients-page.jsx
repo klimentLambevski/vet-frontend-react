@@ -1,10 +1,11 @@
-import PatientForm from './patient-form';
+import PatientFormContainer from './patient-form.container';
 
 export default class PatientsPage extends React.Component {
   render() {
     return (
       <section>
-        <PatientForm />
+        <h1>Patient</h1>
+        <PatientFormContainer />
       </section>
     );
   }

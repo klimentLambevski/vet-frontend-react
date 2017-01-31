@@ -1,5 +1,5 @@
 import { push } from "react-router-redux";
-import { signIn, checkAuthenticated, logout } from "../../services/api/auth.api";
+import { signIn, checkAuthenticated, logout } from "../../services/api/auth";
 import LocalStorageService from "../../services/storage/local.storage.service";
 import { createActionMap } from "../action";
 import { showAlert } from '../alert/alert.actions';

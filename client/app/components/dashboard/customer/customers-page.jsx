@@ -1,8 +1,7 @@
-import CustomerForm from './customer-form';
+import CustomerFormContainer from './customer-form.container';
 
 class CustomersPage extends React.Component {
   constructor(props) {
-    console.log('customers');
     super(props);
   }
 
@@ -10,7 +9,7 @@ class CustomersPage extends React.Component {
     return (
       <section>
         <h1>Customer</h1>
-        <CustomerForm />
+        <CustomerFormContainer />
       </section>
     );
   }

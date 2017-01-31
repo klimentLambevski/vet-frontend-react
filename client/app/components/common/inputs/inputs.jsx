@@ -1,4 +1,7 @@
 import TextField from 'material-ui/TextField';
+import RadioButtonGroup from 'material-ui/RadioButton/RadioButtonGroup';
+import SelectField from 'material-ui/SelectField';
+import DatePicker from 'material-ui/DatePicker';
 
 export const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
   <TextField
@@ -10,7 +13,7 @@ export const renderTextField = ({ input, label, meta: { touched, error }, ...cus
   />
 );
 
-const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
+export const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
   <SelectField
     floatingLabelText={label}
     errorText={touched && error}
@@ -21,10 +24,19 @@ const renderSelectField = ({ input, label, meta: { touched, error }, children, .
   />
 );
 
-const renderRadioGroup = ({ input, ...rest }) => (
+export const renderRadioGroup = ({ input, ...rest }) => (
   <RadioButtonGroup
-    {...input} {...rest}
+    {...input}
+    {...rest}
     valueSelected={input.value}
     onChange={(event, value) => input.onChange(value)}
+  />
+);
+
+export const renderDatePicker = ({ input, meta: { touched, error }, ...custom }) => (
+  <DatePicker
+    errorText={touched && error}
+    onChange={(e, val) => input.onChange(val)}
+    {...custom}
   />
 );
