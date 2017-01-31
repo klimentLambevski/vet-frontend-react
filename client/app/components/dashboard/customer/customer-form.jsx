@@ -1,4 +1,4 @@
-import { Field, reduxForm } from 'redux-form';
+import { Field } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import { renderTextField } from '../../common/inputs/inputs';
 
@@ -8,8 +8,8 @@ const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
       <Field
         component={renderTextField}
         type="text"
-        name="firstName"
-        label="firstName"
+        name="name"
+        label="First Name"
       />
     </div>
 
@@ -17,8 +17,8 @@ const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
       <Field
         component={renderTextField}
         type="text"
-        name="lastName"
-        label="lastName"
+        name="surname"
+        label="Last Name"
       />
     </div>
 
@@ -42,6 +42,4 @@ const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
   </form>
 );
 
-export default reduxForm({
-  form: 'customer'
-})(CustomerForm);
+export default CustomerForm;

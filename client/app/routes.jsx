@@ -6,6 +6,7 @@ import DashboardPage from "./components/dashboard/dashboard-page";
 import CustomersPage from "./components/dashboard/customer/customers-page";
 import PatientsPage from "./components/dashboard/patients/patients-page";
 import {PatientsContainer} from "./views/patients";
+import CustomerFormContainer from './components/dashboard/customer/customer-form.container';
 
 export default (
   <Route path="/" component={App}>
@@ -16,6 +17,7 @@ export default (
       path="dashboard" component={DashboardPage}
     >
       <Route path="customers" component={CustomersPage}/>
+      <Route path="customers/:id" component={CustomerFormContainer}/>
       <Route path="patients" component={PatientsPage}/>
     </Route>
   </Route>

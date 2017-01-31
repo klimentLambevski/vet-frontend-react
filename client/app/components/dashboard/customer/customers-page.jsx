@@ -1,4 +1,4 @@
-import CustomerFormContainer from './customer-form.container';
+import CustomerList from './customer-list';
 
 class CustomersPage extends React.Component {
   constructor(props) {
@@ -8,8 +8,9 @@ class CustomersPage extends React.Component {
   render() {
     return (
       <section>
-        <h1>Customer</h1>
-        <CustomerFormContainer />
+        <h1>Customers</h1>
+
+        <CustomerList />
       </section>
     );
   }

@@ -4,6 +4,7 @@ import {reducer as form} from 'redux-form';
 import auth from './auth/auth.reducer';
 import alertMessages from './alert/alert.reducer';
 import patients from '../components/dashboard/patients/patients.reducer';
+import customers from '../components/dashboard/customer/customers.reducer';
 
 const rootReducer = combineReducers({
   // todo: find a suitable name for common
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   alertMessages,
   routing,
   form,
-  patients
+  patients,
+  customers
 });
 
 export default rootReducer;
