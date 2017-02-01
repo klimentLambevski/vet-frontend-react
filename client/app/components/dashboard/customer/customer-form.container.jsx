@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import CustomerForm from './customer-form';
 import { saveCustomer } from './customer.actions';
 
-const PatientFormRedux = reduxForm({
+const CustomerFormRedux = reduxForm({
   form: 'customer'
 })(CustomerForm);
 
@@ -21,7 +21,7 @@ class CustomerFormContainer extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const user = this.props.customer.user;
-    console.log(this.props, nextProps)
+
     if (user && user.id !== nextProps.customer.user.id) {
       this.setState({customer: nextProps.customer})
     }
@@ -32,11 +32,10 @@ class CustomerFormContainer extends React.Component {
   }
 
   render() {
-
     return (
       <section>
         <h1>Customer Form</h1>
-        <PatientFormRedux
+        <CustomerFormRedux
           onSubmit={this.onSubmit}
           initialValues={this.state.customer}
         />
@@ -46,7 +45,6 @@ class CustomerFormContainer extends React.Component {
 }
 
 const getCustomerById = (customers, id) => {
-  console.log(customers, id);
   const customer = customers.filter(customer => customer.user.id === id);
   return customer.length > 0 ? customer[0].user : {};
 };

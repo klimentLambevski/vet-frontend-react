@@ -6,7 +6,7 @@ export const actions = createActionMap({
   GET_CUSTOMERS_SUCCESS: '',
   ADD_CUSTOMER_SUCCESS: '',
   UPDATE_CUSTOMER_SUCCESS: ''
-}, 'patient');
+}, 'customer');
 
 const getCustomersSuccess = (customers) => ({
   type: actions.GET_CUSTOMERS_SUCCESS,

@@ -1,16 +1,8 @@
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getCustomers } from './customer.actions';
 import { Link } from 'react-router';
 
 class CustomerList extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-    //TODO move this in page cmp
-    this.props.actions.getCustomers()
   }
 
   render() {
@@ -34,12 +26,4 @@ class CustomerList extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  customers: state.customers
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ getCustomers }, dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CustomerList);
+export default CustomerList;
