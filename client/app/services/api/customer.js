@@ -1,6 +1,6 @@
 import { graphql } from "../gateway/graphql";
 
-const getCustomers = () => graphql`{
+const getAll = () => graphql`{
   customers(limit: 5) {
     user {
       id
@@ -30,6 +30,6 @@ const saveCustomer = (customer) => graphql`
 `({ user: customer });
 
 export const CustomerApi = {
-  getCustomers,
+  getAll,
   saveCustomer
 };
