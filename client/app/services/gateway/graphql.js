@@ -7,9 +7,7 @@ export function graphql([query]) {
     let body = {
       query: query,
       variables: variables
-
     };
-    console.log(body);
     return fetch('/test/graphql', {
       method: 'POST',
       body: JSON.stringify(body),

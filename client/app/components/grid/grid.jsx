@@ -1,19 +1,38 @@
 import {Pagination} from "./pagination";
 export class Grid extends React.Component {
+  static defaultProps = {
+    test: 'a',
+    pagination: {
+      itemsPerPage: 10
+    }
+  };
+
+  constructor() {
+    super();
+
+    this.state = {
+      rowsOnPage: []
+    }
+  }
+
   render() {
     return (
       <div className="grid component">
         <table className="ui table">
           <THead {...this.props}/>
-          <TBody {...this.props}/>
+          <TBody {...this.state}/>
         </table>
-        <Pagination total={this.props.rows.length} _onPageChange={this.pageChanged}/>
+        <Pagination total={this.props.rows.length} _onPageChange={(page) => this.pageChanged(page)}/>
       </div>
     )
   }
 
   pageChanged(page) {
-
+    let start = page * this.props.pagination.itemsPerPage;
+    let end = (page + 1) * this.props.pagination.itemsPerPage;
+    this.setState({
+      rowsOnPage: this.props.rows.slice(start, end)
+    })
   }
 }
 
@@ -32,10 +51,10 @@ let THead = ({columns, rows}) => {
   )
 };
 
-let TBody = ({rows}) => {
+let TBody = ({rowsOnPage}) => {
   return (
     <tbody>{
-      rows.map((row) => (
+      rowsOnPage.map((row) => (
         <tr>{
           _.map(row, (prop) => (
             <td>{prop}</td>
