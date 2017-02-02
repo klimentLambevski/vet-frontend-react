@@ -1,4 +1,4 @@
-import {actions} from "./customer.actions";
+import { actions } from "./customer.actions";
 
 const customersReducer = (state = [], action) => {
   switch (action.type) {

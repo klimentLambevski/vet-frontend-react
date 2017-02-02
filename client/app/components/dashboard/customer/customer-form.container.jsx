@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { bindActionCreators } from 'redux';
-import CustomerForm from './customer-form';
+import { CustomerForm } from './customer-form';
 import { saveCustomer } from './customer.actions';
 
 const CustomerFormRedux = reduxForm({
-  form: 'customer'
+  form: 'customer',
+  enableReinitialize: true
 })(CustomerForm);
 
 class CustomerFormContainer extends React.Component {
@@ -20,15 +20,13 @@ class CustomerFormContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const user = this.props.customer.user;
-
-    if (user && user.id !== nextProps.customer.user.id) {
-      this.setState({customer: nextProps.customer})
+    if (this.state.customer.id !== nextProps.customer.id) {
+      this.setState({ customer: nextProps.customer })
     }
   }
 
   onSubmit(customer) {
-    this.props.actions.saveCustomer(customer);
+    this.props.saveCustomer(customer);
   }
 
   render() {
@@ -53,8 +51,6 @@ const mapStateToProps = (state, ownProps) => ({
   customer: getCustomerById(state.customers, ownProps.params.id)
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ saveCustomer }, dispatch),
-});
+CustomerFormContainer = connect(mapStateToProps, { saveCustomer })(CustomerFormContainer);
 
-export default connect(mapStateToProps, mapDispatchToProps)(CustomerFormContainer);
+export { CustomerFormContainer };

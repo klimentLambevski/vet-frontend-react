@@ -24,7 +24,7 @@ const updateCustomerSuccess = (customer) => ({
 });
 
 export const getCustomers = () =>
-  (dispatch) => CustomerApi.getCustomers()
+  (dispatch) => CustomerApi.getAll()
     .then(
       response => dispatch(getCustomersSuccess(response.data.customers))
     )

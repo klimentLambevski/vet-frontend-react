@@ -42,4 +42,4 @@ const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
   </form>
 );
 
-export default CustomerForm;
+export { CustomerForm };

@@ -1,29 +1,38 @@
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-class CustomerList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+let CustomerList = ({ customers }) => (
+  <section>
+    <h1>Customers List</h1>
 
-  render() {
-    return (
-      <section>
-        <h1>Customers List</h1>
+    <div>
+      <Link to={'/dashboard/customers/new'}>
+        {'Add new customer'}
+      </Link>
 
-        <ul>
-          {
-            this.props.customers.map(customer =>
-              <li key={customer.user.id}>
-                <Link to={'/dashboard/customers/' + customer.user.id}>
-                  {customer.user.name}
-                </Link>
-              </li>
-            )
-          }
-        </ul>
-      </section>
-    );
-  }
-}
+    </div>
+    <ul>
+      {
+        customers.map(customer =>
+          <li key={customer.user.id}>
+            <Link to={'/dashboard/customers/' + customer.user.id}>
+              {customer.user.name}
+            </Link>
+          </li>
+        )
+      }
+    </ul>
+  </section>
+);
 
-export default CustomerList;
+CustomerList.propTypes = {
+  customers: React.PropTypes.array.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  customers: state.customers
+});
+
+CustomerList = connect(mapStateToProps)(CustomerList);
+
+export { CustomerList };
