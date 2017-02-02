@@ -1,13 +1,8 @@
 import { graphql } from "../gateway/graphql";
 
 const getAll = () => graphql`{
-  customers(limit: 5) {
-    user {
-      id
-      email
-      name
-      surname
-    }
+  customers(limit: 500) {
+    id
   }
 }`();
 

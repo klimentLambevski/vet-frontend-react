@@ -2,18 +2,15 @@ export class Pagination extends React.Component {
   static propTypes = {
     total: React.PropTypes.number.isRequired,
     perPage: React.PropTypes.number,
-    currentPage: React.PropTypes.number,
+    currentPage: React.PropTypes.number.isRequired,
     _onPageChange: React.PropTypes.func
   };
-
   static defaultProps = {
-    perPage: 10,
-    currentPage: 1
+    perPage: 10
   };
 
   changePage(page) {
     if (this.props.currentPage === page) return;
-
     this.props._onPageChange(page);
   }
 

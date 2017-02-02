@@ -7,9 +7,11 @@ export class PatientsContainer extends React.Component {
     super();
 
     this.state = {
-      customers: gridData
+      customers: []
     };
+  }
 
+  componentDidMount() {
     CustomerApi.getAll().then((res) => {
       console.log(res.data.customers);
       this.setState({
