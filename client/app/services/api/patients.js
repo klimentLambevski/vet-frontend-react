@@ -1,28 +1,38 @@
-import {graphql} from "../gateway/graphql";
-export const savePatientCall = (patient) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve(patient), 1000);
-  });
-};
+import { graphql } from "../gateway/graphql";
 
-export function getPatient(id) {
-  let customers = graphql`{
-    customers(limit: 100) {
-      user {
-        createdAt
-        password
-        email
+const getAll = () => graphql`{
+  customers(limit:10) {
+    patients(limit: 2) {
+      id
+      name
+      race
+      birthDate
+      mbr
+      status
+      gender
+      microchip
+      type {
         name
       }
-      patients(limit: 5, offset: 20) {
-        birthDate
-        createdAt
+    }
+  }
+}`();
+
+const savePatient = (patient, customerId) => graphql`
+  mutation addPatient($patient: PatientInput!, $customerId: String!){
+    createPatient(patient: $patient, customerId: $customerId) {
+      errors {
+        message
+      }
+      patient {
         id
+        name
       }
     }
-  }`;
+  }
+`({ customerId, patient });
 
-  customers().then(customers => {
-    console.log(customers)
-  })
-}
+export const PatientApi = {
+  getAll,
+  savePatient
+};

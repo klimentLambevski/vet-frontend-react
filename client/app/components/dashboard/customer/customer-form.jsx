@@ -2,7 +2,7 @@ import { Field } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import { renderTextField } from '../../common/inputs/inputs';
 
-const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
+export const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
   <form onSubmit={handleSubmit}>
     <div>
       <Field
@@ -41,5 +41,3 @@ const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
     </div>
   </form>
 );
-
-export { CustomerForm };

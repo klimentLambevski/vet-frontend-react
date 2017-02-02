@@ -24,10 +24,10 @@ export const renderSelectField = ({ input, label, meta: { touched, error }, chil
   />
 );
 
-export const renderRadioGroup = ({ input, ...rest }) => (
+export const renderRadioGroup = ({ input, ...custom }) => (
   <RadioButtonGroup
     {...input}
-    {...rest}
+    {...custom}
     valueSelected={input.value}
     onChange={(event, value) => input.onChange(value)}
   />
@@ -35,8 +35,10 @@ export const renderRadioGroup = ({ input, ...rest }) => (
 
 export const renderDatePicker = ({ input, meta: { touched, error }, ...custom }) => (
   <DatePicker
+    {...input}
     errorText={touched && error}
     onChange={(e, val) => input.onChange(val)}
     {...custom}
+    value={input.value ? new Date(input.value) : null}
   />
 );

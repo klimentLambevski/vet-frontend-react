@@ -8,6 +8,8 @@ const CustomerFormRedux = reduxForm({
   enableReinitialize: true
 })(CustomerForm);
 
+//TODO create universal form container, this is very similar to PatientFormContainer
+
 class CustomerFormContainer extends React.Component {
   constructor(props) {
     super(props);

@@ -24,4 +24,4 @@ const customersReducer = (state = [], action) => {
   }
 };
 
-export default customersReducer;
+export { customersReducer };
