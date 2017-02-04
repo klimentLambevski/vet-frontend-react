@@ -3,7 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { renderTextField } from '../../common/inputs/inputs';
 
 export const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
-  <form onSubmit={handleSubmit}>
+  <form onSubmit={handleSubmit} noValidate autoComplete="off">
     <div>
       <Field
         component={renderTextField}
@@ -12,7 +12,6 @@ export const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
         label="First Name"
       />
     </div>
-
     <div>
       <Field
         component={renderTextField}
@@ -31,7 +30,7 @@ export const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
       />
     </div>
 
-    <div>
+    <div className="form-footer">
       <RaisedButton
         type="submit"
         label="Save"

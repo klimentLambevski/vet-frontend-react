@@ -8,6 +8,7 @@ export const renderTextField = ({ input, label, meta: { touched, error }, ...cus
     hintText={label}
     floatingLabelText={label}
     errorText={touched && error}
+    fullWidth={true}
     {...input}
     {...custom}
   />
@@ -17,6 +18,7 @@ export const renderSelectField = ({ input, label, meta: { touched, error }, chil
   <SelectField
     floatingLabelText={label}
     errorText={touched && error}
+    fullWidth={true}
     {...input}
     onChange={(event, index, value) => input.onChange(value)}
     children={children}
@@ -28,6 +30,8 @@ export const renderRadioGroup = ({ input, ...custom }) => (
   <RadioButtonGroup
     {...input}
     {...custom}
+    fullWidth={true}
+    className="radio-group"
     valueSelected={input.value}
     onChange={(event, value) => input.onChange(value)}
   />
@@ -38,7 +42,24 @@ export const renderDatePicker = ({ input, meta: { touched, error }, ...custom })
     {...input}
     errorText={touched && error}
     onChange={(e, val) => input.onChange(val)}
+    fullWidth={true}
     {...custom}
     value={input.value ? new Date(input.value) : null}
   />
 );
+
+export const renderInputList = ({ input, meta: { touched, error }, ...custom }) => (
+  <div>
+    {input.value.map((value) => {
+      return <TextField
+        hintText={label}
+        floatingLabelText={label}
+        errorText={touched && error}
+        fullWidth={true}
+        value={value}
+        {...custom}
+      />
+    })}
+  </div>
+);
+

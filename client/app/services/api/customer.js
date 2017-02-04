@@ -1,19 +1,20 @@
-import { graphql } from "../gateway/graphql";
+import {graphql} from "../gateway/graphql";
 
-const getAll = () => graphql`{
-  customers(limit: 10) {
-    user {
-      id
-      email
-      name
-      surname
+const getAll = () => graphql`
+  query getCustomers{
+    customers(limit: 10) {
+      user {
+        id
+        email
+        name
+        surname
+      }
     }
-  }
-}`();
+  }`();
 
 //TODO rename to save
 const saveCustomer = (customer) => graphql`
-  mutation addCustomer($user: UserInput){
+  mutation addCustomer($user: UserInput!){
     createCustomer(customer: {user: $user}) {
       errors {
         message
@@ -28,7 +29,7 @@ const saveCustomer = (customer) => graphql`
       }
     }
   }
-`({ user: customer });
+`({user: customer});
 
 export const CustomerApi = {
   getAll,

@@ -3,7 +3,7 @@ import { renderTextField } from '../../../common/inputs/inputs';
 
 
 const PateintTypeForm = ({ handleSubmit, pristine, submitting }) => (
-  <form onSubmit={handleSubmit}>
+  <form onSubmit={handleSubmit} noValidate autoComplete="off">
     <div>
       <Field
         component={renderTextField}

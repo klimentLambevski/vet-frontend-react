@@ -4,7 +4,7 @@ import RadioButton from 'material-ui/RadioButton';
 import { renderTextField, renderRadioGroup, renderDatePicker } from '../../common/inputs/inputs';
 
 export const PatientForm = ({ handleSubmit, pristine, submitting }) => (
-  <form onSubmit={handleSubmit}>
+  <form onSubmit={handleSubmit} noValidate autoComplete="off">
     <div>
       <Field
         component={renderTextField}
@@ -58,7 +58,7 @@ export const PatientForm = ({ handleSubmit, pristine, submitting }) => (
       />
     </div>
 
-    <div>
+    <div className="form-footer">
       <RaisedButton
         type="submit"
         label="Save"
