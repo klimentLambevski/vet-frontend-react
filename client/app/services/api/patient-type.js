@@ -1,4 +1,4 @@
-import graphql from '../gateway/graphql';
+import { graphql } from '../gateway/graphql';
 
 const getAll = () => graphql`
   {

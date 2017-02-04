@@ -16,7 +16,6 @@ export const PatientForm = ({ handleSubmit, pristine, submitting }) => (
 
     <div>
       <Field
-        type="date"
         component={renderDatePicker}
         name="birthDate"
         hintText="Birth Date"
