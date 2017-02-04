@@ -68,7 +68,7 @@ export function gulpWebpackServe() {
       webpackHotMiddleware(compiler),
       historyApiFallback(),
       proxy('/test/graphql', {
-        target: 'http://localhost:3000',
+        target: 'http://vet.3khub.com',
         changeOrigin: false,
         onProxyReq: function (proxyReq, req, res) {
           // add custom header to request
