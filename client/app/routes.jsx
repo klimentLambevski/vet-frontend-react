@@ -10,6 +10,9 @@ import {CustomerFormContainer} from './components/dashboard/customer/customer-fo
 import {PatientsView} from "./components/dashboard/patients/patients-view";
 import {PatientList} from './components/dashboard/patients/patient-list';
 import {PatientFormContainer} from './components/dashboard/patients/patient-form.container';
+import { PatientTypesView } from './components/dashboard/patients/patient-type/patient-types.view';
+import { PatientTypeList } from './components/dashboard/patients/patient-type/patient-type-list';
+import { PatientTypeFormContainer } from './components/dashboard/patients/patient-type/patient-type-form.container';
 
 export default (
   <Route path="/" component={App}>
@@ -28,6 +31,11 @@ export default (
         <IndexRoute component={PatientList}/>
         <Route path="new" component={PatientFormContainer}/>
         <Route path="(:id)" component={PatientFormContainer}/>
+      </Route>
+      <Route path="patient-types" component={PatientTypesView}>
+        <IndexRoute component={PatientTypeList} />
+        <Route path="new" component={PatientTypeFormContainer} />
+        <Route path="(:id)" component={PatientTypeFormContainer} />
       </Route>
     </Route>
   </Route>
