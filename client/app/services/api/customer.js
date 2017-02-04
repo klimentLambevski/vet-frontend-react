@@ -11,6 +11,7 @@ const getAll = () => graphql`{
   }
 }`();
 
+//TODO rename to save
 const saveCustomer = (customer) => graphql`
   mutation addCustomer($user: UserInput){
     createCustomer(customer: {user: $user}) {

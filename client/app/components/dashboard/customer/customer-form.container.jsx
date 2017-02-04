@@ -1,48 +1,21 @@
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
 import { CustomerForm } from './customer-form';
 import { saveCustomer } from './customer.actions';
+import { withFormHandler } from '../../../hocs/with-form-handler';
 
-const CustomerFormRedux = reduxForm({
-  form: 'customer',
-  enableReinitialize: true
-})(CustomerForm);
+const CustomerFromRedux = withFormHandler(CustomerForm, 'customer');
 
-//TODO create universal form container, this is very similar to PatientFormContainer
+let CustomerFormContainer = ({ customer, saveCustomer }) => (
+  <section>
+    <h1>Customer Form</h1>
 
-class CustomerFormContainer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      customer: Object.assign({}, this.props.customer)
-    };
-
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.state.customer.id !== nextProps.customer.id) {
-      this.setState({ customer: nextProps.customer })
-    }
-  }
-
-  onSubmit(customer) {
-    this.props.saveCustomer(customer);
-  }
-
-  render() {
-    return (
-      <section>
-        <h1>Customer Form</h1>
-        <CustomerFormRedux
-          onSubmit={this.onSubmit}
-          initialValues={this.state.customer}
-        />
-      </section>
-    );
-  }
-}
+    <CustomerFromRedux
+      initialValues={customer}
+      formItem={customer}
+      saveItem={saveCustomer}
+    />
+  </section>
+);
 
 const getCustomerById = (customers, id) => {
   const customer = customers.filter(customer => customer.user.id === id);

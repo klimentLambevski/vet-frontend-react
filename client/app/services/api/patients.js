@@ -18,6 +18,7 @@ const getAll = () => graphql`{
   }
 }`();
 
+//TODO rename to save
 const savePatient = (patient, customerId) => graphql`
   mutation addPatient($patient: PatientInput!, $customerId: String!){
     createPatient(patient: $patient, customerId: $customerId) {

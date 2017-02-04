@@ -1,48 +1,21 @@
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
 import { PatientForm } from './patient-form';
 import { savePatient } from './patient.actions';
+import {withFormHandler} from '../../../hocs/with-form-handler';
 
-const PatientFormRedux = reduxForm({
-  form: 'patient',
-  enableReinitialize: true
-})(PatientForm);
+const PatientFromRedux = withFormHandler(PatientForm, 'patient');
 
-class PatientFormContainer extends React.Component {
-  constructor(props) {
-    super(props);
+let PatientFormContainer = ({ patient, savePatient }) => (
+  <section>
+    <h1>Patient Form</h1>
 
-    this.state = {
-      patient: Object.assign({}, this.props.patient)
-    };
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.state.patient.id !== nextProps.patient.id) {
-      this.setState({ patient: nextProps.patient })
-    }
-  }
-
-  onSubmit(patient) {
-    //TODO fix this
-    patient.status = 'owned';
-    this.props.savePatient(patient);
-  }
-
-  render() {
-    return (
-      <section>
-        <h1>Patient Form</h1>
-
-        <PatientFormRedux
-          onSubmit={this.onSubmit}
-          initialValues={this.state.patient}
-        />
-      </section>
-    );
-  }
-}
+    <PatientFromRedux
+      initialValues={patient}
+      formItem={patient}
+      saveItem={savePatient}
+    />
+  </section>
+);
 
 const getPatientById = (patients, id) => {
   const patient = patients.filter(patient => patient.id === id);
