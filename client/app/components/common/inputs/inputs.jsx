@@ -2,6 +2,9 @@ import TextField from 'material-ui/TextField';
 import RadioButtonGroup from 'material-ui/RadioButton/RadioButtonGroup';
 import SelectField from 'material-ui/SelectField';
 import DatePicker from 'material-ui/DatePicker';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import {Field} from 'redux-form';
 
 export const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
   <TextField
@@ -48,18 +51,27 @@ export const renderDatePicker = ({ input, meta: { touched, error }, ...custom })
   />
 );
 
-export const renderInputList = ({ input, meta: { touched, error }, ...custom }) => (
-  <div>
-    {input.value.map((value) => {
-      return <TextField
-        hintText={label}
-        floatingLabelText={label}
-        errorText={touched && error}
-        fullWidth={true}
-        value={value}
-        {...custom}
-      />
-    })}
+export const renderInputList = ({ fields, meta: { touched, error }, ...custom }) => (
+  <div className="input-list">
+    <h4 className="list-label">{custom.label}</h4>
+    {fields.map((field, index) =>
+      (
+        <Field
+          component={renderTextField}
+          type="number"
+          label="Month"
+          name={field}
+          key={ index }
+        />
+      )
+    )}
+    <div className="add-input">
+      <FloatingActionButton
+        mini={true}
+        onClick={() => fields.push()}>
+        <ContentAdd />
+      </FloatingActionButton>
+    </div>
   </div>
 );
 
