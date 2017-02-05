@@ -21,7 +21,7 @@ export default (
     <IndexRedirect to="/customers"/>
     {/*<Route path="login" component={LoginPage}/>*/}
 
-    {/*<Route path="patients" component={PatientsContainer}/>*/}
+    <Route path="grid" component={PatientsContainer}/>
 
     <Route path="dashboard" component={DashboardView}>
     </Route>
