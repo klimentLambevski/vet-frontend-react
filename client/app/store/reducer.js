@@ -6,6 +6,7 @@ import alertMessages from './alert/alert.reducer';
 import {patientsReducer as patients} from '../components/dashboard/patients/patients.reducer';
 import {customersReducer as customers} from '../components/dashboard/customer/customers.reducer';
 import {patientTypesReducer as patientTypes} from '../components/dashboard/patients/patient-type/patient-types.reducer';
+import {examinationsReducer as examinations} from '../components/dashboard/examinations/examination.reducer';
 
 const rootReducer = combineReducers({
   // todo: find a suitable name for common
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   form,
   patients,
   customers,
-  patientTypes
+  patientTypes,
+  examinations
 });
 
 export default rootReducer;

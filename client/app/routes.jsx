@@ -13,6 +13,7 @@ import { PatientTypesView } from './views/patient-types.view';
 import { PatientTypeList } from './components/dashboard/patients/patient-type/patient-type-list';
 import { PatientTypeFormContainer } from './components/dashboard/patients/patient-type/patient-type-form.container';
 import { CustomerDetailsView } from './views/customer-details-view';
+import { PatientDetailsView } from './views/patient-details.view';
 
 export default (
   <Route path="/" component={App}>
@@ -28,8 +29,7 @@ export default (
 
       <Route path="patients" component={PatientsView}>
         <IndexRoute component={PatientList}/>
-        <Route path="new" component={PatientFormContainer}/>
-        <Route path="(:id)" component={PatientFormContainer}/>
+        <Route path="(:patientId)/(:examinationId)" component={PatientDetailsView}/>
       </Route>
     </Route>
 

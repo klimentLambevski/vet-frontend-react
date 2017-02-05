@@ -19,16 +19,7 @@ let PatientFormContainer = ({ patient, savePatient, patientTypes = [] }) => (
   </section>
 );
 
-const getPatientById = (patients, urlParams) => {
-  if (!urlParams) return;
-  const patient = patients.filter(patient => patient.id === urlParams.id);
-  return patient.length > 0 ? patient[0] : {};
-};
-
-const mapStateToProps = (state, ownProps) => ({
-  patient: getPatientById(state.patients, ownProps.params),
-  patientTypes: state.patientTypes
-});
+const mapStateToProps = (state, ownProps) => ({});
 
 PatientFormContainer = withRouter(connect(mapStateToProps, { savePatient })(PatientFormContainer));
 
