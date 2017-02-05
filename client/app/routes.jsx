@@ -27,11 +27,13 @@ export default (
         <Route path="new" component={CustomerFormContainer}/>
         <Route path="(:id)" component={CustomerFormContainer}/>
       </Route>
+
       <Route path="patients" component={PatientsView}>
         <IndexRoute component={PatientList}/>
         <Route path="new" component={PatientFormContainer}/>
         <Route path="(:id)" component={PatientFormContainer}/>
       </Route>
+
       <Route path="patient-types" component={PatientTypesView}>
         <IndexRoute component={PatientTypeList} />
         <Route path="new" component={PatientTypeFormContainer} />

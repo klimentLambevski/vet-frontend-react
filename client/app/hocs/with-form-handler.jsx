@@ -1,5 +1,5 @@
-import {reduxForm} from 'redux-form';
-import {CircularProgress} from "material-ui";
+import { reduxForm } from 'redux-form';
+import { CircularProgress } from "material-ui";
 
 const withFormHandler = (WrappedForm, formName) => {
 
@@ -11,7 +11,7 @@ const withFormHandler = (WrappedForm, formName) => {
   class WithFormHandler extends React.Component {
     constructor(props) {
       super(props);
-      console.log(this.props);
+
       this.state = {
         formItem: Object.assign({}, this.props.formItem)
       };
@@ -21,20 +21,22 @@ const withFormHandler = (WrappedForm, formName) => {
 
     componentWillReceiveProps(nextProps) {
       if (this.state.formItem.id !== nextProps.formItem.id) {
-        this.setState({formItem: nextProps.formItem})
+        this.setState({ formItem: nextProps.formItem })
       }
     }
 
     onSubmit(item) {
-      this.setState({isLoading: true});
+      this.setState({ isLoading: true });
       this.props.saveItem(item).then(() => {
-        this.setState({isLoading: false});
+        this.setState({ isLoading: false });
       }).catch(() => {
-        this.setState({isLoading: false});
+        this.setState({ isLoading: false });
       });
     }
 
     render() {
+      const { saveItem, formItem, ...rest } = this.props;
+
       return (
         <section className="form-container">
           {
@@ -44,8 +46,8 @@ const withFormHandler = (WrappedForm, formName) => {
               </div> : null
           }
           <WrappedFormRedux
-            initialValues={this.state.formItem}
             onSubmit={this.onSubmit}
+            {...rest}
           />
         </section>
       );
@@ -59,4 +61,4 @@ const withFormHandler = (WrappedForm, formName) => {
   return WithFormHandler;
 };
 
-export {withFormHandler};
+export { withFormHandler };

@@ -1,10 +1,11 @@
-import { Field, FieldArray } from 'redux-form';
+import { Field } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import RadioButton from 'material-ui/RadioButton';
-import { renderTextField, renderRadioGroup, renderDatePicker , renderInputList} from '../../common/inputs/inputs';
+import MenuItem from 'material-ui/MenuItem';
+import { renderTextField, renderRadioGroup, renderDatePicker, renderSelectField } from '../../common/inputs/inputs';
 
-export const PatientForm = ({ handleSubmit, pristine, submitting }) => (
-  <form onSubmit={handleSubmit} noValidate autoComplete="off">
+export const PatientForm = ({ handleSubmit, pristine, submitting, patientTypes }) => (
+  <form onSubmit={handleSubmit}>
     <div>
       <Field
         component={renderTextField}
@@ -14,20 +15,28 @@ export const PatientForm = ({ handleSubmit, pristine, submitting }) => (
       />
     </div>
 
+    <Field
+      component={renderSelectField}
+      name="type.name"
+      label="Patient Type"
+    >
+      {
+        patientTypes.map(patientType =>
+          <MenuItem
+            key={patientType.name}
+            value={patientType.name}
+            primaryText={patientType.name}
+          />
+        )
+      }
+    </Field>
+
     <div>
       <Field
         component={renderDatePicker}
         name="birthDate"
         hintText="Birth Date"
         autoOk={true}
-      />
-    </div>
-
-    <div>
-      <FieldArray
-        component={renderInputList}
-        name="period"
-        label="Add months for immunization"
       />
     </div>
 
@@ -65,7 +74,7 @@ export const PatientForm = ({ handleSubmit, pristine, submitting }) => (
       />
     </div>
 
-    <div className="form-footer">
+    <div>
       <RaisedButton
         type="submit"
         label="Save"

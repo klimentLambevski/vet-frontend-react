@@ -5,7 +5,7 @@ import {withFormHandler} from '../../../hocs/with-form-handler';
 
 const PatientFromRedux = withFormHandler(PatientForm, 'patient');
 
-let PatientFormContainer = ({ patient, savePatient }) => (
+let PatientFormContainer = ({ patient, savePatient, patientTypes = [] }) => (
   <section>
     <h1>Patient Form</h1>
 
@@ -13,6 +13,7 @@ let PatientFormContainer = ({ patient, savePatient }) => (
       initialValues={patient}
       formItem={patient}
       saveItem={savePatient}
+      patientTypes={patientTypes}
     />
   </section>
 );
@@ -23,7 +24,8 @@ const getPatientById = (patients, id) => {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  patient: getPatientById(state.patients, ownProps.params.id)
+  patient: getPatientById(state.patients, ownProps.params.id),
+  patientTypes: [{name: 'cat', id: '1'}, {name: 'dog', id: '2'}]//TODO state.patientTypes
 });
 
 PatientFormContainer = connect(mapStateToProps, { savePatient })(PatientFormContainer);
