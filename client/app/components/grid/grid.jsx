@@ -139,7 +139,7 @@ let TBody = ({columns, rowsOnPage, _onRowClick}) => {
       rowsOnPage.map((row) => (
         <tr onClick={() => _onRowClick(row)}>{
           _.map(cols, (conf, name) => {
-            let cell = _.get(row, conf);
+            let cell = _.get(row, name);
             return <td>{_.isObject(cell) ? JSON.stringify(cell) : cell}</td>;
           })
         }</tr>

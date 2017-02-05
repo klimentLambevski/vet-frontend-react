@@ -22,7 +22,7 @@ export class PatientsContainer extends React.Component {
 
   render = () => (
     <div className="patients view container">
-      <Grid id="grid1" rows={this.state.customers} columns={{user:'user.name'}} _onRowClick={(row) => console.log(row)}/>
+      <Grid id="grid1" rows={this.state.customers} columns={{'user.name': ''}} _onRowClick={(row) => console.log(row)}/>
       {/*<Grid id="grid2" rows={this.state.customers}/>*/}
     </div>
   );
