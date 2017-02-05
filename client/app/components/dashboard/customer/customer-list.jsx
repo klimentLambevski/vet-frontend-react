@@ -1,21 +1,12 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { CustomerFormContainer } from './customer-form.container';
+import { Grid } from '../../grid/grid';
 
 let CustomerList = ({ customers }) => (
   <section className="customers-list">
     <div className="customer-list">
-      <ul>
-        {
-          customers.map(customer =>
-            <li key={customer.id}>
-              <Link to={'/customers/' + customer.id}>
-                {customer.user.name}
-              </Link>
-            </li>
-          )
-        }
-      </ul>
+      <Grid id="customersGrid" rows={customers} />
     </div>
 
     <div className="customer-form">

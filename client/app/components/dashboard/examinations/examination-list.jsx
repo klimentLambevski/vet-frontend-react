@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
-
+//TODo remove
 let ExaminationList = ({ examinations, params: { patientId } }) => (
   <section>
     <h1>Examination List</h1>
