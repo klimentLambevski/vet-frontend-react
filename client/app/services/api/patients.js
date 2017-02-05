@@ -1,8 +1,8 @@
-import { graphql } from "../gateway/graphql";
+import {graphql} from "../gateway/graphql";
 
 const getAll = () => graphql`{
-  customers(limit:10) {
-    patients(limit: 2) {
+  customers(limit:30) {
+    patients(limit: 20) {
       id
       name
       race
@@ -31,7 +31,7 @@ const savePatient = (patient, customerId) => graphql`
       }
     }
   }
-`({ customerId, patient });
+`({customerId, patient});
 
 export const PatientApi = {
   getAll,

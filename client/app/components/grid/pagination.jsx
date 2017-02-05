@@ -6,8 +6,13 @@ export class Pagination extends React.Component {
     _onPageChange: React.PropTypes.func
   };
   static defaultProps = {
-    perPage: 10
+    perPage: 3
   };
+
+  constructor() {
+    super();
+    console.log('pagination');
+  }
 
   changePage(page) {
     if (this.props.currentPage === page) return;
