@@ -23,7 +23,7 @@ class PatientDetailsView extends React.Component {
           <ExaminationFormContainer className="examination-form" examination={{...this.props.examination, patientId: this.props.patient.id}}/>
         </div>
 
-        <ExaminationList />
+        <Grid rows={this.props.patients} id="examinationsGrid"/>
       </section>
     );
   }
@@ -42,7 +42,8 @@ const getExaminationById = (examinations, urlParams) => {
 const mapStateToProps = (state, ownProps) => ({
   patient: getPatientById(state.patients, ownProps.params),
   patientTypes: state.patientTypes,
-  examination: getExaminationById(state.examinations, ownProps.params)
+  examination: getExaminationById(state.examinations, ownProps.params),
+  examinations: state.examinations
 });
 
 PatientDetailsView = connect(mapStateToProps, { getExaminations })(PatientDetailsView);

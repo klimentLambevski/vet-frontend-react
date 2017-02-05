@@ -3,6 +3,7 @@ import { PatientFormContainer } from '../components/dashboard/patients/patient-f
 import { PatientList } from '../components/dashboard/patients/patient-list';
 import { connect } from 'react-redux';
 import { getPatients } from '../components/dashboard/patients/patient.actions';
+import { Grid } from '../components/grid/grid';
 
 class CustomerDetailsView extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class CustomerDetailsView extends React.Component {
           </div>
         </div>
         <div>
-          <PatientList />
+          <Grid rows={this.props.patients} id="patientsGrid"/>
         </div>
       </section>
     );
@@ -41,7 +42,8 @@ const selectCustomerById = (customers, id) => {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  customer: selectCustomerById(state.customers, ownProps.params.id)
+  customer: selectCustomerById(state.customers, ownProps.params.id),
+  patients: state.patients
 });
 
 CustomerDetailsView = connect(mapStateToProps, { getPatients })(CustomerDetailsView);
