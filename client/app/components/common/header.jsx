@@ -10,26 +10,21 @@ const Header = () => {
         <span>Vet</span>
       </div>
       <nav className="main-navigation">
-        <IndexLink className="--a-reset" to="/" activeClassName="active">Home</IndexLink>
-        <Link className="--a-reset" to="/customers" activeClassName="active">Customers</Link>
+        {/*<IndexLink className="--a-reset" to="/" activeClassName="active">Home</IndexLink>*/}
+        <IndexLink className="--a-reset" to="/customers" activeClassName="active">Customers</IndexLink>
         <Link className="--a-reset" to="/patient-types" activeClassName="active">Patient Types</Link>
-        <LoginLink className="--a-reset" to="/login" activeClassName="active"/>
+        {/*<LoginLink className="--a-reset" to="/login" activeClassName="active"/>*/}
       </nav>
     </header>
   );
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     header: state.header
   };
 }
 
-
-function mapDispatchToProps() {
-
-}
 export default connect(
-  mapStateToProps,
-  // mapDispatchToProps
+  mapStateToProps
 )(Header);
