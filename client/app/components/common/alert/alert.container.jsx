@@ -13,34 +13,35 @@ class AlertContainer extends React.Component {
     this.props.actions.removeAlert(alertId);
   }
 
+  getMessage(alert) {
+    return typeof alert.message === 'string' ? alert.message : alert[0].message;
+  }
+
   render() {
     return (
-      <div>
+      <div className="alert-container">
         {
           this.props.alertMessages
             .map((alert) =>
               <Alert
                 key={alert.alertId}
-                {...alert}
+                message={this.getMessage(alert)}
                 onRemove={this.onRemove}
               />
             )
         }
+
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    alertMessages: state.alertMessages
-  };
-};
+const mapStateToProps = (state) => ({
+  alertMessages: state.alertMessages
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    actions: bindActionCreators({ removeAlert }, dispatch)
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({ removeAlert }, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AlertContainer);
