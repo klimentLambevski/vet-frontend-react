@@ -17,10 +17,11 @@ class PatientDetailsView extends React.Component {
 
   render() {
     return (
-      <section>
-        <h1>Patient Details</h1>
-        <PatientFormContainer patient={this.props.patient}/>
-        <ExaminationFormContainer examination={this.props.examination}/>
+      <section className="patient-details">
+        <div className="patient-details-forms">
+          <PatientFormContainer className="patient-form" patient={this.props.patient}/>
+          <ExaminationFormContainer className="examination-form" examination={{...this.props.examination, patientId: this.props.patient.id}}/>
+        </div>
 
         <ExaminationList />
       </section>

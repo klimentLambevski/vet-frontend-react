@@ -1,4 +1,4 @@
-import {graphql, handleMutation} from "../gateway/graphql";
+import {graphql, handleMutation} from "../gateway/graphql"; import * as _ from "lodash";
 
 const getAll = () => graphql`
   query getPatients{
@@ -86,7 +86,8 @@ const updatePatient = (patient, patientId) => handleMutation(graphql`
       }
     }
   }
-`({patientId, patient}), 'updatePatient');
+`({patientId, patient: _.pick(patient, ['name', 'birthDate', 'mbr', 'microchip', 'type', 'gender'])}), 'updatePatient');
+
 
 export const PatientApi = {
   getAll,

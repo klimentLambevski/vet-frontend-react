@@ -3,11 +3,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { renderTextField } from '../../common/inputs/inputs';
 
 const ExaminationForm = ({ handleSubmit, pristine, submitting }) => (
-  <form>
+  <form onSubmit={handleSubmit} autoComplete="off" noValidate>
     <div>
       <Field
         component={renderTextField}
-        type="text"
+        type="number"
         name="measuredTemperature"
         label="Measured Temperature"
       />

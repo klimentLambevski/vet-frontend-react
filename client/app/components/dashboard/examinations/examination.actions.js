@@ -3,6 +3,7 @@ import { showAlert } from '../../../store/alert/alert.actions';
 import { ExaminationApi } from '../../../services/api/examination';
 import { PatientApi } from '../../../services/api/patients';
 import { getPatientsSuccess } from '../patients/patient.actions';
+import {push} from "react-router-redux";
 
 export const actions = createActionMap({
   GET_EXAMINATIONS_SUCCESS: '',
@@ -38,7 +39,20 @@ export const getExaminations = (patientId) =>
       error => dispatch(showAlert(error))
     );
 
-export const saveExamination = (examination) =>
+const createExamination = (examination, patientId, dispatch) => {
+  return ExaminationApi.saveExamination(examination, patientId)
+    .then(response => {
+        dispatch(addExaminationSuccess(response.examination));
+        dispatch(push(`/patients/${response.patient.id}/`));
+      }
+    )
+    .catch(
+      error => dispatch(showAlert(error))
+    );
+};
+
+
+export const updateExamination = (examination) =>
   (dispatch) => ExaminationApi.save(examination)
     .then(response => examination.id ?
       dispatch(updateExaminationSuccess(response.data.examination))
@@ -49,3 +63,8 @@ export const saveExamination = (examination) =>
       error => dispatch(showAlert(error))
     );
 
+export const saveExamination = (examination) =>
+  (dispatch) =>
+    examination.id ?
+      updateExamination(examination, examination.id, dispatch):
+      createExamination(examination, examination.patientId, dispatch);

@@ -49,7 +49,7 @@ const createPatient = (patient, customerId, dispatch) => {
 };
 
 const updatePatient = (patient, patientId, dispatch) => {
-  return PatientApi.savePatient(patient, patientId)
+  return PatientApi.updatePatient(patient, patientId)
     .then(response => {
         dispatch(updatePatientSuccess(response.patient));
       }

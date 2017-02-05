@@ -1,0 +1,16 @@
+.patient-details {
+  .patient-details-forms {
+    display: flex;
+    .patient-form, .examination-form {
+      padding: 1em;
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+      flex-direction: column;
+      justify-content: center;
+      .form-container {
+        width: 100%;
+      }
+    }
+  }
+}

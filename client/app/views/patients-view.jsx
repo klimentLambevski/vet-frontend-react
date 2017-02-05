@@ -13,8 +13,6 @@ class PatientsView extends React.Component {
   render() {
     return (
       <section>
-        <h1>Patients</h1>
-
         {this.props.children}
       </section>
     );
