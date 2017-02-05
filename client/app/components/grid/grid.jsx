@@ -17,6 +17,8 @@ export const Grid = connect(mapStateToProps, mapDispatchToProps)(class Grid exte
   static propTypes = {
     id: React.PropTypes.string,
     rows: React.PropTypes.array,
+    columns: React.PropTypes.object,
+    _onRowClick: React.PropTypes.func,
   };
   static defaultProps = {
     id: Date.now(),
@@ -68,7 +70,7 @@ export const Grid = connect(mapStateToProps, mapDispatchToProps)(class Grid exte
             console.log('input changed', filter, value);
             this.changeFilters(filter, value);
           }}/>
-          <TBody {...this.state}/>
+          <TBody {...this.props}{...this.state}/>
         </table>
         <Pagination
           total={this.props.rows.length}
@@ -114,7 +116,7 @@ export const Grid = connect(mapStateToProps, mapDispatchToProps)(class Grid exte
 
 
 let THead = ({columns, rows, searchChanged}) => {
-  let cols = columns || _.keys(rows[0]);
+  let cols = columns && _.keys(columns) || _.keys(rows[0]);
 
   return (
     <thead>
@@ -128,15 +130,18 @@ let THead = ({columns, rows, searchChanged}) => {
   )
 };
 
-let TBody = ({rowsOnPage}) => {
+let TBody = ({columns, rowsOnPage, _onRowClick}) => {
   // return <tbody/>;
+  let cols = columns || rowsOnPage[0];
+
   return (
     <tbody>{
       rowsOnPage.map((row) => (
-        <tr>{
-          _.map(row, (prop) => (
-            <td>{ _.isObject(prop) ? JSON.stringify(prop) : prop}</td>
-          ))
+        <tr onClick={() => _onRowClick(row)}>{
+          _.map(cols, (conf, name) => {
+            let cell = _.get(row, name);
+            return <td>{_.isObject(cell) ? JSON.stringify(cell) : cell}</td>;
+          })
         }</tr>
       ))
     }</tbody>

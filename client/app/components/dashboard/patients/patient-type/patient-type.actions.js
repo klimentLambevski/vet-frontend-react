@@ -1,6 +1,7 @@
 import { createActionMap } from '../../../../store/action';
 import { PatientTypeApi } from '../../../../services/api/patient-type';
-import { showAlert } from '../../../../store/auth/auth.actions';
+import { showAlert } from '../../../../store/alert/alert.actions';
+import { push } from 'react-router-redux';
 
 export const actions = createActionMap({
   GET_ALL_PATIENT_TYPES_SUCCESS: '',
@@ -32,11 +33,28 @@ export const getPatientTypes = () =>
       error => dispatch(showAlert(error))
     );
 
-export const savePatientType = (patientType) =>
-  (dispatch) => PatientTypeApi.save(patientType)
-    .then(
-      response => dispatch(addPatientTypeSuccess(response.data.patientType))
+const createPatientType = (patientType, dispatch) => {
+  return PatientTypeApi.save(patientType)
+    .then(response => {
+        dispatch(addPatientTypeSuccess(response.patientType));
+        dispatch(push('/patient-types/'));
+      }
     )
     .catch(
       error => dispatch(showAlert(error))
     );
+};
+
+const updatePatientType = (patientType, patientTypeId, dispatch) => {
+  return PatientTypeApi.update(patientType, patientTypeId)
+    .then(response => dispatch(updatePatientTypeSuccess(response.patientType)))
+    .catch(
+      error => dispatch(showAlert(error))
+    );
+};
+
+export const savePatientType = (patientType) =>
+  (dispatch) =>
+    patientType.id ?
+      updatePatientType(patientType, patientType.id, dispatch) :
+      createPatientType(patientType, dispatch);
