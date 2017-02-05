@@ -3,6 +3,7 @@ import {createActionMap} from '../action';
 export const actions = createActionMap({
   CHANGE_PAGE: '',
   CHANGE_ROWS: '',
+  CHANGE_FILTERS: '',
 }, 'grid');
 
 export const changePage = (gridId, currentPage, rowsOnPage) => ({
@@ -12,8 +13,14 @@ export const changePage = (gridId, currentPage, rowsOnPage) => ({
   rowsOnPage,
 });
 
-export const changeRows = (gridID, currentRows) => ({
+export const changeRows = (gridId, newRows) => ({
   type: actions.CHANGE_ROWS,
-  gridID,
-  currentRows,
+  gridId,
+  newRows,
+});
+
+export const changeFilters = (gridId, filters) => ({
+  type: actions.CHANGE_FILTERS,
+  gridId,
+  filters,
 });
