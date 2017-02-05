@@ -6,7 +6,7 @@ let PatientTypeList = ({ patientTypes }) => (
     <h1>Patient Types List</h1>
 
     <div>
-      <Link to={'/dashboard/patient-types/new'}>
+      <Link to={'/patient-types/new'}>
         {'Add new patient type'}
       </Link>
 
@@ -15,7 +15,7 @@ let PatientTypeList = ({ patientTypes }) => (
       {
         patientTypes.map(patientType =>
           <li key={patientType.id}>
-            <Link to={'/dashboard/patient-types/' + patientType.id}>
+            <Link to={'/patient-types/' + patientType.id}>
               {patientType.name}
             </Link>
           </li>

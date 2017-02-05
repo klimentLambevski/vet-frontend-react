@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { CustomerFormContainer } from './customer-form.container';
 
 let CustomerList = ({ customers }) => (
   <section>
@@ -11,6 +12,7 @@ let CustomerList = ({ customers }) => (
       </Link>
 
     </div>
+
     <ul>
       {
         customers.map(customer =>
@@ -22,6 +24,9 @@ let CustomerList = ({ customers }) => (
         )
       }
     </ul>
+
+
+    <CustomerFormContainer />
   </section>
 );
 

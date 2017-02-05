@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getPatientTypes } from './patient-type.actions';
+import { getPatientTypes } from '../components/dashboard/patients/patient-type/patient-type.actions';
 
 class PatientTypesView extends React.Component {
   constructor(props) {
