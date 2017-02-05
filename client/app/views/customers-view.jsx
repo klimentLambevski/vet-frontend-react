@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { getCustomers } from '../components/dashboard/customer/customer.actions';
-import { getPatients } from '../components/dashboard/patients/patient.actions';
 import { getPatientTypes } from '../components/dashboard/patients/patient-type/patient-type.actions';
 
 class CustomersView extends React.Component {
@@ -10,7 +9,6 @@ class CustomersView extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(getCustomers());
-    this.props.dispatch(getPatients());
     this.props.dispatch(getPatientTypes());
   }
 

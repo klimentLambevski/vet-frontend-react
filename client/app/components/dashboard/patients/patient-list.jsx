@@ -15,7 +15,7 @@ let PatientList = ({ patients }) => (
       {
         patients.map(patient =>
           <li key={patient.id}>
-            <Link to={'/patients/' + patient.id}>
+            <Link to={`/patients/${patient.id}/`}>
               {patient.name}
             </Link>
           </li>

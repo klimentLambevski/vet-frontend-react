@@ -2,18 +2,31 @@ import { ExaminationFormContainer } from '../components/dashboard/examinations/e
 import { PatientFormContainer } from '../components/dashboard/patients/patient-form.container';
 import { ExaminationList } from '../components/dashboard/examinations/examination-list';
 import { connect } from 'react-redux';
+import { getExaminations } from '../components/dashboard/examinations/examination.actions';
 
-let PatientDetailsView = ({ patient, examination }) => {
-  return (
-    <section>
-      <h1>Patient Details</h1>
-      <PatientFormContainer patient={patient}/>
-      <ExaminationFormContainer examination={examination}/>
+class PatientDetailsView extends React.Component {
+  constructor(props) {
+    super(props);
 
-      <ExaminationList />
-    </section>
-  );
-};
+
+  }
+
+  componentDidMount() {
+    this.props.getExaminations(this.props.params.patientId)
+  }
+
+  render() {
+    return (
+      <section>
+        <h1>Patient Details</h1>
+        <PatientFormContainer patient={this.props.patient}/>
+        <ExaminationFormContainer examination={this.props.examination}/>
+
+        <ExaminationList />
+      </section>
+    );
+  }
+}
 
 const getPatientById = (patients, urlParams) => {
   const patient = patients.filter(patient => patient.id === urlParams.patientId);
@@ -31,6 +44,6 @@ const mapStateToProps = (state, ownProps) => ({
   examination: getExaminationById(state.examinations, ownProps.params)
 });
 
-PatientDetailsView = connect(mapStateToProps)(PatientDetailsView);
+PatientDetailsView = connect(mapStateToProps, { getExaminations })(PatientDetailsView);
 
 export { PatientDetailsView };

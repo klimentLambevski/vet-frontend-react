@@ -9,7 +9,7 @@ let ExaminationList = ({ examinations, params: { patientId } }) => (
       {
         examinations.map(examination =>
           <li key={examination.id}>
-            <Link to={`/dashboard/patients/${patientId}/${examination.id}`}>
+            <Link to={`/patients/${patientId}/${examination.id}`}>
               Examination - {examination.id}
             </Link>
           </li>

@@ -2,36 +2,48 @@ import { CustomerFormContainer } from '../components/dashboard/customer/customer
 import { PatientFormContainer } from '../components/dashboard/patients/patient-form.container';
 import { PatientList } from '../components/dashboard/patients/patient-list';
 import { connect } from 'react-redux';
+import { getPatients } from '../components/dashboard/patients/patient.actions';
 
-let CustomerDetailsView = ({customer}) => {
+class CustomerDetailsView extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <section className="customer-details-view">
-      <div className="customer-details-forms">
-        <div className="edit-customer">
-          <CustomerFormContainer customer={customer} />
+  componentDidMount() {
+    if (this.props.params.id) {
+      this.props.getPatients(this.props.params.id);
+    }
+  }
+
+  render() {
+    return (
+      <section className="customer-details-view">
+        <div className="customer-details-forms">
+          <div className="edit-customer">
+            <CustomerFormContainer customer={this.props.customer}/>
+          </div>
+          <div className="add-patient">
+            <PatientFormContainer patient={{customerId: this.props.customer.id}}/>
+          </div>
         </div>
-        <div className="add-patient">
-          <PatientFormContainer patient={{customerId: customer.id}}/>
+        <div>
+          <PatientList />
         </div>
-      </div>
-      <div>
-         <PatientList />
-      </div>
-    </section>
-  );
+      </section>
+    );
+  }
+}
 
-};
 
-const getCustomerById = (customers, id) => {
+const selectCustomerById = (customers, id) => {
   const customer = customers.filter(customer => customer.id === id);
   return customer.length > 0 ? customer[0] : {};
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  customer: getCustomerById(state.customers, ownProps.params.id)
+  customer: selectCustomerById(state.customers, ownProps.params.id)
 });
 
-CustomerDetailsView = connect(mapStateToProps)(CustomerDetailsView);
+CustomerDetailsView = connect(mapStateToProps, { getPatients })(CustomerDetailsView);
 
 export { CustomerDetailsView };

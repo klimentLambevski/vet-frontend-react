@@ -1,6 +1,7 @@
 import { createActionMap } from '../../../store/action';
 import { showAlert } from '../../../store/auth/auth.actions';
 import { PatientApi } from '../../../services/api/patients';
+import { CustomerApi } from '../../../services/api/customer';
 import {push} from "react-router-redux";
 
 export const actions = createActionMap({
@@ -9,7 +10,7 @@ export const actions = createActionMap({
   UPDATE_PATIENT_SUCCESS: ''
 }, 'patient');
 
-const getPatientsSuccess = (patients) => ({
+export const getPatientsSuccess = (patients) => ({
   type: actions.GET_PATIENTS_SUCCESS,
   patients
 });
@@ -24,19 +25,12 @@ const updatePatientSuccess = (patient) => ({
   patient: patient
 });
 
-//TODO it would be better if we store the patients by customer id
-const resolvePatients = (data) => {
-  let patients = [];
-  data.customers.forEach(customer =>
-    patients.push(...customer.patients)
-  );
-  return patients;
-};
-
-export const getPatients = () =>
-  (dispatch) => PatientApi.getAll()
+export const getPatients = (customerId) =>
+  (dispatch) => CustomerApi.getById(customerId)
     .then(
-      response => dispatch(getPatientsSuccess(resolvePatients(response.data)))
+      response => dispatch(
+        getPatientsSuccess(response.data.customer.patients)
+      )
     )
     .catch(
       error => dispatch(showAlert(error))

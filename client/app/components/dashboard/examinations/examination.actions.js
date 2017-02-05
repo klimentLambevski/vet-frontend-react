@@ -1,6 +1,8 @@
 import { createActionMap } from '../../../store/action';
 import { showAlert } from '../../../store/alert/alert.actions';
 import { ExaminationApi } from '../../../services/api/examination';
+import { PatientApi } from '../../../services/api/patients';
+import { getPatientsSuccess } from '../patients/patient.actions';
 
 export const actions = createActionMap({
   GET_EXAMINATIONS_SUCCESS: '',
@@ -23,11 +25,14 @@ const updateExaminationSuccess = (examination) => ({
   examination
 });
 
-export const getExaminations = () =>
-  (dispatch) => ExaminationApi.getAll()
+export const getExaminations = (patientId) =>
+  (dispatch) => PatientApi.getById(patientId)
     .then(
-      response => dispatch(
-        getExaminationsSuccess(response.data.patient.examinations))
+      response => {
+        const { examinations, ...patient } = response.data.patient;
+        dispatch(getExaminationsSuccess(examinations));
+        dispatch(getPatientsSuccess([patient]));
+      }
     )
     .catch(
       error => dispatch(showAlert(error))

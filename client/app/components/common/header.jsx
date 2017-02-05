@@ -11,7 +11,7 @@ const Header = () => {
       </div>
       <nav className="main-navigation">
         <IndexLink className="--a-reset" to="/" activeClassName="active">Home</IndexLink>
-        <Link className="--a-reset" to="/dashboard" activeClassName="active">Customers</Link>
+        <Link className="--a-reset" to="/customers" activeClassName="active">Customers</Link>
         <Link className="--a-reset" to="/patient-types" activeClassName="active">Patient Types</Link>
         <LoginLink className="--a-reset" to="/login" activeClassName="active"/>
       </nav>

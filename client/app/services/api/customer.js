@@ -38,7 +38,7 @@ const getById = (customerId) => graphql`
         updatedAt
       }
     }
-  }`({customerId});
+  }`({id: customerId});
 
 //TODO rename to save
 const saveCustomer = (customer) => handleMutation(graphql`
@@ -81,5 +81,6 @@ const updateCustomer = (customer, customerId) => handleMutation(graphql`
 export const CustomerApi = {
   getAll,
   saveCustomer,
-  updateCustomer
+  updateCustomer,
+  getById
 };
