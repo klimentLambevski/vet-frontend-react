@@ -43,7 +43,7 @@ const createExamination = (examination, patientId, dispatch) => {
   return ExaminationApi.saveExamination(examination, patientId)
     .then(response => {
         dispatch(addExaminationSuccess(response.examination));
-        dispatch(push(`/patients/${response.patient.id}/`));
+        dispatch(push(`/patients/${patientId}/${response.examination.id}`));
       }
     )
     .catch(
@@ -52,16 +52,16 @@ const createExamination = (examination, patientId, dispatch) => {
 };
 
 
-export const updateExamination = (examination) =>
-  (dispatch) => ExaminationApi.save(examination)
-    .then(response => examination.id ?
-      dispatch(updateExaminationSuccess(response.data.examination))
-      :
-      dispatch(addExaminationSuccess(response.data.examination))
+const updateExamination = (examination, examinationId, dispatch) => {
+  return ExaminationApi.updateExamination(examination, examinationId)
+    .then(response => {
+        dispatch(updateExaminationSuccess(response.examination));
+      }
     )
     .catch(
       error => dispatch(showAlert(error))
     );
+};
 
 export const saveExamination = (examination) =>
   (dispatch) =>
