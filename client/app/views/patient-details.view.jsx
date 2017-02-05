@@ -3,12 +3,12 @@ import { PatientFormContainer } from '../components/dashboard/patients/patient-f
 import { ExaminationList } from '../components/dashboard/examinations/examination-list';
 import { connect } from 'react-redux';
 import { getExaminations } from '../components/dashboard/examinations/examination.actions';
+import {Link} from "react-router";
+import {RaisedButton} from "material-ui";
 
 class PatientDetailsView extends React.Component {
   constructor(props) {
     super(props);
-
-
   }
 
   componentDidMount() {
@@ -19,7 +19,17 @@ class PatientDetailsView extends React.Component {
     return (
       <section className="patient-details">
         <div className="patient-details-forms">
-          <PatientFormContainer className="patient-form" patient={this.props.patient}/>
+          <div className="patient-form">
+            <PatientFormContainer  patient={this.props.patient}/>
+            <Link to={`/patients/${this.props.patient.id}/`}>
+              <RaisedButton
+                type="button"
+                label="New examination"
+                fullWidth={true}
+                primary={true}
+              />
+            </Link>
+          </div>
           <ExaminationFormContainer className="examination-form" examination={{...this.props.examination, patientId: this.props.patient.id}}/>
         </div>
 
