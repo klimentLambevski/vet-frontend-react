@@ -1,12 +1,13 @@
 import {actions} from './grid.actions';
 
-
 export const gridReducer = (state = {}, action) => {
   switch (action.type) {
     case actions.CHANGE_PAGE:
       return changePage(state, action);
     case actions.CHANGE_ROWS:
       return changeRows(state, action);
+    case actions.CHANGE_FILTERS:
+      return changeFilters(state, action);
     default:
       return state;
   }
@@ -29,7 +30,18 @@ function changeRows(state, action) {
 
   state[action.gridId] = {
     ...gridState,
-    rows: action.rows,
+    newRows: action.newRows,
+  };
+
+  return {...state};
+}
+
+function changeFilters(state, action) {
+  let gridState = state[action.gridId] || {};
+
+  state[action.gridId] = {
+    ...gridState,
+    filters: action.filters,
   };
 
   return {...state};

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {Pagination} from './pagination';
-import {changePage, changeRows} from '../../store/grid/grid.actions';
+import {changePage, changeRows, changeFilters} from '../../store/grid/grid.actions';
 
 function mapStateToProps(store) {
   return {
@@ -9,7 +9,8 @@ function mapStateToProps(store) {
 }
 const mapDispatchToProps = {
   changePage,
-  changeRows
+  changeRows,
+  changeFilters,
 };
 
 export const Grid = connect(mapStateToProps, mapDispatchToProps)(class Grid extends React.Component {
@@ -21,32 +22,41 @@ export const Grid = connect(mapStateToProps, mapDispatchToProps)(class Grid exte
     id: Date.now(),
     rows: [],
     pagination: {
-      itemsPerPage: 3
+      itemsPerPage: 10
     }
   };
 
   constructor(props) {
     super(props);
     this.state = {
+      filters: {},
       currentPage: 0,
       rowsOnPage: []
     };
   }
 
   componentWillReceiveProps(nextProps) {
+    let nextState;
+    if (nextProps.grid[nextProps.id]) nextState = {
+      filters: nextProps.grid[nextProps.id].filters,
+      rowsOnPage: nextProps.grid[nextProps.id].rowsOnPage,
+      currentPage: nextProps.grid[nextProps.id].currentPage,
+    }; else nextState = {};
+
     // console.log('componentWillReceiveProps', nextProps.grid);
     if (this.props.rows !== nextProps.rows) {
       setTimeout(() => {
-        this.changeRows(nextProps.rows);
         this.changePage(0);
+        this.changeRows(nextProps.rows);
       })
+    } else if (this.state.filters !== nextState.filters) {
+      setTimeout(() => {
+        this.changePage(0);
+      });
     }
 
     if (nextProps.grid[nextProps.id]) {
-      this.setState({
-        rowsOnPage: nextProps.grid[nextProps.id].rowsOnPage,
-        currentPage: nextProps.grid[nextProps.id].currentPage,
-      });
+      this.setState(nextState);
     } else console.warn('Grid ID is not defined in state');
   }
 
@@ -54,12 +64,16 @@ export const Grid = connect(mapStateToProps, mapDispatchToProps)(class Grid exte
     return (
       <div className="grid component">
         <table className="ui table">
-          <THead {...this.props} onChange={(e) => console.log('input changed', e)}/>
+          <THead {...this.props} searchChanged={(filter, value) => {
+            console.log('input changed', filter, value);
+            this.changeFilters(filter, value);
+          }}/>
           <TBody {...this.state}/>
         </table>
         <Pagination
           total={this.props.rows.length}
           currentPage={this.state.currentPage}
+          perPage={this.props.pagination.itemsPerPage}
           _onPageChange={(page) => this.changePage(page)}/>
       </div>
     )
@@ -67,11 +81,30 @@ export const Grid = connect(mapStateToProps, mapDispatchToProps)(class Grid exte
 
 
   // map actions (to prefix grid name)
+  changeFilters(filter, value) {
+    let filters = {
+      ...this.state.filters,
+      [filter]: value
+    };
+
+    this.props.changeFilters(this.props.id, filters)
+  }
+
   changePage(page) {
+    // filter
+    let rows = this.props.rows;
+    if (this.state.filters) {
+      rows = _.filter(rows,
+        (row) => _.every(this.state.filters,
+          (value, filter) => _.includes(row[filter], value))
+      );
+    }
+
+    // paginate
     let start = page * this.props.pagination.itemsPerPage;
     let end = (page + 1) * this.props.pagination.itemsPerPage;
 
-    this.props.changePage(this.props.id, page, this.props.rows.slice(start, end));
+    this.props.changePage(this.props.id, page, rows.slice(start, end));
   }
 
   changeRows(rows) {
@@ -80,7 +113,7 @@ export const Grid = connect(mapStateToProps, mapDispatchToProps)(class Grid exte
 });
 
 
-let THead = ({columns, rows, onChange}) => {
+let THead = ({columns, rows, searchChanged}) => {
   let cols = columns || _.keys(rows[0]);
 
   return (
@@ -89,7 +122,7 @@ let THead = ({columns, rows, onChange}) => {
       cols.map((col) => <th>{col}</th>)
     }</tr>
     <tr>{
-      cols.map((col) => <th className="row-search"><input onChange={(e) => onChange(e.target.value)}/></th>)
+      cols.map((col) => <th className="row-search"><input onChange={(e) => searchChanged(col, e.target.value)}/></th>)
     }</tr>
     </thead>
   )
