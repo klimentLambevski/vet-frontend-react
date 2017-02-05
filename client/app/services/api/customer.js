@@ -23,6 +23,20 @@ const getById = (customerId) => graphql`
         name
         surname
       }
+      patients {
+        id
+        birthDate
+        gender
+        mbr
+        microchip
+        name
+        race
+        type {
+          name
+        }
+        createdAt
+        updatedAt
+      }
     }
   }`({customerId});
 
