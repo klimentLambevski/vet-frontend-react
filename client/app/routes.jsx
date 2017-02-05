@@ -1,5 +1,6 @@
-import {IndexRoute, Route} from "react-router";
+import {IndexRoute, IndexRedirect, Route} from "react-router";
 import App from "./components/app";
+
 import LoginPage from "./components/auth/login-page";
 import HomePage from "./components/home/home";
 import {DashboardView} from "./views/dashboard-view";
@@ -17,9 +18,10 @@ import { PatientDetailsView } from './views/patient-details.view';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={HomePage}/>
-    <Route path="login" component={LoginPage}/>
-    <Route path="patients" component={PatientsContainer}/>
+    <IndexRedirect to="/customers"/>
+    {/*<Route path="login" component={LoginPage}/>*/}
+
+    {/*<Route path="patients" component={PatientsContainer}/>*/}
 
     <Route path="dashboard" component={DashboardView}>
     </Route>

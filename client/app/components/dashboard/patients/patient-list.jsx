@@ -5,12 +5,6 @@ let PatientList = ({ patients }) => (
   <section>
     <h1>Patient List</h1>
 
-    <div>
-      <Link to={'/patients/new'}>
-        {'Add new patient'}
-      </Link>
-
-    </div>
     <ul>
       {
         patients.map(patient =>

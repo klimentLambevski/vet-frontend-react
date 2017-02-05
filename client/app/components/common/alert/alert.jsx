@@ -11,7 +11,7 @@ class Alert extends React.Component {
       () => {
         this.props.onRemove(this.props.alertId)
       },
-      2000
+      4000
     );
   }
 
@@ -21,7 +21,7 @@ class Alert extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="alert alert-error">
         <div>{this.props.message}</div>
       </div>
     );

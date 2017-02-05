@@ -5,13 +5,6 @@ import { CustomerFormContainer } from './customer-form.container';
 let CustomerList = ({ customers }) => (
   <section className="customers-list">
     <div className="customer-list">
-      <div>
-        <Link to={'/customers/new'}>
-          {'Add new customer'}
-        </Link>
-
-      </div>
-
       <ul>
         {
           customers.map(customer =>

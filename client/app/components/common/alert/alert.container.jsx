@@ -27,6 +27,7 @@ class AlertContainer extends React.Component {
                 key={alert.alertId}
                 message={this.getMessage(alert)}
                 onRemove={this.onRemove}
+                alertId={alert.alertId}
               />
             )
         }
