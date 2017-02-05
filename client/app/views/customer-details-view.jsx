@@ -27,7 +27,7 @@ class CustomerDetailsView extends React.Component {
             <PatientFormContainer patient={{customerId: this.props.customer.id}}/>
           </div>
         </div>
-        <div>
+        <div className="patients-list">
           <Grid rows={this.props.patients} id="patientsGrid"/>
         </div>
       </section>
