@@ -13,6 +13,19 @@ const getAll = () => graphql`
     }
   }`();
 
+const getById = (customerId) => graphql`
+  query getCustomer($id: String!) {
+    customer(id: $id) {
+      id
+      user {
+        id
+        email
+        name
+        surname
+      }
+    }
+  }`({customerId});
+
 //TODO rename to save
 const saveCustomer = (customer) => handleMutation(graphql`
   mutation addCustomer($user: UserInput!){
