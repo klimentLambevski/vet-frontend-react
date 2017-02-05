@@ -35,8 +35,8 @@ const ExaminationForm = ({ handleSubmit, pristine, submitting }) => (
       <Field
         component={renderTextField}
         type="text"
-        name="therapy"
-        label="Therapy"
+        name="laboratory"
+        label="Laboratory"
       />
     </div>
 
