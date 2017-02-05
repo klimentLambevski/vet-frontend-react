@@ -1,7 +1,7 @@
-import { graphql } from '../gateway/graphql';
+import { graphql, handleMutation } from '../gateway/graphql';
 
 const getAll = () => graphql`
-  {
+  query getAllPatientTypes {
     patientTypes {
       id
       name
@@ -9,9 +9,19 @@ const getAll = () => graphql`
   }
 `();
 
-const save = (patientType) => {
-  console.log(`save ${patientType}`);
-};
+const save = (patientType) => handleMutation(graphql`
+  mutation addPatientType($patientType: PatientTypeInput!){
+    createPatientType(patientType: $patientType) {
+      errors {
+        message
+      }
+      patientType {
+        id
+        name
+      }
+    }
+  }
+`({ patientType }), 'createPatientType');
 
 export const PatientTypeApi = {
   getAll,

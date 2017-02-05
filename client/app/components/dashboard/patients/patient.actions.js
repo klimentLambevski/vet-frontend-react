@@ -1,5 +1,5 @@
 import { createActionMap } from '../../../store/action';
-import { showAlert } from '../../../store/auth/auth.actions';
+import { showAlert } from '../../../store/alert/alert.actions';
 import { PatientApi } from '../../../services/api/patients';
 import { CustomerApi } from '../../../services/api/customer';
 import {push} from "react-router-redux";

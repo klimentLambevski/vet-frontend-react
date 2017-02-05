@@ -4,16 +4,23 @@ import { PatientList } from '../components/dashboard/patients/patient-list';
 import { connect } from 'react-redux';
 import { getPatients } from '../components/dashboard/patients/patient.actions';
 import { Grid } from '../components/grid/grid';
+import { push } from 'react-router-redux';
 
 class CustomerDetailsView extends React.Component {
   constructor(props) {
     super(props);
+
+    this.onRowClicked = this.onRowClicked.bind(this);
   }
 
   componentDidMount() {
     if (this.props.params.id) {
       this.props.getPatients(this.props.params.id);
     }
+  }
+
+  onRowClicked(patient) {
+    this.props.push(`/patients/${patient.id}/`);
   }
 
   render() {
@@ -27,8 +34,13 @@ class CustomerDetailsView extends React.Component {
             <PatientFormContainer patient={{customerId: this.props.customer.id}}/>
           </div>
         </div>
+
         <div>
-          <Grid rows={this.props.patients} id="patientsGrid"/>
+          <Grid
+            rows={this.props.patients}
+            id="patientsGrid"
+            _onRowClick={this.onRowClicked}
+          />
         </div>
       </section>
     );
@@ -46,6 +58,6 @@ const mapStateToProps = (state, ownProps) => ({
   patients: state.patients
 });
 
-CustomerDetailsView = connect(mapStateToProps, { getPatients })(CustomerDetailsView);
+CustomerDetailsView = connect(mapStateToProps, { getPatients, push })(CustomerDetailsView);
 
 export { CustomerDetailsView };

@@ -4,7 +4,11 @@ import { Link } from 'react-router';
 let PatientTypeList = ({ patientTypes }) => (
   <section>
     <h1>Patient Types List</h1>
-
+    <div>
+      <Link to="/patient-types/new">
+        {'Add new patient type'}
+      </Link>
+    </div>
     <ul>
       {
         patientTypes.map(patientType =>
