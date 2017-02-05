@@ -8,8 +8,7 @@ const PatientFromRedux = withFormHandler(PatientForm, 'patient');
 
 let PatientFormContainer = ({ patient, savePatient, patientTypes = [] }) => (
   <section>
-    <h1>Patient Form</h1>
-
+    {patient && patient.id ? <h4>Edit patient</h4>: <h4>Add new patient</h4>}
     <PatientFromRedux
       initialValues={patient}
       formItem={patient}

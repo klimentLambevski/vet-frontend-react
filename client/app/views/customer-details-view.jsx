@@ -6,20 +6,26 @@ import { connect } from 'react-redux';
 let CustomerDetailsView = ({customer}) => {
 
   return (
-    <section>
-      <h1>Customer Details</h1>
-      <CustomerFormContainer customer={customer} />
-      <PatientFormContainer />
-
-      <PatientList />
+    <section className="customer-details-view">
+      <div className="customer-details-forms">
+        <div className="edit-customer">
+          <CustomerFormContainer customer={customer} />
+        </div>
+        <div className="add-patient">
+          <PatientFormContainer />
+        </div>
+      </div>
+      <div>
+         <PatientList />
+      </div>
     </section>
   );
 
 };
 
 const getCustomerById = (customers, id) => {
-  const customer = customers.filter(customer => customer.user.id === id);
-  return customer.length > 0 ? customer[0].user : {};
+  const customer = customers.filter(customer => customer.id === id);
+  return customer.length > 0 ? customer[0] : {};
 };
 
 const mapStateToProps = (state, ownProps) => ({

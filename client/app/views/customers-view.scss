@@ -1,0 +1,14 @@
+.customers-view {
+  .customers-list {
+    display: flex;
+    .customer-list {
+      flex: 3;
+    }
+    .customer-form {
+      flex: 1;
+    }
+    .customer-list, .customer-form {
+      padding: 1em;
+    }
+  }
+}

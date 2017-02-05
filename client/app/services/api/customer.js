@@ -1,8 +1,9 @@
-import {graphql} from "../gateway/graphql";
+import {graphql, handleMutation} from "../gateway/graphql"; import * as _ from "lodash";
 
 const getAll = () => graphql`
   query getCustomers{
-    customers(limit: 10) {
+    customers {
+      id
       user {
         id
         email
@@ -13,9 +14,28 @@ const getAll = () => graphql`
   }`();
 
 //TODO rename to save
-const saveCustomer = (customer) => graphql`
+const saveCustomer = (customer) => handleMutation(graphql`
   mutation addCustomer($user: UserInput!){
     createCustomer(customer: {user: $user}) {
+      errors {
+        message
+      }
+      customer {
+        id
+        user {
+          id
+          email
+          name
+          surname
+        }
+      }
+    }
+  }
+`({user: customer.user}), 'createCustomer');
+
+const updateCustomer = (customer, customerId) => handleMutation(graphql`
+  mutation updateCustomer($user: UserInput!, $customerId: String!){
+    updateCustomer(customer: {user: $user}, customerId: $customerId) {
       errors {
         message
       }
@@ -29,9 +49,10 @@ const saveCustomer = (customer) => graphql`
       }
     }
   }
-`({user: customer});
+`({user: _.pick(customer.user, ['email', 'name', 'surname']), customerId: customerId}), 'updateCustomer');
 
 export const CustomerApi = {
   getAll,
-  saveCustomer
+  saveCustomer,
+  updateCustomer
 };
