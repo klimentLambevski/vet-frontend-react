@@ -18,7 +18,9 @@ let PatientFormContainer = ({ patient, savePatient, patientTypes = [] }) => (
   </section>
 );
 
-const mapStateToProps = (state, ownProps) => ({});
+const mapStateToProps = (state, ownProps) => ({
+  patientTypes: state.patientTypes
+});
 
 PatientFormContainer = withRouter(connect(mapStateToProps, { savePatient })(PatientFormContainer));
 

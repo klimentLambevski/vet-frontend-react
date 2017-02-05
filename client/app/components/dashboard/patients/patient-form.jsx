@@ -37,6 +37,7 @@ export const PatientForm = ({ handleSubmit, pristine, submitting, patientTypes }
           component={renderDatePicker}
           name="birthDate"
           hintText="Birth Date"
+          floatingLabelText="Birth Date"
           autoOk={true}
         />
       </div>
