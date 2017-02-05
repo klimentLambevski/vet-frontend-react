@@ -1,15 +1,32 @@
-import {Pagination} from "./pagination";
-export class Grid extends React.Component {
+import {connect} from 'react-redux';
+import {Pagination} from './pagination';
+import {changePage, changeRows} from '../../store/grid/grid.actions';
+
+function mapStateToProps(store) {
+  return {
+    grid: store.common.grid,
+  }
+}
+const mapDispatchToProps = {
+  changePage,
+  changeRows
+};
+
+export const Grid = connect(mapStateToProps, mapDispatchToProps)(class Grid extends React.Component {
+  static propTypes = {
+    id: React.PropTypes.string,
+    rows: React.PropTypes.array,
+  };
   static defaultProps = {
-    test: 'a',
+    id: Date.now(),
+    rows: [],
     pagination: {
-      itemsPerPage: 10
+      itemsPerPage: 3
     }
   };
 
   constructor(props) {
     super(props);
-
     this.state = {
       currentPage: 0,
       rowsOnPage: []
@@ -17,12 +34,21 @@ export class Grid extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // todo: important - experimental timeout (so we have the nextProps in this.props)
-    setTimeout(() => {
-      this.pageChanged(0);
-    })
-  }
+    // console.log('componentWillReceiveProps', nextProps.grid);
+    if (this.props.rows !== nextProps.rows) {
+      setTimeout(() => {
+        this.changeRows(nextProps.rows);
+        this.changePage(0);
+      })
+    }
 
+    if (nextProps.grid[nextProps.id]) {
+      this.setState({
+        rowsOnPage: nextProps.grid[nextProps.id].rowsOnPage,
+        currentPage: nextProps.grid[nextProps.id].currentPage,
+      });
+    } else console.warn('Grid ID is not defined in state');
+  }
 
   render() {
     return (
@@ -34,20 +60,25 @@ export class Grid extends React.Component {
         <Pagination
           total={this.props.rows.length}
           currentPage={this.state.currentPage}
-          _onPageChange={(page) => this.pageChanged(page)}/>
+          _onPageChange={(page) => this.changePage(page)}/>
       </div>
     )
   }
 
-  pageChanged(page) {
+
+  // map actions (to prefix grid name)
+  changePage(page) {
     let start = page * this.props.pagination.itemsPerPage;
     let end = (page + 1) * this.props.pagination.itemsPerPage;
-    this.setState({
-      currentPage: page,
-      rowsOnPage: this.props.rows.slice(start, end)
-    })
+
+    this.props.changePage(this.props.id, page, this.props.rows.slice(start, end));
   }
-}
+
+  changeRows(rows) {
+    this.props.changeRows(this.props.id, rows);
+  }
+});
+
 
 let THead = ({columns, rows, onChange}) => {
   let cols = columns || _.keys(rows[0]);
@@ -65,15 +96,16 @@ let THead = ({columns, rows, onChange}) => {
 };
 
 let TBody = ({rowsOnPage}) => {
+  // return <tbody/>;
   return (
     <tbody>{
       rowsOnPage.map((row) => (
         <tr>{
           _.map(row, (prop) => (
-            <td>{prop}</td>
+            <td>{ _.isObject(prop) ? JSON.stringify(prop) : prop}</td>
           ))
         }</tr>
       ))
     }</tbody>
   );
-}
+};

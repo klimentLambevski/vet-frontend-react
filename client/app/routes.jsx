@@ -22,15 +22,15 @@ export default (
     <Route path="patients" component={PatientsContainer}/>
 
     <Route path="dashboard" component={DashboardView}>
-      <Route path="customers" component={CustomersView}>
-        <IndexRoute component={CustomerList}/>
-        <Route path="(:id)" component={CustomerDetailsView}/>
-      </Route>
+    </Route>
+    <Route path="customers" component={CustomersView}>
+      <IndexRoute component={CustomerList}/>
+      <Route path="(:id)" component={CustomerDetailsView}/>
+    </Route>
 
-      <Route path="patients" component={PatientsView}>
-        <IndexRoute component={PatientList}/>
-        <Route path="(:patientId)/(:examinationId)" component={PatientDetailsView}/>
-      </Route>
+    <Route path="patients" component={PatientsView}>
+      <IndexRoute component={PatientList}/>
+      <Route path="(:patientId)/(:examinationId)" component={PatientDetailsView}/>
     </Route>
 
     <Route path="patient-types" component={PatientTypesView}>

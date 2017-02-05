@@ -1,0 +1,26 @@
+.customer-details-view {
+  .customer-details-forms {
+    display: flex;
+    .edit-customer, .add-patient{
+      padding: 1em;
+      display: flex;
+      align-items: stretch;
+      section {
+        flex: 1;
+        display: flex;
+        align-items: stretch;
+        flex-direction: column;
+      }
+    }
+    .edit-customer {
+      flex: 1;
+    }
+    .add-patient {
+      flex: 2;
+    }
+    .form-container {
+      width: 100%;
+    }
+  }
+
+}

@@ -8,7 +8,7 @@ export const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
       <Field
         component={renderTextField}
         type="text"
-        name="name"
+        name="user.name"
         label="First Name"
       />
     </div>
@@ -16,7 +16,7 @@ export const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
       <Field
         component={renderTextField}
         type="text"
-        name="surname"
+        name="user.surname"
         label="Last Name"
       />
     </div>
@@ -25,7 +25,7 @@ export const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
       <Field
         component={renderTextField}
         type="text"
-        name="email"
+        name="user.email"
         label="Email"
       />
     </div>

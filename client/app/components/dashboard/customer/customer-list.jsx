@@ -3,30 +3,31 @@ import { Link } from 'react-router';
 import { CustomerFormContainer } from './customer-form.container';
 
 let CustomerList = ({ customers }) => (
-  <section>
-    <h1>Customers List</h1>
+  <section className="customers-list">
+    <div className="customer-list">
+      <div>
+        <Link to={'/customers/new'}>
+          {'Add new customer'}
+        </Link>
 
-    <div>
-      <Link to={'/dashboard/customers/new'}>
-        {'Add new customer'}
-      </Link>
+      </div>
 
+      <ul>
+        {
+          customers.map(customer =>
+            <li key={customer.id}>
+              <Link to={'/customers/' + customer.id}>
+                {customer.user.name}
+              </Link>
+            </li>
+          )
+        }
+      </ul>
     </div>
 
-    <ul>
-      {
-        customers.map(customer =>
-          <li key={customer.user.id}>
-            <Link to={'/dashboard/customers/' + customer.user.id}>
-              {customer.user.name}
-            </Link>
-          </li>
-        )
-      }
-    </ul>
-
-
-    <CustomerFormContainer />
+    <div className="customer-form">
+      <CustomerFormContainer />
+    </div>
   </section>
 );
 

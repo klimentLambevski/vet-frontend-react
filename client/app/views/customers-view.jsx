@@ -16,9 +16,7 @@ class CustomersView extends React.Component {
 
   render() {
     return (
-      <section>
-        <h1>Customers</h1>
-
+      <section className="customers-view">
         {this.props.children}
       </section>
     );
