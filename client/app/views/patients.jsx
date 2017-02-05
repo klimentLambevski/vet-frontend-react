@@ -1,6 +1,5 @@
-import {Grid} from "../components/grid/grid";
-import {gridData} from "../../mocks/grid-data";
-import {CustomerApi} from "../services/api/customer";
+import {Grid} from '../components/grid/grid';
+import {CustomerApi} from '../services/api/customer';
 
 export class PatientsContainer extends React.Component {
   constructor() {
@@ -15,14 +14,15 @@ export class PatientsContainer extends React.Component {
     CustomerApi.getAll().then((res) => {
       console.log(res.data.customers);
       this.setState({
-        customers: res.data.customers
+        customers: _.map(res.data.customers, 'user')
       });
     })
   }
 
   render = () => (
     <div className="patients view container">
-      <Grid rows={this.state.customers}/>
+      <Grid id="grid1" rows={this.state.customers}/>
+      <Grid id="grid2" rows={this.state.customers}/>
     </div>
   );
 }
