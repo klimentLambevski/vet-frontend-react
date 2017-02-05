@@ -17,14 +17,7 @@ let CustomerFormContainer = ({ customer, saveCustomer }) => (
   </section>
 );
 
-const getCustomerById = (customers, id) => {
-  const customer = customers.filter(customer => customer.user.id === id);
-  return customer.length > 0 ? customer[0].user : {};
-};
-
-const mapStateToProps = (state, ownProps) => ({
-  customer: getCustomerById(state.customers, ownProps.params.id)
-});
+const mapStateToProps = (state, ownProps) => ({});
 
 CustomerFormContainer = connect(mapStateToProps, { saveCustomer })(CustomerFormContainer);
 

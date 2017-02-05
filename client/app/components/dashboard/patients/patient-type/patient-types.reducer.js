@@ -3,7 +3,7 @@ import { actions } from './patient-type.actions';
 const patientTypesReducer = (state = [], action) => {
   switch (action.type) {
     case actions.GET_ALL_PATIENT_TYPES_SUCCESS:
-      return action.patientType;
+      return action.patientTypes;
 
     case actions.ADD_PATIENT_TYPE_SUCCESS:
       return [

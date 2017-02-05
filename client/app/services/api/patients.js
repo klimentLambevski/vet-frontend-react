@@ -1,22 +1,23 @@
 import {graphql} from "../gateway/graphql";
 
-const getAll = () => graphql`{
-  customers(limit:30) {
-    patients(limit: 20) {
-      id
-      name
-      race
-      birthDate
-      mbr
-      status
-      gender
-      microchip
-      type {
+const getAll = () => graphql`
+  query getPatients{
+    customers(limit:10) {
+      patients(limit: 2) {
+        id
         name
+        race
+        birthDate
+        mbr
+        status
+        gender
+        microchip
+        type {
+          name
+        }
       }
     }
-  }
-}`();
+  }`();
 
 //TODO rename to save
 const savePatient = (patient, customerId) => graphql`

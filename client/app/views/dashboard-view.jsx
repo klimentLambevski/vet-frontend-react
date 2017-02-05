@@ -1,7 +1,7 @@
-import LogoutButton from '../auth/logout-button';
-import SideNav from './side-nav/side-nav';
+import LogoutButton from '../components/auth/logout-button';
+import SideNav from '../components/dashboard/side-nav/side-nav';
 
-class DashboardPage extends React.Component {
+class DashboardView extends React.Component {
   render() {
     return (
       <section>
@@ -16,4 +16,4 @@ class DashboardPage extends React.Component {
   }
 }
 
-export default DashboardPage;
+export { DashboardView };
