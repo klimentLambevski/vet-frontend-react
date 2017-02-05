@@ -12,7 +12,7 @@ let CustomerDetailsView = ({customer}) => {
           <CustomerFormContainer customer={customer} />
         </div>
         <div className="add-patient">
-          <PatientFormContainer patient={{}}/>
+          <PatientFormContainer patient={{customerId: customer.id}}/>
         </div>
       </div>
       <div>

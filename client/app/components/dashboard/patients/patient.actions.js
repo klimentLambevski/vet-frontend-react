@@ -1,6 +1,7 @@
 import { createActionMap } from '../../../store/action';
 import { showAlert } from '../../../store/auth/auth.actions';
 import { PatientApi } from '../../../services/api/patients';
+import {push} from "react-router-redux";
 
 export const actions = createActionMap({
   GET_PATIENTS_SUCCESS: '',
@@ -41,13 +42,31 @@ export const getPatients = () =>
       error => dispatch(showAlert(error))
     );
 
-export const savePatient = (patient) =>
-  (dispatch) => PatientApi.savePatient(patient)
-    .then(response => patient.id ?
-      dispatch(updatePatientSuccess(response.data.createPatient.patient))
-      :
-      dispatch(addPatientSuccess(response.data.createPatient.patient))
+const createPatient = (patient, customerId, dispatch) => {
+  return PatientApi.savePatient(patient, customerId)
+    .then(response => {
+        dispatch(addPatientSuccess(response.patient));
+        dispatch(push(`/patients/${response.patient.id}/`));
+      }
     )
     .catch(
       error => dispatch(showAlert(error))
     );
+};
+
+const updatePatient = (patient, patientId, dispatch) => {
+  return PatientApi.savePatient(patient, patientId)
+    .then(response => {
+        dispatch(updatePatientSuccess(response.patient));
+      }
+    )
+    .catch(
+      error => dispatch(showAlert(error))
+    );
+};
+
+export const savePatient = (patient) =>
+  (dispatch) =>
+    patient.id ?
+      updatePatient(patient, patient.id, dispatch):
+      createPatient(patient, patient.customerId, dispatch);

@@ -5,7 +5,7 @@ import MenuItem from 'material-ui/MenuItem';
 import { renderTextField, renderRadioGroup, renderDatePicker, renderSelectField } from '../../common/inputs/inputs';
 
 export const PatientForm = ({ handleSubmit, pristine, submitting, patientTypes }) => (
-  <form onSubmit={handleSubmit} className="row">
+  <form onSubmit={handleSubmit} className="row" autoComplete="off">
     <div className="col-md-6">
       <div>
         <Field
