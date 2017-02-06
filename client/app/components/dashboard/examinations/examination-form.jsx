@@ -9,7 +9,7 @@ const ExaminationForm = ({ handleSubmit, pristine, submitting }) => (
         component={renderTextField}
         type="number"
         name="measuredTemperature"
-        label="Measured Temperature"
+        label="Измерена температура"
       />
     </div>
 
@@ -18,7 +18,8 @@ const ExaminationForm = ({ handleSubmit, pristine, submitting }) => (
         component={renderTextField}
         type="text"
         name="outerExamination"
-        label="Description"
+        label="Надворешен преглед"
+        multiLine={true}
       />
     </div>
 
@@ -27,7 +28,8 @@ const ExaminationForm = ({ handleSubmit, pristine, submitting }) => (
         component={renderTextField}
         type="text"
         name="diagnose"
-        label="Diagnose"
+        label="Диајгноза"
+        multiLine={true}
       />
     </div>
 
@@ -36,7 +38,8 @@ const ExaminationForm = ({ handleSubmit, pristine, submitting }) => (
         component={renderTextField}
         type="text"
         name="laboratory"
-        label="Laboratory"
+        label="Лабораторија"
+        multiLine={true}
       />
     </div>
 
@@ -45,14 +48,15 @@ const ExaminationForm = ({ handleSubmit, pristine, submitting }) => (
         component={renderTextField}
         type="text"
         name="surgery"
-        label="Surgery"
+        label="Операција"
+        multiLine={true}
       />
     </div>
 
     <div className="form-footer">
       <RaisedButton
         type="submit"
-        label="Save"
+        label="Зачувај"
         primary={true}
         disabled={pristine || submitting}
       />

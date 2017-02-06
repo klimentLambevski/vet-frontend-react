@@ -9,6 +9,17 @@ let CustomerList = ({ customers, push }) => (
       <Grid
         id="customersGrid"
         rows={customers}
+        columns={{
+          'user.name': {
+            label: 'Name'
+          },
+          'user.surname': {
+            label: 'Surname'
+          },
+          'user.email': {
+            label: 'Email'
+          }
+        }}
         _onRowClick={
           (customer) =>
             push(`/customers/${customer.id}`)

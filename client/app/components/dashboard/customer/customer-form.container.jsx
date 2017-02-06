@@ -7,7 +7,7 @@ const CustomerFromRedux = withFormHandler(CustomerForm, 'customer');
 
 let CustomerFormContainer = ({customer, saveCustomer}) => (
   <section>
-    {customer && customer.id ? <h4>Edit customer</h4>: <h4>Add new customer</h4>}
+    {customer && customer.id ? <h4>Измени корисник</h4>: <h4>Додади нов корисник</h4>}
 
     <CustomerFromRedux
       initialValues={customer}

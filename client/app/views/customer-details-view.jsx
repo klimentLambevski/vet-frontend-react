@@ -38,6 +38,26 @@ class CustomerDetailsView extends React.Component {
         <div className="patients-list">
           <Grid
             rows={this.props.patients}
+            columns={{
+              name: {
+                label: 'Name'
+              },
+              'type.name': {
+                label: 'Type'
+              },
+              birthDate: {
+                label: 'Birth date'
+              },
+              microchip: {
+                label: 'Microchip'
+              },
+              race: {
+                label: 'Race'
+              },
+              mbr: {
+                label: 'MBR'
+              }
+            }}
             id="patientsGrid"
             _onRowClick={this.onRowClicked}
           />

@@ -9,7 +9,7 @@ export const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
         component={renderTextField}
         type="text"
         name="user.name"
-        label="First Name"
+        label="Име"
       />
     </div>
     <div>
@@ -17,7 +17,7 @@ export const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
         component={renderTextField}
         type="text"
         name="user.surname"
-        label="Last Name"
+        label="Презиме"
       />
     </div>
 
@@ -33,7 +33,7 @@ export const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
     <div className="form-footer">
       <RaisedButton
         type="submit"
-        label="Save"
+        label="Зачувај"
         primary={true}
         disabled={pristine || submitting}
       />
