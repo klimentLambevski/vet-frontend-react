@@ -1,14 +1,17 @@
-import { connect } from 'react-redux';
 import { PatientForm } from './patient-form';
 import { savePatient } from './patient.actions';
 import { withFormHandler } from '../../../hocs/with-form-handler';
-import { withRouter } from 'react-router';
 
 const PatientFromRedux = withFormHandler(PatientForm, 'patient');
 
-let PatientFormContainer = ({ patient, savePatient, patientTypes = [], ...rest }) => (
+const PatientFormContainer = ({ patient = {}, savePatient, patientTypes = [], ...rest }) => (
   <section className={rest.className}>
-    {patient && patient.id ? <h4>Edit patient</h4>: <h4>Add new patient</h4>}
+    {
+      patient && patient.id ?
+        <h4>Edit patient</h4>
+        :
+        <h4>Add new patient</h4>
+    }
     <PatientFromRedux
       initialValues={patient}
       formItem={patient}
@@ -17,11 +20,5 @@ let PatientFormContainer = ({ patient, savePatient, patientTypes = [], ...rest }
     />
   </section>
 );
-
-const mapStateToProps = (state, ownProps) => ({
-  patientTypes: state.patientTypes
-});
-
-PatientFormContainer = withRouter(connect(mapStateToProps, { savePatient })(PatientFormContainer));
 
 export { PatientFormContainer };

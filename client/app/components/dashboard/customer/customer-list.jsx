@@ -2,8 +2,9 @@ import { connect } from 'react-redux';
 import { CustomerFormContainer } from './customer-form.container';
 import { Grid } from '../../grid/grid';
 import { push } from 'react-router-redux';
+import { saveCustomer } from './customer.actions';
 
-let CustomerList = ({ customers, push }) => (
+let CustomerList = ({ customers, push, saveCustomer }) => (
   <section className="customers-list">
     <div className="customer-list">
       <Grid
@@ -17,7 +18,9 @@ let CustomerList = ({ customers, push }) => (
     </div>
 
     <div className="customer-form">
-      <CustomerFormContainer />
+      <CustomerFormContainer
+        saveCustomer={saveCustomer}
+      />
     </div>
   </section>
 );
@@ -30,6 +33,6 @@ const mapStateToProps = (state) => ({
   customers: state.customers
 });
 
-CustomerList = connect(mapStateToProps, {push})(CustomerList);
+CustomerList = connect(mapStateToProps, { push, saveCustomer })(CustomerList);
 
 export { CustomerList };

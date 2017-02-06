@@ -1,15 +1,12 @@
-import {IndexRoute, IndexRedirect, Route} from "react-router";
+import { IndexRoute, IndexRedirect, Route } from "react-router";
 import App from "./components/app";
-
 import LoginPage from "./components/auth/login-page";
 import HomePage from "./components/home/home";
-import {DashboardView} from "./views/dashboard-view";
-import {CustomersView} from "./views/customers-view";
-import {PatientsContainer} from "./views/patients";
-import {CustomerList} from './components/dashboard/customer/customer-list';
-import {PatientsView} from "./views/patients-view";
-import {PatientList} from './components/dashboard/patients/patient-list';
-import {PatientFormContainer} from './components/dashboard/patients/patient-form.container';
+import { DashboardView } from "./views/dashboard-view";
+import { CustomersView } from "./views/customers-view";
+import { PatientsContainer } from "./views/patients";
+import { CustomerList } from './components/dashboard/customer/customer-list';
+import { PatientsView } from "./views/patients-view";
 import { PatientTypesView } from './views/patient-types.view';
 import { PatientTypeList } from './components/dashboard/patients/patient-type/patient-type-list';
 import { PatientTypeFormContainer } from './components/dashboard/patients/patient-type/patient-type-form.container';
@@ -31,14 +28,13 @@ export default (
     </Route>
 
     <Route path="patients" component={PatientsView}>
-      <IndexRoute component={PatientList}/>
       <Route path="(:patientId)/(:examinationId)" component={PatientDetailsView}/>
     </Route>
 
     <Route path="patient-types" component={PatientTypesView}>
-      <IndexRoute component={PatientTypeList} />
-      <Route path="new" component={PatientTypeFormContainer} />
-      <Route path="(:id)" component={PatientTypeFormContainer} />
+      <IndexRoute component={PatientTypeList}/>
+      <Route path="new" component={PatientTypeFormContainer}/>
+      <Route path="(:id)" component={PatientTypeFormContainer}/>
     </Route>
   </Route>
 );

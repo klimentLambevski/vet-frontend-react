@@ -1,10 +1,10 @@
 import { CustomerFormContainer } from '../components/dashboard/customer/customer-form.container';
 import { PatientFormContainer } from '../components/dashboard/patients/patient-form.container';
-import { PatientList } from '../components/dashboard/patients/patient-list';
 import { connect } from 'react-redux';
-import { getPatients } from '../components/dashboard/patients/patient.actions';
+import { getPatients, savePatient } from '../components/dashboard/patients/patient.actions';
 import { Grid } from '../components/grid/grid';
 import { push } from 'react-router-redux';
+import { saveCustomer } from '../components/dashboard/customer/customer.actions';
 
 class CustomerDetailsView extends React.Component {
   constructor(props) {
@@ -24,20 +24,36 @@ class CustomerDetailsView extends React.Component {
   }
 
   render() {
+    const {
+      customer,
+      saveCustomer,
+      patientTypes,
+      savePatient,
+      patients
+    } = this.props;
+
     return (
       <section className="customer-details-view">
         <div className="customer-details-forms">
           <div className="edit-customer">
-            <CustomerFormContainer customer={this.props.customer}/>
+            <CustomerFormContainer
+              customer={customer}
+              saveCustomer={saveCustomer}
+            />
           </div>
+
           <div className="add-patient">
-            <PatientFormContainer patient={{customerId: this.props.customer.id}}/>
+            <PatientFormContainer
+              patient={{ customerId: customer.id }}
+              patientTypes={patientTypes}
+              savePatient={savePatient}
+            />
           </div>
         </div>
 
         <div className="patients-list">
           <Grid
-            rows={this.props.patients}
+            rows={patients}
             id="patientsGrid"
             _onRowClick={this.onRowClicked}
           />
@@ -47,7 +63,6 @@ class CustomerDetailsView extends React.Component {
   }
 }
 
-
 const selectCustomerById = (customers, id) => {
   const customer = customers.filter(customer => customer.id === id);
   return customer.length > 0 ? customer[0] : {};
@@ -55,9 +70,15 @@ const selectCustomerById = (customers, id) => {
 
 const mapStateToProps = (state, ownProps) => ({
   customer: selectCustomerById(state.customers, ownProps.params.id),
-  patients: state.patients
+  patients: state.patients,
+  patientTypes: state.patientTypes
 });
 
-CustomerDetailsView = connect(mapStateToProps, { getPatients, push })(CustomerDetailsView);
+CustomerDetailsView = connect(mapStateToProps, {
+  getPatients,
+  push,
+  savePatient,
+  saveCustomer
+})(CustomerDetailsView);
 
 export { CustomerDetailsView };
