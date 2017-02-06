@@ -59,6 +59,7 @@ const savePatient = (patient, customerId) => handleMutation(graphql`
         gender
         mbr
         microchip
+        race
         type {
           name
         }
@@ -68,25 +69,30 @@ const savePatient = (patient, customerId) => handleMutation(graphql`
 `({customerId, patient}), 'createPatient');
 
 const updatePatient = (patient, patientId) => handleMutation(graphql`
-  mutation updatePatient($patient: PatientInput!, $patientId: String!){
-    updatePatient(patient: $patient, patientId: $patientId) {
-      errors {
-        message
-      }
-      patient {
-        id
-        name
-        birthDate
-        gender
-        mbr
-        microchip
-        type {
+    mutation updatePatient($patient: PatientInput!, $patientId: String!){
+      updatePatient(patient: $patient, patientId: $patientId) {
+        errors {
+          message
+        }
+        patient {
+          id
           name
+          birthDate
+          gender
+          mbr
+          microchip
+          race
+          type {
+            name
+          }
         }
       }
     }
-  }
-`({patientId, patient: _.pick(patient, ['name', 'birthDate', 'mbr', 'microchip', 'type', 'gender'])}), 'updatePatient');
+  `({
+    patientId,
+    patient: _.pick(patient, ['name', 'birthDate', 'mbr', 'microchip', 'type', 'gender', 'race'])
+  }),
+  'updatePatient');
 
 
 export const PatientApi = {

@@ -8,9 +8,9 @@ const ExaminationFormContainer = ({ examination, saveExamination, ...rest }) => 
   <section className={rest.className}>
     {
       examination && examination.id ?
-        <h4>Edit examination</h4>
+        <h4>Измени преглед</h4>
         :
-        <h4>Add new examination</h4>
+        <h4>Додади нов преглед</h4>
     }
     <ExaminationFormRedux
       initialValues={examination}

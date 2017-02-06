@@ -12,14 +12,14 @@ export const PatientForm = ({ handleSubmit, pristine, submitting, patientTypes }
           component={renderTextField}
           type="text"
           name="name"
-          label="Name"
+          label="Име"
         />
       </div>
 
       <Field
         component={renderSelectField}
         name="type.name"
-        label="Patient Type"
+        label="Тип на пациент"
       >
         {
           patientTypes.map(patientType =>
@@ -36,15 +36,14 @@ export const PatientForm = ({ handleSubmit, pristine, submitting, patientTypes }
         <Field
           component={renderDatePicker}
           name="birthDate"
-          hintText="Birth Date"
-          floatingLabelText="Birth Date"
+          floatingLabelText="Датум на раѓање"
           autoOk={true}
         />
       </div>
       <div>
         <Field name="gender" component={renderRadioGroup}>
-          <RadioButton value="male" label="male"/>
-          <RadioButton value="female" label="female"/>
+          <RadioButton value="male" label="Мажјак"/>
+          <RadioButton value="female" label="Женка"/>
         </Field>
       </div>
     </div>
@@ -55,7 +54,7 @@ export const PatientForm = ({ handleSubmit, pristine, submitting, patientTypes }
           component={renderTextField}
           type="text"
           name="race"
-          label="Race"
+          label="Раса"
         />
       </div>
 
@@ -64,7 +63,7 @@ export const PatientForm = ({ handleSubmit, pristine, submitting, patientTypes }
           component={renderTextField}
           type="text"
           name="microchip"
-          label="Microchip"
+          label="Микрочип"
         />
       </div>
 
@@ -73,7 +72,7 @@ export const PatientForm = ({ handleSubmit, pristine, submitting, patientTypes }
           component={renderTextField}
           type="text"
           name="mbr"
-          label="MBR"
+          label="МБР"
         />
       </div>
     </div>
@@ -81,7 +80,7 @@ export const PatientForm = ({ handleSubmit, pristine, submitting, patientTypes }
     <div className="col-md-12 form-footer">
       <RaisedButton
         type="submit"
-        label="Save"
+        label="Зачувај"
         primary={true}
         disabled={pristine || submitting}
       />

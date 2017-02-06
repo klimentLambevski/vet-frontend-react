@@ -63,6 +63,26 @@ class PatientDetailsView extends React.Component {
 
         <Grid
           rows={examinations}
+          columns={{
+            measuredTemperature: {
+              label: 'Measured temp'
+            },
+            outerExamination: {
+              label: 'Outer examination'
+            },
+            laboratory: {
+              label: 'Laboratory'
+            },
+            diagnose: {
+              label: 'Diagnose'
+            },
+            therapy: {
+              label: 'Therapy'
+            },
+            surgery: {
+              label: 'Surgery'
+            }
+          }}
           id="examinationsGrid"
           _onRowClick={this.onRowClicked}
         />
