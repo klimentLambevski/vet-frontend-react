@@ -12,10 +12,10 @@ let CustomerList = ({ customers, push, saveCustomer }) => (
         rows={customers}
         columns={{
           'user.name': {
-            label: 'Name'
+            label: 'Име'
           },
           'user.surname': {
-            label: 'Surname'
+            label: 'Презиме'
           },
           'user.email': {
             label: 'Email'

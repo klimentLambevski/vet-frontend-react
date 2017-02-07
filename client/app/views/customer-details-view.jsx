@@ -56,22 +56,22 @@ class CustomerDetailsView extends React.Component {
             rows={patients}
             columns={{
               name: {
-                label: 'Name'
+                label: 'Име'
               },
               'type.name': {
-                label: 'Type'
+                label: 'Тип на животно'
               },
               birthDate: {
-                label: 'Birth date'
+                label: 'Дата на раѓање'
               },
               microchip: {
-                label: 'Microchip'
+                label: 'Микрочип'
               },
               race: {
-                label: 'Race'
+                label: 'Раса'
               },
               mbr: {
-                label: 'MBR'
+                label: 'МБР'
               }
             }}
             id="patientsGrid"

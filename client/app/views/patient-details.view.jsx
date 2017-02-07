@@ -65,22 +65,22 @@ class PatientDetailsView extends React.Component {
           rows={examinations}
           columns={{
             measuredTemperature: {
-              label: 'Measured temp'
+              label: 'Измерена темепература'
             },
             outerExamination: {
-              label: 'Outer examination'
+              label: 'Надворешен прегед'
             },
             laboratory: {
-              label: 'Laboratory'
+              label: 'Лабораторија'
             },
             diagnose: {
-              label: 'Diagnose'
+              label: 'Дијагноза'
             },
             therapy: {
-              label: 'Therapy'
+              label: 'Терапија'
             },
             surgery: {
-              label: 'Surgery'
+              label: 'Операција'
             }
           }}
           id="examinationsGrid"
