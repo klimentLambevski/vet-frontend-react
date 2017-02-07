@@ -17,11 +17,9 @@ export default (
   <Route path="/" component={App}>
     <IndexRedirect to="/customers"/>
     {/*<Route path="login" component={LoginPage}/>*/}
+    {/*<Route path="grid" component={PatientsContainer}/>*/}
 
-    <Route path="grid" component={PatientsContainer}/>
-
-    <Route path="dashboard" component={DashboardView}>
-    </Route>
+    <Route path="dashboard" component={DashboardView}/>
     <Route path="customers" component={CustomersView}>
       <IndexRoute component={CustomerList}/>
       <Route path="(:id)" component={CustomerDetailsView}/>
