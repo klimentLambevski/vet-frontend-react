@@ -1,4 +1,4 @@
-import {Grid} from '../components/grid/grid';
+import {GridV5000} from '../components/grid/grid-v5000';
 import {CustomerApi} from '../services/api/customer';
 
 export class PatientsContainer extends React.Component {
@@ -22,7 +22,7 @@ export class PatientsContainer extends React.Component {
 
   render = () => (
     <div className="patients view container">
-      <Grid id="grid1" rows={this.state.customers} columns={{'user.name': ''}} _onRowClick={(row) => console.log(row)}/>
+      <GridV5000 rows={this.state.customers} columns={{'id': ''}} _onRowClick={(row) => console.log(row)}/>
       {/*<Grid id="grid2" rows={this.state.customers}/>*/}
     </div>
   );

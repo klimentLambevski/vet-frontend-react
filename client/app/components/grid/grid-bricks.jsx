@@ -1,8 +1,3 @@
-export {
-  TBody,
-  THead
-}
-
 let THead = ({columns, rows, searchChanged}) => {
   let cols = columns || _.keys(rows[0]);
 
@@ -20,13 +15,13 @@ let THead = ({columns, rows, searchChanged}) => {
   )
 };
 
-let TBody = ({columns, rowsOnPage, _onRowClick}) => {
+let TBody = ({columns, rows, _onRowClick}) => {
   // return <tbody/>;
-  let cols = columns || rowsOnPage[0];
+  let cols = columns || rows[0];
 
   return (
     <tbody>{
-      rowsOnPage.map((row) => (
+      rows.map((row) => (
         <tr onClick={() => _onRowClick(row)}>{
           _.map(cols, (conf, name) => {
             let cell = _.get(row, name);
@@ -37,3 +32,8 @@ let TBody = ({columns, rowsOnPage, _onRowClick}) => {
     }</tbody>
   );
 };
+
+export {
+  TBody,
+  THead
+}
