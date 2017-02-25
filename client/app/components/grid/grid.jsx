@@ -1,27 +1,14 @@
-import {connect} from 'react-redux';
-import {Pagination} from './pagination';
-import {changePage, changeRows, changeFilters} from '../../store/grid/grid.actions';
+import {TBody, THead} from './grid-bricks';
+import {Pagination} from "./pagination";
 
-function mapStateToProps(store) {
-  return {
-    grid: store.common.grid,
-  }
-}
-const mapDispatchToProps = {
-  changePage,
-  changeRows,
-  changeFilters,
-};
-
-export const Grid = connect(mapStateToProps, mapDispatchToProps)(class Grid extends React.Component {
+export class Grid extends React.Component {
   static propTypes = {
-    id: React.PropTypes.string,
     rows: React.PropTypes.array,
     columns: React.PropTypes.object,
+    pagination: React.PropTypes.object,
     _onRowClick: React.PropTypes.func,
   };
   static defaultProps = {
-    id: Date.now(),
     rows: [],
     pagination: {
       itemsPerPage: 10
@@ -31,85 +18,80 @@ export const Grid = connect(mapStateToProps, mapDispatchToProps)(class Grid exte
   constructor(props) {
     super(props);
     this.state = {
-      filters: {},
       currentPage: 0,
-      rowsOnPage: []
+      rowsOnPage: [],
+      rowsFiltered: [],
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    let nextState;
-    if (nextProps.grid[nextProps.id]) nextState = {
-      filters: nextProps.grid[nextProps.id].filters,
-      rowsOnPage: nextProps.grid[nextProps.id].rowsOnPage,
-      currentPage: nextProps.grid[nextProps.id].currentPage,
-    }; else nextState = {};
-
-    // console.log('componentWillReceiveProps', nextProps.grid);
-    if (this.props.rows !== nextProps.rows) {
-      setTimeout(() => {
-        this.changePage(0);
-        this.changeRows(nextProps.rows);
-      })
-    } else if (this.state.filters !== nextState.filters) {
-      setTimeout(() => {
-        this.changePage(0);
-      });
-    }
-
-    if (nextProps.grid[nextProps.id]) {
-      this.setState(nextState);
-    } else console.warn('Grid ID is not defined in state');
+    this.setState({
+      rowsFiltered: nextProps.rows,
+    }, this.changeRowsOnPage);
   }
 
   render() {
-    return (
-      <div className="grid component">
-        <table className="ui table">
-          <THead {...this.props} searchChanged={(filter, value) => {
-            console.log('input changed', filter, value);
-            this.changeFilters(filter, value);
-          }}/>
-          <TBody {...this.props}{...this.state}/>
-        </table>
-        <Pagination
-          total={this.props.rows.length}
-          currentPage={this.state.currentPage}
-          perPage={this.props.pagination.itemsPerPage}
-          _onPageChange={(page) => this.changePage(page)}/>
-      </div>
-    )
+    return <div className="grid component">
+      <table className="ui table">
+        <THead
+          {...this.props}
+          searchChanged={(filter, value) => this.changeFilters(filter, value)}
+        />
+        <TBody
+          {...this.props}
+          rows={this.state.rowsOnPage}
+        />
+      </table>
+      <Pagination
+        total={this.state.rowsFiltered.length}
+        currentPage={this.state.currentPage}
+        perPage={this.props.pagination.itemsPerPage}
+        _onPageChange={(page) => this.changePage(page)}/>
+    </div>
   }
 
-
-  // map actions (to prefix grid name)
   changeFilters(filter, value) {
     let filters = {
-      ...this.state.filters,
       [filter]: value
     };
-
-    this.props.changeFilters(this.props.id, filters)
+    this.setState({
+      filters,
+      rowsFiltered: filterRows(this.props.rows, filters)
+    });
+    this.changePage(0);
   }
 
   changePage(page) {
-    // filter
-    let rows = this.props.rows;
-    if (this.state.filters) {
-      rows = _.filter(rows,
-        (row) => _.every(this.state.filters,
-          (value, filter) => _.includes(row[filter], value))
-      );
-    }
-
-    // paginate
-    let start = page * this.props.pagination.itemsPerPage;
-    let end = (page + 1) * this.props.pagination.itemsPerPage;
-
-    this.props.changePage(this.props.id, page, rows.slice(start, end));
+    this.setState({
+      currentPage: page,
+    }, this.changeRowsOnPage);
   }
 
-  changeRows(rows) {
-    this.props.changeRows(this.props.id, rows);
+  changeRowsOnPage() {
+    this.setState({
+      rowsOnPage: getPageRows(
+        this.state.rowsFiltered,
+        this.state.currentPage,
+        this.props.pagination.itemsPerPage
+      )
+    })
   }
-});
+
+}
+
+function filterRows(rows, filters) {
+  if (filters) {
+    return _.filter(rows,
+      (row) => _.every(filters,
+        (value, filter) => _.includes(row[filter], value))
+    );
+  } else return rows;
+}
+
+function getPageRows(rows, page, itemsPerPage) {
+  let start = page * itemsPerPage;
+  let end = (page + 1) * itemsPerPage;
+
+  return rows.slice(start, end);
+}
+
