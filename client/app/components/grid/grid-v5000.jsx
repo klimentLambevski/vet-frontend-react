@@ -24,6 +24,12 @@ export class GridV5000 extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      rowsFiltered: nextProps.rows,
+    }, this.changeRowsOnPage);
+  }
+
   render() {
     return <div className="grid component">
       <table className="ui table">
