@@ -16,8 +16,7 @@ let THead = ({columns, rows, searchChanged}) => {
 };
 
 let TBody = ({columns, rows, _onRowClick}) => {
-  // return <tbody/>;
-  let cols = columns || rows[0];
+  let cols = columns; // || _.keys(rows[0]); enable columns based on rows object keys
 
   return (
     <tbody>{

@@ -83,7 +83,10 @@ function filterRows(rows, filters) {
   if (filters) {
     return _.filter(rows,
       (row) => _.every(filters,
-        (value, filter) => _.includes(row[filter], value))
+        (value, filter) => {
+          let item = _.get(row, filter);
+          return _.includes(item, value)
+        })
     );
   } else return rows;
 }
