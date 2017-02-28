@@ -4,4 +4,30 @@
       width: 100%;
     }
   }
+
+  td {
+    position: relative;
+
+    .overlay-hover {
+      display: none;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      padding: 5px;
+      border-radius: 2px;
+
+      background: $clGrayLight;
+      font-size: .8em;
+
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    &:hover {
+      .overlay-hover {
+        display: block;
+      }
+    }
+  }
+
 }
