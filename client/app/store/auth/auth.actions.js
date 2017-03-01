@@ -44,10 +44,9 @@ export const isAuthenticated = () =>
       dispatch(notAuthenticated());
     }
 
-    return checkAuthenticated()
-      .then((data) => {
-        LocalStorageService.setItem('AUTH_TOKEN', data.token);
-        dispatch(authSuccess(data.user));
+    return checkAuthenticated(token)
+      .then((user) => {
+        dispatch(authSuccess(user));
       })
       .catch(() => {
         dispatch(notAuthenticated());
@@ -55,7 +54,7 @@ export const isAuthenticated = () =>
   };
 
 export const logoutUser = () =>
-  (dispatch) => logout()
+  (dispatch) => logout(LocalStorageService.getItem('AUTH_TOKEN'))
     .then(() => {
       LocalStorageService.removeItem('AUTH_TOKEN');
       dispatch(logoutSuccess());

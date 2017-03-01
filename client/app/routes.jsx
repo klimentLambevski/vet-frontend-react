@@ -11,29 +11,32 @@ import {PatientDetailsView} from "./views/patient-details.view";
 import {PatientsContainer} from "./views/patients";
 import {PatientTypeDetailsView} from "./views/patient-type-details-view";
 import { NotificationsView } from './views/notification.view';
+import { LoginView } from './views/login.view';
+import { RequireAuthentication } from './hocs/require-authentication';
 
 export default (
   <Route path="/" component={App}>
     <IndexRedirect to="/customers"/>
-    {/*<Route path="login" component={LoginPage}/>*/}
-    <Route path="grid" component={PatientsContainer}/>
+    <Route path="login" component={LoginView}/>
+
+    <Route path="grid" component={RequireAuthentication(PatientsContainer)}/>
 
     <Route path="dashboard" component={DashboardView}/>
 
-    <Route path="customers" component={CustomersView}>
+    <Route path="customers" component={RequireAuthentication(CustomersView)}>
       <IndexRoute component={CustomerList}/>
       <Route path="(:id)" component={CustomerDetailsView}/>
     </Route>
 
-    <Route path="patients" component={PatientsView}>
+    <Route path="patients" component={RequireAuthentication(PatientsView)}>
       <Route path="(:patientId)/(:examinationId)" component={PatientDetailsView}/>
     </Route>
 
-    <Route path="patient-types" component={PatientTypesView}>
+    <Route path="patient-types" component={RequireAuthentication(PatientTypesView)}>
       <IndexRoute component={PatientTypeList}/>
       <Route path="(:patientTypeId)/(:immunizationId)" component={PatientTypeDetailsView}/>
     </Route>
 
-    <Route path="notifications" component={NotificationsView}/>
+    <Route path="notifications" component={RequireAuthentication(NotificationsView)}/>
   </Route>
 );

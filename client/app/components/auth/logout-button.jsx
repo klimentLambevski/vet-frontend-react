@@ -9,28 +9,34 @@ class LogoutButton extends React.Component {
     this.onLogoutClick = this.onLogoutClick.bind(this);
   }
 
-  onLogoutClick() {
+  onLogoutClick(event) {
+    event.preventDefault();
     this.props.actions.logoutUser();
   }
 
   render() {
+    const { isAuthenticated, className } = this.props;
+
     return (
-      <input
-        type="button"
-        disabled={!this.props.auth.isAuthenticated}
-        onClick={() => this.onLogoutClick()}
-        value={"Logout"}
-      />
+      isAuthenticated ?
+        <a
+          className={className}
+          onClick={() => this.onLogoutClick(event)}
+        >Logout</a>
+        :
+        null
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.common.auth
+  isAuthenticated: state.common.auth.isAuthenticated
 });
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({ logoutUser }, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogoutButton);
+LogoutButton = connect(mapStateToProps, mapDispatchToProps)(LogoutButton);
+
+export { LogoutButton };

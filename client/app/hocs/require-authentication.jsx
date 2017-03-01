@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 
-export default (ComposedComponent) => {
+export const RequireAuthentication = (ComposedComponent) => {
   class RequireAuthentication extends React.Component {
 
     componentWillMount() {
@@ -38,4 +38,4 @@ export default (ComposedComponent) => {
   });
 
   return connect(mapStateToProps, mapDispatchToProps)(RequireAuthentication);
-}
+};

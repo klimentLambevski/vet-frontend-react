@@ -35,4 +35,6 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({ authenticateUser }, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginFormContainer);
+LoginFormContainer = connect(mapStateToProps, mapDispatchToProps)(LoginFormContainer);
+
+export { LoginFormContainer };
