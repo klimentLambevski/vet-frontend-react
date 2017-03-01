@@ -73,6 +73,12 @@ export function gulpWebpackServe() {
         onProxyReq: function (proxyReq, req, res) {
         }
       }),
+      proxy('/graphql', {
+        target: 'http://vet.3khub.com',
+        changeOrigin: true,
+        onProxyReq: function (proxyReq, req, res) {
+        }
+      }),
       proxy('/auth/*', {
         target: 'http://vet.3khub.com',
         changeOrigin: true,

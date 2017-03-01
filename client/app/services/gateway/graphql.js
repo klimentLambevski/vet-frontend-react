@@ -20,7 +20,7 @@ export function graphql([query]) {
       query: query,
       variables: variables
     };
-    return fetch('/test/graphql', {
+    return fetch('/graphql', {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
