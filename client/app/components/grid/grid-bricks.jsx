@@ -1,5 +1,5 @@
 import {TextField} from 'material-ui';
-import Clipboard from 'clipboard';
+import {selectElement} from "../../services/util/select";
 
 let THead = ({columns, rows, searchChanged}) => {
   let cols = columns || _.keys(rows[0]);
@@ -21,15 +21,22 @@ let THead = ({columns, rows, searchChanged}) => {
 let TBody = ({columns, rows, _onRowClick}) => {
   let cols = columns; // || _.keys(rows[0]); enable columns based on rows object keys
 
-  let clipboard = new Clipboard('.overlay-hover', {
-    text: (trigger) => {
-      return '123';
-    }
-  });
-  console.log('copyToClipboard',  clipboard.text());
+  // let clipboard = new Clipboard('.overlay-hover', {
+  //   text: (trigger) => {
+  //     return '123';
+  //   }
+  // });
+  // console.log('copyToClipboard',  ClipboardAction);
+
+
+  setTimeout(() => {
+    document.execCommand('copy');
+  }, 1000);
 
   function copyToClipboard(proxy) {
     proxy.stopPropagation();
+    let element = $(proxy.currentTarget);
+    let selectedText = selectElement(element.parent());
   }
 
   return (
@@ -40,7 +47,7 @@ let TBody = ({columns, rows, _onRowClick}) => {
             let cell = _.get(row, name);
             return <td>
               {_.isObject(cell) ? JSON.stringify(cell) : cell}
-              <div className="overlay-hover" onClick={(event) => event.stopPropagation()}>
+              <div className="overlay-hover" onClick={copyToClipboard}>
                 копирај
               </div>
             </td>;
