@@ -51,16 +51,16 @@ export const renderDatePicker = ({ input, meta: { touched, error }, ...custom })
   />
 );
 
-export const renderInputList = ({ fields, meta: { touched, error }, ...custom }) => (
+export const renderInputList = ({ fields, nestedField, fieldLabel, label, type, meta: { touched, error }, ...custom }) => (
   <div className="input-list">
-    <h4 className="list-label">{custom.label}</h4>
+    <h4 className="list-label">{label}</h4>
     {fields.map((field, index) =>
       (
         <Field
           component={renderTextField}
-          type="number"
-          label="Month"
-          name={field}
+          type={type || 'number'}
+          label={fieldLabel}
+          name={`${field}.${nestedField}`}
           key={ index }
         />
       )
@@ -68,7 +68,7 @@ export const renderInputList = ({ fields, meta: { touched, error }, ...custom })
     <div className="add-input">
       <FloatingActionButton
         mini={true}
-        onClick={() => fields.push()}>
+        onClick={() => fields.push({})}>
         <ContentAdd />
       </FloatingActionButton>
     </div>

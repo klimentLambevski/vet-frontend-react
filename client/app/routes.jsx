@@ -29,7 +29,7 @@ export default (
 
     <Route path="patient-types" component={PatientTypesView}>
       <IndexRoute component={PatientTypeList}/>
-      <Route path="(:patientTypeId)" component={PatientTypeDetailsView}/>
+      <Route path="(:patientTypeId)/(:immunizationId)" component={PatientTypeDetailsView}/>
     </Route>
   </Route>
 );

@@ -37,7 +37,7 @@ const createPatientType = (patientType, dispatch) => {
   return PatientTypeApi.save(patientType)
     .then(response => {
         dispatch(addPatientTypeSuccess(response.patientType));
-        dispatch(push('/patient-types/' + response.patientType.id));
+        dispatch(push('/patient-types/' + response.patientType.id + '/'));
       }
     )
     .catch(

@@ -2,7 +2,7 @@ import { ExaminationForm } from './examination-form';
 import { withFormHandler } from '../../../hocs/with-form-handler';
 import { saveExamination } from './examination.actions';
 
-const ExaminationFormRedux = withFormHandler(ExaminationForm, 'customer');
+const ExaminationFormRedux = withFormHandler(ExaminationForm, 'examination');
 
 const ExaminationFormContainer = ({ examination, saveExamination, ...rest }) => (
   <section className={rest.className}>

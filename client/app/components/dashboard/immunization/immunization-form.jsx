@@ -1,9 +1,9 @@
-import { Field } from 'redux-form';
+import { Field, FieldArray } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
-import { renderTextField } from '../../common/inputs/inputs';
+import { renderTextField, renderInputList } from '../../common/inputs/inputs';
 
 const ImmunizationForm = ({ handleSubmit, pristine, submitting }) => (
-  <form onSubmit={handleSubmit}>
+  <form onSubmit={handleSubmit} noValidate autoComplete="off">
     <div>
       <div>
         <Field
@@ -25,7 +25,13 @@ const ImmunizationForm = ({ handleSubmit, pristine, submitting }) => (
 
 
       <div>
-      {/*TODO field array*/}
+        <FieldArray
+          name="periods"
+          nestedField="month"
+          component={renderInputList}
+          label="Период на иммунизација"
+          fieldLabel="Месец"
+          />
       </div>
 
       <RaisedButton

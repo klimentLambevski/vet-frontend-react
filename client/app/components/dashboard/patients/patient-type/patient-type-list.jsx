@@ -18,7 +18,7 @@ let PatientTypeList = ({ patientTypes, push, savePatientType }) => (
         _onRowClick={
           (patientType) =>
           {
-            push(`/patient-types/${patientType.id}`)
+            push(`/patient-types/${patientType.id}/`)
           }
         }
       />
@@ -30,13 +30,16 @@ let PatientTypeList = ({ patientTypes, push, savePatientType }) => (
 );
 
 PatientTypeList.propTypes = {
-  patientTypes: React.PropTypes.array.isRequired
+  patientTypes: React.PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   patientTypes: state.patientTypes
 });
 
-PatientTypeList = connect(mapStateToProps, { push, savePatientType })(PatientTypeList);
+PatientTypeList = connect(mapStateToProps, {
+  push,
+  savePatientType
+})(PatientTypeList);
 
 export { PatientTypeList };
