@@ -7,12 +7,10 @@ import {Link} from "react-router";
 import {RaisedButton} from "material-ui";
 import {saveImmunization} from "../components/dashboard/immunization/immunizations.actions";
 import {ImmunizationFormContainer} from "../components/dashboard/immunization/immunization-form.container";
+
 class PatientTypeDetailsView extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
   }
 
   render() {
@@ -24,7 +22,7 @@ class PatientTypeDetailsView extends React.Component {
       saveImmunization,
       push
     } = this.props;
-    console.log(this.props.patientType);
+
     return (
       <section className="patient-details">
         <div className="patient-details-forms">
@@ -61,7 +59,6 @@ class PatientTypeDetailsView extends React.Component {
           }}
           id="examinationsGrid"
           _onRowClick={(immunizationClicked) => {
-            console.log(immunizationClicked);
             push(`/patient-types/${patientType.id}/${immunizationClicked.id}`)
           }}
         />
@@ -70,14 +67,13 @@ class PatientTypeDetailsView extends React.Component {
   }
 }
 
-const getById = (items, id) => {
+const getById = (items = [], id) => {
   const item = items.filter(item => item.id === id);
   return item.length > 0 ? item[0] : {};
 };
 
 
 const mapStateToProps = (state, ownProps) => {
-
   let patientType = getById(state.patientTypes, ownProps.params.patientTypeId);
 
   return {

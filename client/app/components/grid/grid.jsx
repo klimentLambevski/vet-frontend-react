@@ -24,6 +24,12 @@ export class Grid extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      rowsFiltered: this.props.rows,
+    }, this.changeRowsOnPage);
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({
       rowsFiltered: nextProps.rows,
