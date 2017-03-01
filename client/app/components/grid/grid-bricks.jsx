@@ -36,7 +36,9 @@ let TBody = ({columns, rows, _onRowClick}) => {
   function copyToClipboard(proxy) {
     proxy.stopPropagation();
     let element = $(proxy.currentTarget);
-    let selectedText = selectElement(element.parent());
+    selectElement(element.siblings('.js-td-content')[0]);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
   }
 
   return (
@@ -46,10 +48,10 @@ let TBody = ({columns, rows, _onRowClick}) => {
           _.map(cols, (conf, name) => {
             let cell = _.get(row, name);
             return <td>
-              {_.isObject(cell) ? JSON.stringify(cell) : cell}
-              <div className="overlay-hover" onClick={copyToClipboard}>
+              <span className="js-td-content">{_.isObject(cell) ? JSON.stringify(cell) : cell}</span>
+              {conf.enableCopy ? <div className="overlay-hover" onClick={copyToClipboard}>
                 копирај
-              </div>
+              </div> : null}
             </td>;
           })
         }</tr>
