@@ -24,15 +24,6 @@ const updateImmunizationSuccess = (immunization) => ({
   immunization
 });
 
-export const getImmunizations = () =>
-  (dispatch) => CustomerApi.getAll()
-    .then(
-      response => dispatch(getImmunizationsSuccess(response.data.immunizations))
-    )
-    .catch(
-      error => dispatch(showAlert(error))
-    );
-
 const createImmunization = (immunization, patientTypeId, dispatch) => {
   return ImmunizationApi.saveImmunization(immunization, patientTypeId)
     .then(response => {
