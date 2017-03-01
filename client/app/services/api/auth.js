@@ -9,7 +9,15 @@ export const signIn = (user) =>
     headers: {
       'Content-Type': 'application/json'
     }
-  }).then(response => response.json());
+  }).then(response => {
+    const jsonResponse = response.json();
+    return jsonResponse.then(data => {
+      return data.error ?
+        Promise.reject({message: data.error})
+        :
+        Promise.resolve(data);
+    });
+  });
 
 export const checkAuthenticated = (token) =>
   fetch('/auth/isAuthenticated', {
