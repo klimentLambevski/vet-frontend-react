@@ -1,0 +1,17 @@
+.patient-types-view {
+  .view-title {
+    padding: 0 1em;
+  }
+  .patient-types-list {
+    display: flex;
+    .patient-type-list {
+      flex: 3;
+    }
+    .patient-type-form {
+      flex: 1;
+    }
+    .patient-type-list, .patient-type-form {
+      padding: 1em;
+    }
+  }
+}

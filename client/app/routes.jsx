@@ -6,10 +6,10 @@ import {CustomerList} from "./components/dashboard/customer/customer-list";
 import {PatientsView} from "./views/patients-view";
 import {PatientTypesView} from "./views/patient-types.view";
 import {PatientTypeList} from "./components/dashboard/patients/patient-type/patient-type-list";
-import {PatientTypeFormContainer} from "./components/dashboard/patients/patient-type/patient-type-form.container";
 import {CustomerDetailsView} from "./views/customer-details-view";
 import {PatientDetailsView} from "./views/patient-details.view";
 import {PatientsContainer} from "./views/patients";
+import {PatientTypeDetailsView} from "./views/patient-type-details-view";
 
 export default (
   <Route path="/" component={App}>
@@ -29,8 +29,7 @@ export default (
 
     <Route path="patient-types" component={PatientTypesView}>
       <IndexRoute component={PatientTypeList}/>
-      <Route path="new" component={PatientTypeFormContainer}/>
-      <Route path="(:id)" component={PatientTypeFormContainer}/>
+      <Route path="(:patientTypeId)" component={PatientTypeDetailsView}/>
     </Route>
   </Route>
 );
