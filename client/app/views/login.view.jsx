@@ -7,9 +7,11 @@ class LoginView extends React.Component {
 
   render() {
     return (
-      <section>
+    <section className="login-view">
+      <div className="form-container">
         <LoginFormContainer />
-      </section>
+      </div>
+    </section>
     );
   }
 }

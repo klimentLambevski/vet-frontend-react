@@ -3,13 +3,19 @@ import { CustomerFormContainer } from './customer-form.container';
 import { Grid } from '../../grid/grid';
 import { push } from 'react-router-redux';
 import { saveCustomer } from './customer.actions';
+import * as _ from "lodash";
 
 let CustomerList = ({ customers, push, saveCustomer }) => (
   <section className="customers-list">
+    {console.log(customers)}
     <div className="customer-list">
       <Grid
         id="customersGrid"
-        rows={customers}
+        rows={customers.map(customer => {
+          let cus = _.clone(customer);
+          cus.user.referral = `http://m.me/vetspiritohrid?ref=${cus.user.referral}`;
+          return cus;
+        })}
         columns={{
           'user.name': {
             label: 'Име'
@@ -19,6 +25,9 @@ let CustomerList = ({ customers, push, saveCustomer }) => (
           },
           'user.email': {
             label: 'Email'
+          },
+          'user.referral': {
+            label: 'Месенџер линк'
           }
         }}
         _onRowClick={

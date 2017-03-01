@@ -1,4 +1,5 @@
-import { actions } from './patient-type.actions';
+import {actions} from './patient-type.actions';
+import {actions as immunizationActions} from '../../immunization/immunizations.actions'
 
 const patientTypesReducer = (state = [], action) => {
   switch (action.type) {
@@ -18,10 +19,30 @@ const patientTypesReducer = (state = [], action) => {
           :
           Object.assign({}, patientType)
       );
+    case immunizationActions.ADD_IMMUNIZATION_SUCCESS:
+      return [...state.map(patientType => {
+        if (patientType.id === action.immunization.typeId) {
+          patientType.immunizations.push(action.immunization);
+        }
+        return patientType;
+      })];
+
+    case immunizationActions.UPDATE_IMMUNIZATION_SUCCESS:
+      return [...state.map(patientType => {
+        if (patientType.id === action.immunization.typeId) {
+          patientType.immunizations = patientType.immunizations.map(immunization => {
+            if (immunization.id === action.immunization.id) {
+              return action.immunization;
+            }
+            return immunization;
+          });
+        }
+        return patientType;
+      })];
 
     default:
       return state;
   }
 };
 
-export { patientTypesReducer };
+export {patientTypesReducer};

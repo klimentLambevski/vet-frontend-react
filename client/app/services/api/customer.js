@@ -9,6 +9,7 @@ const getAll = () => graphql`
         email
         name
         surname
+        referral
       }
     }
   }`();
@@ -22,6 +23,7 @@ const getById = (customerId) => graphql`
         email
         name
         surname
+        referral
       }
       patients {
         id
