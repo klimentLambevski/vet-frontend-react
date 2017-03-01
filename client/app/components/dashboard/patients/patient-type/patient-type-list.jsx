@@ -1,25 +1,31 @@
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import {Grid} from "../../../grid/grid";
+import {push} from "react-router-redux";
+import {PatientTypeFormContainer} from "./patient-type-form.container";
+import {savePatientType} from "./patient-type.actions";
 
-let PatientTypeList = ({ patientTypes }) => (
-  <section>
-    <h1>Patient Types List</h1>
-    <div>
-      <Link to="/patient-types/new">
-        {'Add new patient type'}
-      </Link>
+let PatientTypeList = ({ patientTypes, push, savePatientType }) => (
+  <section className="patient-types-list">
+    <div className="patient-type-list">
+      <Grid
+        id="patientTypesGrid"
+        rows={patientTypes}
+        columns={{
+          'name': {
+            label: 'Тип на пациент'
+          }
+        }}
+        _onRowClick={
+          (patientType) =>
+          {
+            push(`/patient-types/${patientType.id}`)
+          }
+        }
+      />
     </div>
-    <ul>
-      {
-        patientTypes.map(patientType =>
-          <li key={patientType.id}>
-            <Link to={'/patient-types/' + patientType.id}>
-              {patientType.name}
-            </Link>
-          </li>
-        )
-      }
-    </ul>
+    <div className="patient-type-form">
+      <PatientTypeFormContainer savePatientType={savePatientType}/>
+    </div>
   </section>
 );
 
@@ -31,6 +37,6 @@ const mapStateToProps = (state) => ({
   patientTypes: state.patientTypes
 });
 
-PatientTypeList = connect(mapStateToProps)(PatientTypeList);
+PatientTypeList = connect(mapStateToProps, { push, savePatientType })(PatientTypeList);
 
 export { PatientTypeList };

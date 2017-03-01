@@ -23,6 +23,7 @@ const ImmunizationForm = ({ handleSubmit, pristine, submitting }) => (
         />
       </div>
 
+
       <div>
       {/*TODO field array*/}
       </div>
