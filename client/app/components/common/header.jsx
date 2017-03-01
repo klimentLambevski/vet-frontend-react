@@ -1,6 +1,7 @@
-import {Link, IndexLink} from 'react-router';
-import {connect} from "react-redux";
+import { Link, IndexLink } from 'react-router';
+import { connect } from "react-redux";
 import LoginLink from '../auth/login-link';
+import { LogoutButton } from '../auth/logout-button';
 
 const Header = () => {
   return (
@@ -14,7 +15,8 @@ const Header = () => {
         <IndexLink className="--a-reset" to="/customers" activeClassName="active">Customers</IndexLink>
         <Link className="--a-reset" to="/patient-types" activeClassName="active">Patient Types</Link>
         <Link className="--a-reset" to="/notifications" activeClassName="active">Notifications</Link>
-        {/*<LoginLink className="--a-reset" to="/login" activeClassName="active"/>*/}
+        <LoginLink className="--a-reset" to="/login" activeClassName="active"/>
+        <LogoutButton className="--a-reset" to="/logout"/>
       </nav>
     </header>
   );

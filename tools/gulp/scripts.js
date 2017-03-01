@@ -71,9 +71,12 @@ export function gulpWebpackServe() {
         target: 'http://vet.3khub.com',
         changeOrigin: true,
         onProxyReq: function (proxyReq, req, res) {
-          // add custom header to request
-          // proxyReq.setHeader('Host', 'http://localhost:8000');
-          // or log the req
+        }
+      }),
+      proxy('/auth/*', {
+        target: 'http://vet.3khub.com',
+        changeOrigin: true,
+        onProxyReq: function (proxyReq, req, res) {
         }
       })
     ]

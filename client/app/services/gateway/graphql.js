@@ -1,3 +1,5 @@
+import localStorageService from '../../services/storage/local.storage.service';
+
 export function createFragment(object) {
 
 }
@@ -22,7 +24,8 @@ export function graphql([query]) {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'authorization': localStorageService.getItem('AUTH_TOKEN')
       }
     }).then(response => response.json())
   }

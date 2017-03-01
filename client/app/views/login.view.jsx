@@ -1,6 +1,6 @@
-import LoginFormContainer from './login-form.container';
+import { LoginFormContainer } from '../components/auth/login-form.container';
 
-class LoginPage extends React.Component {
+class LoginView extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -14,4 +14,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+export { LoginView };
