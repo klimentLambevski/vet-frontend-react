@@ -10,6 +10,7 @@ import {CustomerDetailsView} from "./views/customer-details-view";
 import {PatientDetailsView} from "./views/patient-details.view";
 import {PatientsContainer} from "./views/patients";
 import {PatientTypeDetailsView} from "./views/patient-type-details-view";
+import { NotificationsView } from './views/notification.view';
 
 export default (
   <Route path="/" component={App}>
@@ -18,6 +19,7 @@ export default (
     <Route path="grid" component={PatientsContainer}/>
 
     <Route path="dashboard" component={DashboardView}/>
+
     <Route path="customers" component={CustomersView}>
       <IndexRoute component={CustomerList}/>
       <Route path="(:id)" component={CustomerDetailsView}/>
@@ -31,5 +33,7 @@ export default (
       <IndexRoute component={PatientTypeList}/>
       <Route path="(:patientTypeId)/(:immunizationId)" component={PatientTypeDetailsView}/>
     </Route>
+
+    <Route path="notifications" component={NotificationsView}/>
   </Route>
 );

@@ -8,6 +8,7 @@ import {customersReducer as customers} from '../components/dashboard/customer/cu
 import {gridReducer as grid} from './grid/grid.reducer';
 import {patientTypesReducer as patientTypes} from '../components/dashboard/patients/patient-type/patient-types.reducer';
 import {examinationsReducer as examinations} from '../components/dashboard/examinations/examination.reducer';
+import {notificationsReducer as notifications} from '../components/dashboard/notifications/notification.reducer';
 
 const rootReducer = combineReducers({
   // todo: find a suitable name for common
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   patients,
   customers,
   patientTypes,
-  examinations
+  examinations,
+  notifications
 });
 
 export default rootReducer;
