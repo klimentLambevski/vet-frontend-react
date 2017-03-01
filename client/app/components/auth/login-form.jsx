@@ -37,7 +37,7 @@ const LoginForm = ({ handleSubmit, pristine, submitting, invalid }) => (
       />
     </div>
 
-    <div>
+    <div style={{'margin-top': '20px'}}>
       <RaisedButton
         type="submit"
         label="Sign In"
