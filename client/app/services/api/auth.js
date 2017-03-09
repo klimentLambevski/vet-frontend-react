@@ -26,7 +26,15 @@ export const checkAuthenticated = (token) =>
       'Content-Type': 'application/json',
       'authorization': token
     }
-  }).then(response => response.json());
+  }).then(response => {
+    const jsonResponse = response.json();
+    return jsonResponse.then(data => {
+      return data.user ?
+        Promise.resolve(data)
+        :
+        Promise.reject(data);
+    })
+  });
 
 export const logout = (token) =>
   fetch('/auth/logout', {
