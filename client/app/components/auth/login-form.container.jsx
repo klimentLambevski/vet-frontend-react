@@ -17,7 +17,7 @@ class LoginFormContainer extends React.Component {
   render() {
     return (
       <section>
-        <h1>Login</h1>
+        <h1>Најава</h1>
 
         <LoginForm
           onSubmit={this.onSubmit}

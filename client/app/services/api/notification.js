@@ -2,7 +2,7 @@ import { graphql } from "../gateway/graphql";
 
 const getAll = () => graphql`
   query getNotifications {
-    notifications {
+    notifications(order: "reverse:createdAt") {
       id,
       message,
       type

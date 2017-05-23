@@ -3,7 +3,7 @@ import { graphql, handleMutation} from "../gateway/graphql"; import * as _ from 
 const getAll = () => graphql`
   query getExaminations {
     patient {
-      examinations {
+      examinations(order: "reverse:createdAt") {
         id
         measuredTemperature
         outerExamination

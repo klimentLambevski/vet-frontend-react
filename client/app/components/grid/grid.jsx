@@ -91,7 +91,7 @@ function filterRows(rows, filters) {
       (row) => _.every(filters,
         (value, filter) => {
           let item = _.get(row, filter);
-          return _.includes(item, value)
+          return _.includes(item.toLowerCase(), value)
         })
     );
   } else return rows;

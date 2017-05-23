@@ -27,7 +27,8 @@ let CustomerList = ({ customers, push, saveCustomer }) => (
             label: 'Email'
           },
           'user.referral': {
-            label: 'Месенџер линк'
+            label: 'Месенџер линк',
+            type: 'copy'
           }
         }}
         _onRowClick={

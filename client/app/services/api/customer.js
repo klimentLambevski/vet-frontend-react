@@ -2,7 +2,7 @@ import {graphql, handleMutation} from "../gateway/graphql"; import * as _ from "
 
 const getAll = () => graphql`
   query getCustomers{
-    customers {
+    customers(order: "reverse:createdAt") {
       id
       user {
         id
@@ -19,13 +19,13 @@ const getById = (customerId) => graphql`
     customer(id: $id) {
       id
       user {
-        id
+        _id
         email
         name
         surname
         referral
       }
-      patients {
+      patients(order: "reverse:createdAt") {
         id
         birthDate
         gender
@@ -69,6 +69,7 @@ const updateCustomer = (customer, customerId) => handleMutation(graphql`
         message
       }
       customer {
+        id
         user {
           id
           email

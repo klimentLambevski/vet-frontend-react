@@ -8,7 +8,7 @@ const LoginLink = ({ to, className = '', activeClassName = '', isAuthenticated }
       className={className}
       activeClassName={activeClassName}
     >
-      Login
+      Најава
     </Link>
     :
     null

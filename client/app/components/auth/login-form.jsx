@@ -24,7 +24,7 @@ const LoginForm = ({ handleSubmit, pristine, submitting, invalid }) => (
         component={renderTextField}
         type="text"
         name="email"
-        label="Email"
+        label="Е-маил"
       />
     </div>
 
@@ -33,14 +33,14 @@ const LoginForm = ({ handleSubmit, pristine, submitting, invalid }) => (
         component={renderTextField}
         type="password"
         name="password"
-        label="Password"
+        label="Лозинка"
       />
     </div>
 
     <div style={{marginTop: '20px'}}>
       <RaisedButton
         type="submit"
-        label="Sign In"
+        label="Најави се"
         primary={true}
         disabled={pristine || submitting || invalid}
       />

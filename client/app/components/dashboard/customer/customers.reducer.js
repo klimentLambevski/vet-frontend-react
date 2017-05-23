@@ -7,8 +7,8 @@ const customersReducer = (state = [], action) => {
 
     case actions.ADD_CUSTOMER_SUCCESS:
       return [
-        ...state,
-        action.customer
+        action.customer,
+        ...state
       ];
 
     case actions.UPDATE_CUSTOMER_SUCCESS:

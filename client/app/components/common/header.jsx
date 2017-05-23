@@ -12,9 +12,9 @@ const Header = () => {
       </div>
       <nav className="main-navigation">
         {/*<IndexLink className="--a-reset" to="/" activeClassName="active">Home</IndexLink>*/}
-        <IndexLink className="--a-reset" to="/customers" activeClassName="active">Customers</IndexLink>
-        <Link className="--a-reset" to="/patient-types" activeClassName="active">Patient Types</Link>
-        <Link className="--a-reset" to="/notifications" activeClassName="active">Notifications</Link>
+        <IndexLink className="--a-reset" to="/customers" activeClassName="active">Корисници</IndexLink>
+        <Link className="--a-reset" to="/patient-types" activeClassName="active">Типови на пациенти</Link>
+        <Link className="--a-reset" to="/notifications" activeClassName="active">Нотификации</Link>
         <LoginLink className="--a-reset" to="/login" activeClassName="active"/>
         <LogoutButton className="--a-reset" to="/logout"/>
       </nav>

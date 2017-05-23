@@ -1,13 +1,13 @@
-import gutil from "gulp-util";
-import webpack from "webpack";
-import supportsColor from "supports-color";
-import browserSync from "browser-sync";
-import historyApiFallback from "connect-history-api-fallback";
-import webpackDevMiddleware from "webpack-dev-middleware";
-import webpackHotMiddleware from "webpack-hot-middleware";
-import proxy from "http-proxy-middleware";
+import gutil from 'gulp-util';
+import webpack from 'webpack';
+import supportsColor from 'supports-color';
+import browserSync from 'browser-sync';
+import historyApiFallback from 'connect-history-api-fallback';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import proxy from 'http-proxy-middleware';
 
-import {paths} from "../config";
+import {paths} from '../config';
 
 export function gulpWebpackDist(cb) {
   const config = require('../webpack/webpack.dist.config.js');
@@ -18,10 +18,10 @@ export function gulpWebpackDist(cb) {
 
   webpack(config, (err, stats) => {
     if (err) {
-      throw new gutil.PluginError("webpack", err);
+      throw new gutil.PluginError('webpack', err);
     }
 
-    gutil.log("[gulpWebpackDist]", stats.toString({
+    gutil.log('[gulpWebpackDist]', stats.toString({
       colors: supportsColor,
       chunks: false,
       errorDetails: true
@@ -46,14 +46,14 @@ export function gulpWebpackServe() {
   let compiler = webpack(config);
 
   browserSync({
-    port: process.env.PORT || 3000,
+    port: 4000,
     open: false,
     server: {
       baseDir: paths.client,
       routes: {
-        // "/node_modules": "node_modules",
-        // "/themes": "node_modules/semantic-ui-css/themes",
-        // "/fonts": "node_modules/font-awesome/fonts"
+        // '/node_modules': 'node_modules',
+        // '/themes': 'node_modules/semantic-ui-css/themes',
+        // '/fonts': 'node_modules/font-awesome/fonts'
       }
     },
     middleware: [
@@ -68,19 +68,19 @@ export function gulpWebpackServe() {
       webpackHotMiddleware(compiler),
       historyApiFallback(),
       proxy('/test/graphql', {
-        target: 'http://vet.3khub.com',
+        target: 'http://localhost:3000',
         changeOrigin: true,
         onProxyReq: function (proxyReq, req, res) {
         }
       }),
       proxy('/graphql', {
-        target: 'http://vet.3khub.com',
+        target: 'http://localhost:3000',
         changeOrigin: true,
         onProxyReq: function (proxyReq, req, res) {
         }
       }),
       proxy('/auth/*', {
-        target: 'http://vet.3khub.com',
+        target: 'http://localhost:3000',
         changeOrigin: true,
         onProxyReq: function (proxyReq, req, res) {
         }

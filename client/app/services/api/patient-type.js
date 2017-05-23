@@ -5,7 +5,7 @@ const getAll = () => graphql`
     patientTypes {
       id
       name
-      immunizations {
+      immunizations(order: "reverse:createdAt") {
         createdAt
         description
         id

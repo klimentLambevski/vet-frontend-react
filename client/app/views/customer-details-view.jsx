@@ -62,7 +62,8 @@ class CustomerDetailsView extends React.Component {
                 label: 'Тип на животно'
               },
               birthDate: {
-                label: 'Дата на раѓање'
+                label: 'Дата на раѓање',
+                type: 'date'
               },
               microchip: {
                 label: 'Микрочип'

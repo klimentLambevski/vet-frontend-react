@@ -47,7 +47,7 @@ class PatientDetailsView extends React.Component {
             <Link to={`/patients/${patient.id}/`}>
               <RaisedButton
                 type="button"
-                label="New examination"
+                label="Нов прглед"
                 fullWidth={true}
                 primary={true}
               />

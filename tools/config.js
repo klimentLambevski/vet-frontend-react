@@ -1,4 +1,4 @@
-import path from "path";
+import path from 'path';
 
 let rootPath = process.cwd();
 let clientPath = path.join(rootPath, 'client');
@@ -17,4 +17,4 @@ let paths = {
 
 export {
   paths
-}
+};

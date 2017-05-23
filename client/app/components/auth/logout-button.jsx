@@ -22,7 +22,7 @@ class LogoutButton extends React.Component {
         <a
           className={className}
           onClick={() => this.onLogoutClick(event)}
-        >Logout</a>
+        >Одјава</a>
         :
         null
     );

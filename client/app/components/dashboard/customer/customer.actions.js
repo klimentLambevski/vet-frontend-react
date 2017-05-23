@@ -30,7 +30,10 @@ export const getCustomers = () =>
       response => dispatch(getCustomersSuccess(response.data.customers))
     )
     .catch(
-      error => dispatch(showAlert(error))
+      error => {
+        console.log(error);
+        dispatch(showAlert(error))
+      }
     );
 
 const createCustomer = (customer, dispatch) => {
