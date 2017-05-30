@@ -32,6 +32,11 @@ const getById = (patientId) => graphql`
       microchip
       type {
         name
+        immunizations {
+          id
+          name
+          description
+        }
       }
       examinations {
         id
@@ -41,6 +46,13 @@ const getById = (patientId) => graphql`
         diagnose
         therapy
         surgery
+        createdAt
+        notes
+        immunization {
+          id
+          name
+          description
+        }
       }
     }
   }
@@ -62,6 +74,11 @@ const savePatient = (patient, customerId) => handleMutation(graphql`
         race
         type {
           name
+          immunizations {
+            id
+            name
+            description
+          }
         }
       }
     }

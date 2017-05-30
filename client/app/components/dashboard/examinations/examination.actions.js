@@ -39,8 +39,8 @@ export const getExaminations = (patientId) =>
       error => dispatch(showAlert(error))
     );
 
-const createExamination = (examination, patientId, dispatch) => {
-  return ExaminationApi.saveExamination(examination, patientId)
+const createExamination = ({immunization, ...examination}, patientId, dispatch) => {
+  return ExaminationApi.saveExamination(examination, patientId, immunization && immunization.id)
     .then(response => {
         dispatch(addExaminationSuccess(response.examination));
         dispatch(push(`/patients/${patientId}/${response.examination.id}`));
@@ -52,8 +52,8 @@ const createExamination = (examination, patientId, dispatch) => {
 };
 
 
-const updateExamination = (examination, examinationId, dispatch) => {
-  return ExaminationApi.updateExamination(examination, examinationId)
+const updateExamination = ({immunization, ...examination}, examinationId, dispatch) => {
+  return ExaminationApi.updateExamination(examination, examinationId, immunization && immunization.id)
     .then(response => {
         dispatch(updateExaminationSuccess(response.examination));
       }

@@ -1,8 +1,9 @@
 import { Field } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
-import { renderTextField } from '../../common/inputs/inputs';
+import {renderSelectField, renderTextField} from '../../common/inputs/inputs';
+import {MenuItem} from "material-ui";
 
-const ExaminationForm = ({ handleSubmit, pristine, submitting }) => (
+const ExaminationForm = ({ handleSubmit, pristine, submitting, patientType }) => (
   <form onSubmit={handleSubmit} autoComplete="off" noValidate>
     <div>
       <Field
@@ -37,6 +38,16 @@ const ExaminationForm = ({ handleSubmit, pristine, submitting }) => (
       <Field
         component={renderTextField}
         type="text"
+        name="therapy"
+        label="Терапија"
+        multiLine={true}
+      />
+    </div>
+
+    <div>
+      <Field
+        component={renderTextField}
+        type="text"
         name="laboratory"
         label="Лабораторија"
         multiLine={true}
@@ -53,6 +64,32 @@ const ExaminationForm = ({ handleSubmit, pristine, submitting }) => (
       />
     </div>
 
+    <Field
+      component={renderSelectField}
+      name="immunization.id"
+      label="Имунизација"
+    >
+      {
+        patientType && patientType.immunizations.map(immunization =>
+          <MenuItem
+            key={immunization.id}
+            value={immunization.id}
+            primaryText={immunization.name}
+          />
+        )
+      }
+    </Field>
+
+    <div>
+      <Field
+        component={renderTextField}
+        type="text"
+        name="notes"
+        label="Наод и мислење од лекар"
+        multiLine={true}
+      />
+    </div>
+
     <div className="form-footer">
       <RaisedButton
         type="submit"
@@ -61,6 +98,8 @@ const ExaminationForm = ({ handleSubmit, pristine, submitting }) => (
         disabled={pristine || submitting}
       />
     </div>
+
+
   </form>
 );
 

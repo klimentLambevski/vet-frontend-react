@@ -20,8 +20,8 @@ class PatientDetailsView extends React.Component {
   }
 
   onRowClicked(examination) {
-    const { patient } = this.props;
-    this.props.push(`/patients/${patient.id}/${examination.id}`);
+    // const { patient } = this.props;
+    // this.props.push(`/patients/${patient.id}/${examination.id}`);
   }
 
   render() {
@@ -58,12 +58,17 @@ class PatientDetailsView extends React.Component {
             className="examination-form"
             examination={{ ...examination, patientId: patient.id }}
             saveExamination={saveExamination}
+            patientType={patient.type}
           />
         </div>
 
         <Grid
           rows={examinations}
           columns={{
+            createdAt: {
+              label: 'Датум',
+              type: 'date'
+            },
             measuredTemperature: {
               label: 'Измерена темепература'
             },
@@ -81,6 +86,12 @@ class PatientDetailsView extends React.Component {
             },
             surgery: {
               label: 'Операција'
+            },
+            'immunization.name': {
+              label: 'Имунизација'
+            },
+            notes: {
+              label: 'Наод и мислење од доктор'
             }
           }}
           id="examinationsGrid"

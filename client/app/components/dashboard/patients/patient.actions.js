@@ -36,8 +36,8 @@ export const getPatients = (customerId) =>
       error => dispatch(showAlert(error))
     );
 
-const createPatient = (patient, customerId, dispatch) => {
-  return PatientApi.savePatient(patient, customerId)
+const createPatient = ({type, ...patient}, customerId, dispatch) => {
+  return PatientApi.savePatient({...patient, type: {name: type.name}}, customerId)
     .then(response => {
         dispatch(addPatientSuccess(response.patient));
         dispatch(push(`/patients/${response.patient.id}/`));
@@ -48,8 +48,8 @@ const createPatient = (patient, customerId, dispatch) => {
     );
 };
 
-const updatePatient = (patient, patientId, dispatch) => {
-  return PatientApi.updatePatient(patient, patientId)
+const updatePatient = ({type, ...patient}, patientId, dispatch) => {
+  return PatientApi.updatePatient({...patient, type: {name: type.name}}, patientId)
     .then(response => {
         dispatch(updatePatientSuccess(response.patient));
       }

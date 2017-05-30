@@ -11,13 +11,20 @@ const getAll = () => graphql`
         diagnose
         therapy
         surgery
+        createdAt
+        notes
+        immunization {
+          id
+          name
+          description
+        }
       }
     }
   }`();
 
-const saveExamination = (examination, patientId) => handleMutation(graphql`
-  mutation addExamination($examination: ExaminationInput!, $patientId: String!) {
-    createExamination(examination: $examination, patientId: $patientId) {
+const saveExamination = (examination, patientId, immunizationId) => handleMutation(graphql`
+  mutation addExamination($examination: ExaminationInput!, $patientId: String!, $immunizationId: String) {
+    createExamination(examination: $examination, patientId: $patientId, immunizationId: $immunizationId) {
       errors {
         message
         path
@@ -31,16 +38,23 @@ const saveExamination = (examination, patientId) => handleMutation(graphql`
         laboratory
         outerExamination
         surgery
+        therapy
         createdAt
         updatedAt
+        notes
+        immunization {
+          id
+          name
+          description
+        }
       }
     }
   }
-`({ examination, patientId }), 'createExamination');
+`({ examination, patientId, immunizationId }), 'createExamination');
 
-const updateExamination = (examination, examinationId) => handleMutation(graphql`
-  mutation updateExamination($examination: ExaminationInput!, $examinationId: String!) {
-    updateExamination(examination: $examination, examinationId: $examinationId) {
+const updateExamination = (examination, examinationId, immunizationId) => handleMutation(graphql`
+  mutation updateExamination($examination: ExaminationInput!, $examinationId: String!, $immunizationId: String) {
+    updateExamination(examination: $examination, examinationId: $examinationId, immunizationId: $immunizationId) {
       errors {
         message
         path
@@ -54,12 +68,19 @@ const updateExamination = (examination, examinationId) => handleMutation(graphql
         laboratory
         outerExamination
         surgery
+        therapy
         createdAt
         updatedAt
+        notes
+        immunization {
+          id
+          name
+          description
+        }
       }
     }
   }
-`({ examination: _.pick(examination, ['measuredTemperature', 'diagnose', 'laboratory', 'outerExamination', 'surgery']), examinationId }), 'updateExamination');
+`({ examination: _.pick(examination, ['measuredTemperature', 'diagnose', 'laboratory', 'outerExamination', 'surgery', 'therapy', 'notes']), examinationId }), 'updateExamination');
 
 export const ExaminationApi = {
   getAll,

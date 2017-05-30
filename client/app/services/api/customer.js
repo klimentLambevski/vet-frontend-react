@@ -19,7 +19,7 @@ const getById = (customerId) => graphql`
     customer(id: $id) {
       id
       user {
-        _id
+        id
         email
         name
         surname
