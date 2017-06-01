@@ -53,6 +53,11 @@ const getById = (patientId) => graphql`
           name
           description
         }
+        doctor {
+          user {
+            name
+          }
+        }
       }
     }
   }

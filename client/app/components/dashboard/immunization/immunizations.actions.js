@@ -27,6 +27,7 @@ const updateImmunizationSuccess = (immunization) => ({
 const createImmunization = (immunization, patientTypeId, dispatch) => {
   return ImmunizationApi.saveImmunization(immunization, patientTypeId)
     .then(response => {
+      console.log(response);
         dispatch(addImmunizationSuccess(response.immunization));
         dispatch(push(`/patient-types/${patientTypeId}/${response.immunization.id}`));
       }

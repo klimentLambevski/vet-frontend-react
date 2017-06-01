@@ -18,6 +18,11 @@ const getAll = () => graphql`
           name
           description
         }
+        doctor {
+          user {
+            name
+          }
+        }
       }
     }
   }`();
@@ -46,6 +51,11 @@ const saveExamination = (examination, patientId, immunizationId) => handleMutati
           id
           name
           description
+        }
+        doctor {
+          user {
+            name
+          }
         }
       }
     }
@@ -76,6 +86,11 @@ const updateExamination = (examination, examinationId, immunizationId) => handle
           id
           name
           description
+        }
+        doctor {
+          user {
+            name
+          }
         }
       }
     }

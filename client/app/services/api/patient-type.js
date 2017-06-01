@@ -28,6 +28,16 @@ const save = (patientType) => handleMutation(graphql`
       patientType {
         id
         name
+        immunizations {
+          createdAt
+          description
+          id
+          name
+          periods {
+            id
+            month
+          }
+        }
       }
     }
   }
@@ -42,6 +52,16 @@ const update = (patientType, patientTypeId) => handleMutation(graphql`
       patientType {
         id
         name
+        immunizations {
+          createdAt
+          description
+          id
+          name
+          periods {
+            id
+            month
+          }
+        }
       }
     }
   }

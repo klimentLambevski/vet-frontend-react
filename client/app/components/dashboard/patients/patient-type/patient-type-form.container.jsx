@@ -1,7 +1,22 @@
 import { withFormHandler } from '../../../../hocs/with-form-handler';
 import { PateintTypeForm } from './patient-type-form';
+import * as _ from "lodash";
 
-const PatientTypeFormRedux = withFormHandler(PateintTypeForm, 'patientType');
+const validate = (values) => {
+  const errors = {};
+
+  ['name']
+    .forEach(key => {
+      if (!_.get(values, key) || _.get(values, key) === '') {
+        _.set(errors, key, 'Задожително поле');
+      }
+    });
+
+  return errors;
+};
+
+
+const PatientTypeFormRedux = withFormHandler(PateintTypeForm, 'patientType', validate);
 
 let PatientTypeFormContainer = ({ patientType = {}, savePatientType }) => (
   <section>

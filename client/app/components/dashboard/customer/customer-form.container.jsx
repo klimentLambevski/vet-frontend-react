@@ -1,8 +1,18 @@
 import { CustomerForm } from './customer-form';
-import { saveCustomer } from './customer.actions';
 import { withFormHandler } from '../../../hocs/with-form-handler';
+const validate = (values) => {
+  const errors = {user: {}};
 
-const CustomerFromRedux = withFormHandler(CustomerForm, 'customer');
+  ['name', 'surname']
+    .forEach(key => {
+      if (values.user && (!values.user[key] || values.user[key] === '')) {
+        errors.user[key] = 'Задожително поле';
+      }
+    });
+
+  return errors;
+};
+const CustomerFromRedux = withFormHandler(CustomerForm, 'customer', validate);
 
 const CustomerFormContainer = ({ customer = {}, saveCustomer }) => (
   <section>

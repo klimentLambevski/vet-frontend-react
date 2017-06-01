@@ -30,8 +30,8 @@ export function graphql([query]) {
     })
       .then(response => response.json())
       .then(res => {
-        if(res.data.errors) {
-          return Promise.reject(res);
+        if(res.errors) {
+          return Promise.reject(res.errors);
         } else {
           return Promise.resolve(res);
         }

@@ -58,7 +58,7 @@ export const logoutUser = () =>
     .then(() => {
       LocalStorageService.removeItem('AUTH_TOKEN');
       dispatch(logoutSuccess());
-      dispatch(push('/'));
+      dispatch(push('/login'));
     })
     .catch(error => {
       throw error;

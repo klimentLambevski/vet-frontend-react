@@ -10,7 +10,7 @@ const ExaminationForm = ({ handleSubmit, pristine, submitting, patientType }) =>
         component={renderTextField}
         type="number"
         name="measuredTemperature"
-        label="Измерена температура"
+        label="Измерена температура *"
       />
     </div>
 
@@ -19,7 +19,7 @@ const ExaminationForm = ({ handleSubmit, pristine, submitting, patientType }) =>
         component={renderTextField}
         type="text"
         name="outerExamination"
-        label="Надворешен преглед"
+        label="Надворешен преглед *"
         multiLine={true}
       />
     </div>
@@ -29,7 +29,7 @@ const ExaminationForm = ({ handleSubmit, pristine, submitting, patientType }) =>
         component={renderTextField}
         type="text"
         name="diagnose"
-        label="Диајгноза"
+        label="Диајгноза *"
         multiLine={true}
       />
     </div>

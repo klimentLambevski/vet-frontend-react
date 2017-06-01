@@ -9,7 +9,7 @@ export const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
         component={renderTextField}
         type="text"
         name="user.name"
-        label="Име"
+        label="Име *"
       />
     </div>
     <div>
@@ -17,7 +17,7 @@ export const CustomerForm = ({ handleSubmit, pristine, submitting }) => (
         component={renderTextField}
         type="text"
         name="user.surname"
-        label="Презиме"
+        label="Презиме *"
       />
     </div>
 

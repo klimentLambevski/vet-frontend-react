@@ -17,22 +17,25 @@ export const renderTextField = ({ input, label, meta: { touched, error }, ...cus
   />
 );
 
-export const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
-  <SelectField
-    floatingLabelText={label}
-    errorText={touched && error}
-    fullWidth={true}
-    {...input}
-    onChange={(event, index, value) => input.onChange(value)}
-    children={children}
-    {...custom}
-  />
-);
+export const renderSelectField = ({ input, label, meta: { touched, error, visited }, children, ...custom }) => {
+  return (
+    <SelectField
+      floatingLabelText={label}
+      errorText={(visited || touched) && error}
+      fullWidth={true}
+      {...input}
+      onChange={(event, index, value) => input.onChange(value)}
+      children={children}
+      {...custom}
+    />
+  );
+};
 
-export const renderRadioGroup = ({ input, ...custom }) => (
+export const renderRadioGroup = ({ input, meta: { touched, error, visited }, ...custom }) => (
   <RadioButtonGroup
     {...input}
     {...custom}
+    errorText={(visited || touched) && error}
     fullWidth={true}
     className="radio-group"
     valueSelected={input.value}

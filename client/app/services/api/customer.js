@@ -35,6 +35,11 @@ const getById = (customerId) => graphql`
         race
         type {
           name
+          immunizations {
+            id
+            name
+            description
+          }
         }
         createdAt
         updatedAt

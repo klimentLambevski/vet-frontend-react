@@ -23,7 +23,7 @@ export class Pagination extends React.Component {
         <div className="pagination component">
           <div className="ui pagination menu">
             {_.range(numPages).map((page) => (
-              <a className={`item ${this.props.currentPage === page ? 'active' : ''}`}
+              <a key={page} className={`item ${this.props.currentPage === page ? 'active' : ''}`}
                  onClick={() => this.changePage(page)}>
                 {page + 1}
               </a>

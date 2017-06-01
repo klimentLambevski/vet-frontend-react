@@ -12,14 +12,14 @@ export const PatientForm = ({ handleSubmit, pristine, submitting, patientTypes }
           component={renderTextField}
           type="text"
           name="name"
-          label="Име"
+          label="Име *"
         />
       </div>
 
       <Field
         component={renderSelectField}
         name="type.name"
-        label="Тип на пациент"
+        label="Тип на пациент *"
       >
         {
           patientTypes.map(patientType =>
@@ -36,7 +36,7 @@ export const PatientForm = ({ handleSubmit, pristine, submitting, patientTypes }
         <Field
           component={renderDatePicker}
           name="birthDate"
-          floatingLabelText="Датум на раѓање"
+          floatingLabelText="Датум на раѓање *"
           autoOk={true}
         />
       </div>

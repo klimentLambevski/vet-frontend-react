@@ -1,8 +1,22 @@
 import { ExaminationForm } from './examination-form';
 import { withFormHandler } from '../../../hocs/with-form-handler';
 import { saveExamination } from './examination.actions';
+import * as _ from "lodash";
 
-const ExaminationFormRedux = withFormHandler(ExaminationForm, 'examination');
+const validate = (values) => {
+  const errors = {};
+
+  ['measuredTemperature', 'outerExamination', 'diagnose']
+    .forEach(key => {
+      if (!_.get(values, key) || _.get(values, key) === '') {
+        _.set(errors, key, 'Задожително поле');
+      }
+    });
+
+  return errors;
+};
+
+const ExaminationFormRedux = withFormHandler(ExaminationForm, 'examination', validate);
 
 const ExaminationFormContainer = ({ examination, saveExamination, patientType, ...rest }) => {
   return (

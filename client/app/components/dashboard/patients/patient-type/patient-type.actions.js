@@ -27,7 +27,9 @@ const updatePatientTypeSuccess = (patientType) => ({
 export const getPatientTypes = () =>
   (dispatch) => PatientTypeApi.getAll()
     .then(
-      response => dispatch(getAllPatientTypesSuccess(response.data.patientTypes))
+      response => {
+        dispatch(getAllPatientTypesSuccess(response.data.patientTypes))
+      }
     )
     .catch(
       error => dispatch(showAlert(error))

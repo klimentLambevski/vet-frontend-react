@@ -10,7 +10,7 @@ const ImmunizationForm = ({ handleSubmit, pristine, submitting }) => (
           component={renderTextField}
           type="text"
           name="name"
-          label="Name"
+          label="Име"
         />
       </div>
 
@@ -19,7 +19,7 @@ const ImmunizationForm = ({ handleSubmit, pristine, submitting }) => (
           component={renderTextField}
           type="text"
           name="description"
-          label="Description"
+          label="Опис"
         />
       </div>
 

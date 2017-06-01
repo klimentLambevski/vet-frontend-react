@@ -92,6 +92,9 @@ class PatientDetailsView extends React.Component {
             },
             notes: {
               label: 'Наод и мислење од доктор'
+            },
+            'doctor.user.name': {
+              label: 'Доктор'
             }
           }}
           id="examinationsGrid"

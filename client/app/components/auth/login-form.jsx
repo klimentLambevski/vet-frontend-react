@@ -9,7 +9,7 @@ const validate = (values) => {
   ['email', 'password']
     .forEach(key => {
       if (!values[key] || values[key] === '') {
-        errors[key] = 'Required';
+        errors[key] = 'Задожително поле';
       }
     });
 

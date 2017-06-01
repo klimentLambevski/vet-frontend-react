@@ -10,14 +10,14 @@ const PateintTypeForm = ({ handleSubmit, pristine, submitting }) => (
         component={renderTextField}
         type="text"
         name="name"
-        label="Patient Type"
+        label="Тип на пациент"
       />
     </div>
 
     <div>
       <RaisedButton
         type="submit"
-        label="Save"
+        label="Зачувај"
         primary={true}
         disabled={pristine || submitting}
       />
