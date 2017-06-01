@@ -27,6 +27,14 @@ export function graphql([query]) {
         'Content-Type': 'application/json',
         'authorization': localStorageService.getItem('AUTH_TOKEN')
       }
-    }).then(response => response.json())
+    })
+      .then(response => response.json())
+      .then(res => {
+        if(res.data.errors) {
+          return Promise.reject(res);
+        } else {
+          return Promise.resolve(res);
+        }
+      })
   }
 }
