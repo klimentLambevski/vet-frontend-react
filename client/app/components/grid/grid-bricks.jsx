@@ -1,6 +1,7 @@
-import {TextField} from 'material-ui';
+import {FlatButton, TextField} from 'material-ui';
 import {selectElement} from "../../services/util/select";
 import * as _ from "lodash";
+import {ConfirmDelete} from "../common/confirm-delete/confirm-delete";
 
 let THead = ({columns, rows, searchChanged}) => {
   let cols = columns || _.keys(rows[0]);
@@ -8,19 +9,23 @@ let THead = ({columns, rows, searchChanged}) => {
     <thead>
     <tr>{
       _.map(cols, (col, key) => <th key={col.label}>{col.label || key}</th>)
-    }</tr>
+    }
+      <th>Бришење</th>
+    </tr>
     <tr>{
       _.map(cols, (col, key) =>
         <th className="row-search" key={col.label}>
           <TextField style={{fontSize: '14px', width: 'auto'}} hintText="пребарај" onChange={(e) => searchChanged(key, e.target.value)}/>
         </th>
       )
-    }</tr>
+    }
+    <th />
+    </tr>
     </thead>
   )
 };
 
-let TBody = ({columns, rows, _onRowClick}) => {
+let TBody = ({columns, rows, _onRowClick, _onRowDelete}) => {
   let cols = columns; // || _.keys(rows[0]); enable columns based on rows object keys
 
   // let clipboard = new Clipboard('.overlay-hover', {
@@ -47,7 +52,11 @@ let TBody = ({columns, rows, _onRowClick}) => {
               {renderCell(cell, conf)}
             </td>;
           })
-        }</tr>
+        }
+        <td>
+          <ConfirmDelete resource={row} onDelete={_onRowDelete}/>
+        </td>
+        </tr>
       ))
     }</tbody>
   );

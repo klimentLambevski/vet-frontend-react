@@ -63,3 +63,7 @@ export const saveCustomer = (customer) =>
       createCustomer(customer, dispatch);
 
 
+export const deleteCustomer = (customer) =>
+  (dispatch) => CustomerApi.deleteCustomer(customer);
+
+

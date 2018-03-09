@@ -1,4 +1,5 @@
-import { graphql, handleMutation} from "../gateway/graphql"; import * as _ from "lodash";
+import { graphql, handleMutation } from "../gateway/graphql";
+import * as _ from "lodash";
 
 const getAll = () => graphql`
   query getExaminations {

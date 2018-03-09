@@ -35,6 +35,9 @@ let CustomerList = ({ customers, push, saveCustomer }) => (
           (customer) =>
             push(`/customers/${customer.id}`)
         }
+        _onRowDelete={(row) => {
+          console.log(row);
+        }}
       />
     </div>
 

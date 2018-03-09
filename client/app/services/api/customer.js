@@ -24,6 +24,7 @@ const getById = (customerId) => graphql`
         name
         surname
         referral
+        
       }
       patients(order: "reverse:createdAt") {
         id
@@ -85,6 +86,12 @@ const updateCustomer = (customer, customerId) => handleMutation(graphql`
     }
   }
 `({user: _.pick(customer.user, ['email', 'name', 'surname']), customerId: customerId}), 'updateCustomer');
+
+const deleteCustomer = ({id}) => handleMutation(graphql`
+  mutation deleteCustomer($customerId: String!) {
+    
+  }
+`(), 'deleteCustomer');
 
 export const CustomerApi = {
   getAll,
